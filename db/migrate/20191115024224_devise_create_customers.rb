@@ -33,11 +33,19 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
 
+      t.string :name_first, null: false
+      t.string :name_last, null: false
+      t.string :name_first_kana, null: false
+      t.string :name_last_kana, null: false
+      t.string :phone_number, null: false
+      t.boolean :is_deleted, null: false, default: false
       t.timestamps null: false
     end
 
     add_index :customers, :email,                unique: true
     add_index :customers, :reset_password_token, unique: true
+    add_index :customers, [:name_first, :name_last]
+    add_index :customers, [:name_first_kana, :name_last_kana]
     # add_index :customers, :confirmation_token,   unique: true
     # add_index :customers, :unlock_token,         unique: true
   end
