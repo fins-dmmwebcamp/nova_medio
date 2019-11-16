@@ -1,8 +1,8 @@
 class FavoritesController < ApplicationController
   def index
-    favorites = Favorites.where(user_id: current_user.id)
+    favorites = Favorite.where(user_id: current_user_id)
     p favorites
-    @products = Products.where(id: favorites.product_id)
+    @products = Product.where(id: favorites.product_id)
   end
 
   def create
