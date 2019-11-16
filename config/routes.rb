@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   root to: 'products#index'
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions'
+  }
+  devise_for :customers, controllers: {
+    sessions: 'customers/sessions',
+    registrations: 'customers/registrations'
+  }
   namespace :admin do
     resources :arrivals, only: [ :index, :new, :create ], shallow: true
     resources :artists, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
@@ -21,12 +28,6 @@ Rails.application.routes.draw do
   post 'orders/new/confirm', to: 'orders#confirm_order', as: 'confirm_order'
   resources :products, only: [:index, :show ], shallow: true
   resources :reviews, only: [:index, :new, :create], shallow: true
-  devise_for :admins, controllers: {
-    sessions: 'admins/sessions'
-  }
-  devise_for :customers, controllers: {
-    sessions: 'customers/sessions',
-    registrations: 'customers/registrations'
-  }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
