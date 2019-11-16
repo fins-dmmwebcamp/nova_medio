@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'products#index'
   namespace :admin do
     resources :arrivals, only: [ :index, :new, :create ], shallow: true
     resources :artists, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
