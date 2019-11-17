@@ -1,3 +1,21 @@
 <!-- 商品一覧 -->
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div>
+  <h1>商品一覧</h1>
+  <div>
+    <% @products.each do |product| %>
+      <div>
+        <% if product.on_sale %>
+          <div class="on_sale"></div>
+        <% else %>
+          <div class="not_on_sale"></div>
+        <% end %>
+        <%= attachment_image_tag product, :product_image, size: "60x60" , fallback: "no_image.jpg" %>
+        <%= product.name %>
+        <%= product.artist.name %>
+        <%= product.label.name %>
+        <%= product.stock %>
+      </div>
+    <% end %>
+    <%= paginate @products %>
+  </div>
+</div>
