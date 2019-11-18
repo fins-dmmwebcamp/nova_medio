@@ -1,6 +1,5 @@
 class Admin::LabelsController < ApplicationController
   def index
-    # 検索拡張機能として.search(params[:search])を追加
   @labels=Label.page(params[:page])
   end
 
