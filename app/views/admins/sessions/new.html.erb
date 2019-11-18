@@ -1,26 +1,30 @@
-<h2>Log in</h2>
+<div class="container">
+<div class="col-lg-11 s" style="background-color:#dcdcdc;height:900px;">
+
+<h2>サインイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="field" style="display:block;margin:0 auto;width:50%;text-align: center;height:60px;">
+    <%= f.label :メールアドレス %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
+  <div class="field"style="display:block;margin:0 auto;width:50%;text-align: center;height:60px;">
+    <%= f.label :パスワード %>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="field"style="display:block;margin:0 auto;width:50%;text-align: center;height:60px;">
       <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :パスワードを保存する%>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+  <div class="btn btn-blue"style="display:block;margin:0 auto;width:50%;text-align: center;">
+   <%= f.submit('サインイン',class: 'btn btn-primary btn-lg my-1 mb-3 px-11') %>
+     </div>
 <% end %>
 
-<%= render "admins/shared/links" %>
+</div>
+</div>
