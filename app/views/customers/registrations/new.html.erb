@@ -18,12 +18,30 @@
   </div>
 
 
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <%= f.text_field :email ,autocomplete: "example@example.com" %>
+
+    <div class="field">
+      <%= f.label :パスワード %>
+      <%= f.password_field :password ,autocomplete: "新規パスワードを入力してください" %>
+      <%= f.password_field :password_confirmation, autocomplete: "もう一度入力してください" %>
+    </div>
+
+    <div class="field">
+              <%= f.label :電話番号 %>
+              <%= f.number_field :phone_number, autofocus: true , autocomplete: "123456789",:style => "width:100px" %>
+      　     </div>
+ 
+
 <div>
-  <%= f.fields_for :characters do |destination_form| %>
+  <%= f.fields_for :destination, @cutomer_destination_build do |destination_form| %>
         <div class="field">
             <%= destination_form.label :郵便番号 %>
             <%= destination_form.number_field :postal_code, autocomplete: "0000000", :style => "width:80px" %>
         </div>
+
+
 
 
         <div class="field">
@@ -79,24 +97,9 @@
             <%= destination_form.text_field :address_city, autofocus: true , autocomplete: "市区町村",:style => "width:150px" %></br>
             <%= destination_form.text_field :address_after, autofocus: true , autocomplete: "以降の住所",:style => "width:150px" %>
 
-            <div class="field">
-              <%= destination_form.label :電話番号 %>
-              <%= destination_form.number_field :phone_number, autofocus: true , autocomplete: "123456789",:style => "width:100px" %>
-      　     </div>
 
     <% end %>
   </div>
-
-
-    <div class="field">
-      <%= f.label :メールアドレス %>
-      <%= f.text_field :email ,autocomplete: "example@example.com" %>
-
-    <div class="field">
-      <%= f.label :パスワード %>
-      <%= f.password_field :passward ,autocomplete: "新規パスワードを入力してください" %>
-      <%= f.password_field :password_confirmation, autocomplete: "もう一度入力してください" %>
-    </div>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
