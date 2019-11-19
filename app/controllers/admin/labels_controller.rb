@@ -1,5 +1,6 @@
 class Admin::LabelsController < ApplicationController
   def index
+  @labels=Label.page(params[:page])
   end
 
   def new
