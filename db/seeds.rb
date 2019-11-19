@@ -43,3 +43,8 @@ Label.create!(
 
   ]
 )
+if Rails.env == "development"
+  15.times do |i|
+    Artist.create!(name: "passworafad")
+  end
+end

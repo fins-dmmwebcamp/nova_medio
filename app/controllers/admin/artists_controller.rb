@@ -1,5 +1,6 @@
 class Admin::ArtistsController < ApplicationController
   def index
+    @artists=Artist.page(params[:page])
   end
 
   def new
