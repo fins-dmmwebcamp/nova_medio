@@ -23,13 +23,16 @@ class Customers::RegistrationsController < Devise::RegistrationsController
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
         # ---------------------------
-        binding.pry
-        destination = Destination.new(configure_permitted_parameters)
-        destination.customer_id = current_customer.id
-        destination.save
-
-
-        current_user.destinations.create(configure_permitted_parameters)
+        # /
+        Destination.create(
+          customer_id: current_customer.id,
+          name:"unko",
+          postal_code: params[:customer][:destination][:postal_code],
+          address_prefecture: params[:customer][:destination][:address_prefecture],
+          address_city: params[:customer][:destination][:address_city],
+          address_after: params[:customer][:destination][:address_after],
+          is_main: true
+          )
 
         # ----------------------------
         respond_with resource, location: after_sign_up_path_for(resource)

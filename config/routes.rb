@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'products#index'
+  root to: 'customer/products#index'
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
