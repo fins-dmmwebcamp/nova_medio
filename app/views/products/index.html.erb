@@ -1,0 +1,11 @@
+<div>
+  <ul>
+  <% @products.each do |product| %>
+  <li>
+    <%= product.name %>
+    <%= product.price %> 円
+    <%= product.label.name %>
+  </li>
+  <% end %>
+  </ul>
+</div>

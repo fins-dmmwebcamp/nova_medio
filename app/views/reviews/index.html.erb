@@ -1,0 +1,16 @@
+<div>
+  <h2><%= current_customer.name_first %><%= current_customer.name_last %>さん</h2>
+  <p>レビュー数：<%= @reviews.count %></p>
+  <h3>レビュー一覧</h3>
+  <% @reviews.each do |review| %>
+    <div>
+      <p><%= review.title %></p>
+      <p><%= review.created_at.year %>年<%= review.created_at.month %>月<%= review.created_at.day %>日</p>
+      <% review.rank.times do %>
+        ★
+      <% end %>
+      <p><%= review.body %></p>
+    </div>
+  <% end %>
+
+</div>

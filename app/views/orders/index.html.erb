@@ -1,0 +1,27 @@
+<div>
+  <h2>購入履歴</h2>
+  <% @orders.each_with_index do |order, i| %>
+  <div>
+    <% order.orders_details.each do |orders_detail| %>
+      <%= link_to orders_detail.product.name, product_path(orders_detail.product) %>
+      <p><%= orders_detail.product.artist.name %></p>
+      <p>商品単価：<%= orders_detail.price %></p>
+      <p>商品個数：<%= orders_detail.amount %></p>
+      <p>小計：<%= orders_detail.price * orders_detail.amount %></p>
+      <span class="btn btn-outline-primary">レビューを書く</span>
+    <% end %>
+  </div>
+  <div>
+    <p>購入日：<%= order.created_at.year %>年<%= order.created_at.month %>月<%= order.created_at.day %>日</p>
+    <p><%= order.shipping_status %></p>
+    <p>送付先：</p>
+    <p>宛名：<%= order.reciever %></p>
+    <p>〒<%= order.postal_code %></p>
+    <p><%= order.address %></p>
+    <p>小計：<%= @totals[i] %></p>
+    <p>送料：<%= order.shipping_fee %></p>
+    <p>内税：〇〇</p>
+    <p>合計：<%= @totals[i] + order.shipping_fee %></p>
+  </div>
+  <% end %>
+</div>
