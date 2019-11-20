@@ -1,12 +1,21 @@
 class Admin::LabelsController < ApplicationController
+   def create
+    @label=Label.new(label_params)
+    if @label.save
+      flash[:notice] = "You created label successfully !!!!!"
+      redirect_to admin_labels_path
+        else
+      flash[:notice] = "error !!!!!"
+      render :new
+  end
+
   def index
   @labels=Label.page(params[:page])
   end
 
   def new
-  end
-
-  def create
+    @label=Label.new
+    end
   end
 
   def edit

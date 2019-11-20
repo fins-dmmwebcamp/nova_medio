@@ -1,6 +1,6 @@
 <div class="container">
 <div class="col-lg-11 s" style="height:100%;">
-	<h1>アーティスト編集!!</h1>
+	<h1>レーベル編集!!</h1>
 
 <%= form_for(@label, url: admin_label_path) do |f|%>
 
@@ -16,7 +16,7 @@
  </div>
  <%end%>
 <div class="field">
-<label class="col-sm-3">アーティスト名</label><br>
+<label class="col-sm-3">レーベル名</label><br>
 <div class="col-sm-9">
  <%= f.text_field :name ,:size => "27x15"%>
   </div>

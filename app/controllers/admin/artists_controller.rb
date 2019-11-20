@@ -4,6 +4,7 @@ class Admin::ArtistsController < ApplicationController
   end
 
   def new
+    @artist=Artist.new
   end
 
   def create
