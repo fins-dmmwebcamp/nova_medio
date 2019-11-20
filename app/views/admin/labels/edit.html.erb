@@ -1,2 +1,31 @@
-<h1>Admin::Labels#edit</h1>
-<p>Find me in app/views/admin/labels/edit.html.erb</p>
+<div class="container">
+<div class="col-lg-11 s" style="height:100%;">
+	<h1>アーティスト編集!!</h1>
+
+<%= form_for(@label, url: admin_label_path) do |f|%>
+
+ <% if @label.errors.any? %>
+ <div id="error_explanation">
+ <h2><%= pluralize(@label.errors.count, "error") %> prohibited this book from being saved:</h2>
+ <ul>
+      <% @label.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+      <% end %>
+
+ </ul>
+ </div>
+ <%end%>
+<div class="field">
+<label class="col-sm-3">アーティスト名</label><br>
+<div class="col-sm-9">
+ <%= f.text_field :name ,:size => "27x15"%>
+  </div>
+ <%= f.submit "編集完了", class: "btn btn-success width pull-right" %><br>
+ </div>
+
+<%end%>
+
+
+
+</div>
+</div>
