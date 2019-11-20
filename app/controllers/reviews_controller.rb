@@ -1,14 +1,14 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_customer!
+	before_action :authenticate_customer!
+
 	def index
 		@reviews = Review.where(customer_id: current_customer.id)
 	end
 
-
-  def new
+	def new
 		@product = Product.find(params[:product_id])
 		@review = current_customer.reviews.new
-  end
+	end
 
   def create
   	@review = current_customer.reviews.new(review_params)

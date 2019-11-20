@@ -1,15 +1,17 @@
-
-<h1>いいね一覧</h1>
-	<<table>
+<div>
+	<h1>いいね一覧</h1>
+	<table>
 		<tbody>
 			<% @products.each do |f| %>
 			<tr>
-				<td  rowspan="2"><%= attachment_image_tag @products, product_image, size: "40x40",format: 'jpeg', fallback:"no_image.jpg"  %></td>
+				<td rowspan="2"><%= attachment_image_tag @products, product_image, size: "40x40",format: 'jpeg', fallback:"no_image.jpg"  %></td>
 				<td><%= @products.name %></td>
 				<td rowspan="2"><%= @products.price %></td>
 			</tr>
 			<tr>
 				<td><%= @products.artist.name %></td>
 			</tr>
+			<% end %>
 		</tbody>
 	</table>
+</div>
