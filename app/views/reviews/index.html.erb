@@ -1,5 +1,6 @@
-<div>
-  <h2><%= @reviews.user.name %>  レビュー数：<%= @reviews.count %></h2>
+
+  <h2><%= current_customer.name_first %><%= current_customer.name_last %>さん</h2>
+  <p>レビュー数：<%= @reviews.count %></p>
   <h3>レビュー一覧</h3>
   <% @reviews.each do |review| %>
     <div>

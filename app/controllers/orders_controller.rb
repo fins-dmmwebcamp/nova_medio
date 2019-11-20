@@ -1,6 +1,18 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
-    @orders = Orders.where(user_id: current_user.id)
+    @orders = Order.where(customer_id: current_customer.id)
+    @totals=[]
+    @orders.each_with_index do |order, i|
+      sum = 0
+      details = order.orders_details
+      details.each do |detail|
+        sum =detail.price * detail.amount
+      end
+      @totals[i] = sum
+    end
+
   end
 # 難しい！後でやる
   def new
