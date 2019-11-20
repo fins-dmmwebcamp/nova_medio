@@ -25,6 +25,7 @@ def index
   def update
     @artist=Artist.find(params[:id])
     if @artist.update(artist_params)
+          flash[:notice]="Artist has successfully edited"
       redirect_to admin_artists_path
     else
       flash[:notice] = "error error not successfully edited!"
