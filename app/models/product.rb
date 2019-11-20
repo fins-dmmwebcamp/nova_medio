@@ -9,4 +9,8 @@ class Product < ApplicationRecord
   belongs_to :label
   belongs_to :genre
   attachment :product_image
+
+  def favorited_by?(user)
+          favorites.where(customer_id: custoemr.id).exists?
+  end
 end

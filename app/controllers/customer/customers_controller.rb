@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   def show
-  end
+end
 
   def edit
   end
