@@ -79,14 +79,12 @@
             <%= destination_form.text_field :address_city, autofocus: true , autocomplete: "市区町村",:style => "width:150px" %></br>
             <%= destination_form.text_field :address_after, autofocus: true , autocomplete: "以降の住所",:style => "width:150px" %>
 
-            <div class="field">
-              <%= destination_form.label :電話番号 %>
-              <%= destination_form.number_field :phone_number, autofocus: true , autocomplete: "123456789",:style => "width:100px" %>
-      　     </div>
-
     <% end %>
   </div>
-
+            <div class="field">
+              <%= f.label :電話番号 %>
+              <%= f.number_field :phone_number, autofocus: true , autocomplete: "123456789",:style => "width:100px" %>
+      　    </div>
 
     <div class="field">
       <%= f.label :メールアドレス %>
@@ -94,7 +92,7 @@
 
     <div class="field">
       <%= f.label :パスワード %>
-      <%= f.password_field :passward ,autocomplete: "新規パスワードを入力してください" %>
+      <%= f.password_field :password ,autocomplete: "新規パスワードを入力してください" %>
       <%= f.password_field :password_confirmation, autocomplete: "もう一度入力してください" %>
     </div>
 
