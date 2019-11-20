@@ -7,6 +7,7 @@ class Admin::LabelsController < ApplicationController
         else
       flash[:notice] = "error !!!!!"
       render :new
+    end
   end
 
   def index
