@@ -1,12 +1,15 @@
 
 <div class="container">
-<div class="col-lg-11 s" style="height:100%;">
+<div class="col-lg-11 s" style="background-color:#dcdcdc;height:100%;">
 	<h1>レーベル一覧!!</h1>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
 	<table class="table">
-	<%@labels.each do |label|%>
+	<%@labels.each_with_index do |label,i|%>
 <tbody>
 	<tr>
-	<td><%= label.id %></td>
+	<td>No.<%=i+1%></td>
 	<td><%= label.name %></td>
 	<td><div class="btn btn-default"><%= link_to "削除", admin_label_path(label.id),method: :delete %></div>
 　<div class="btn btn-default"><%= link_to "編集", edit_admin_label_path(label.id) %></div></td>

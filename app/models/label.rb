@@ -1,5 +1,4 @@
 class Label < ApplicationRecord
   has_many :products
-  end
-
+ validates:name, presence:true
 end

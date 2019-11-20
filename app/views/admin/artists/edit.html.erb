@@ -1,2 +1,29 @@
-<h1>Admin::Artists#edit</h1>
-<p>Find me in app/views/admin/artists/edit.html.erb</p>
+<div class="container">
+<div class="col-lg-11 s" style="background-color:#dcdcdc;height:100%;">
+	<h1>レーベル編集!!</h1>
+<%= form_for([:admin,@artist]) do |f|%>
+
+ <% if @artist.errors.any? %>
+ <div id="error_explanation">
+ <ul>
+      <% @artist.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+      <% end %>
+
+ </ul>
+ </div>
+ <%end%>
+<div class="field">
+<label class="col-sm-3">レーベル名</label><br>
+<div class="col-sm-9">
+ <%= f.text_field :name ,:size => "27x15"%>
+  </div>
+ <%= f.submit "編集完了", class: "btn btn-success width pull-right" %><br>
+ </div>
+
+<%end%>
+
+
+
+</div>
+</div>

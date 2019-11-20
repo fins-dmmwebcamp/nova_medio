@@ -22,12 +22,16 @@ Rails.application.routes.draw do
   get 'customers/leave', to: 'customers#leave_page', as: 'customer_leave_page'
   patch 'customers/leave', to: 'customers#leave', as: 'customer_leave'
   resources :destinations, only: [ :new, :create, :edit, :update], shallow: true
-  resources :favorites, only: [:index, :create, :destroy], shallow: true
   resources :orders, only: [:index, :new, :create, :show], shallow: true
   post 'orders/new', to: 'orders#confirm_payment', as: 'confirm_payment'
   post 'orders/new/confirm', to: 'orders#confirm_order', as: 'confirm_order'
-  resources :products, only: [:index, :show ], shallow: true
-  resources :reviews, only: [:index, :new, :create], shallow: true
+  resources :products, only: [:index, :show ] do
+    resources :reviews, only: [:new, :create]
+    resources :favorites, only: [:create, :destroy], shallow: true
+  end
+  get 'reviews', to: 'reviews#index', as: 'reviews' 
+  get 'favorites', to: 'favorites#index', as: 'favorites'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
