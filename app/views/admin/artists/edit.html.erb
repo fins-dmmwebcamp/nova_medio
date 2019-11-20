@@ -1,8 +1,7 @@
 <div class="container">
 <div class="col-lg-11 s" style="height:100%;">
 	<h1>レーベル編集!!</h1>
-
-<%= form_for(@label, url: admin_artist_path) do |f|%>
+<%= form_for([:admin,@artist]) do |f|%>
 
  <% if @artist.errors.any? %>
  <div id="error_explanation">

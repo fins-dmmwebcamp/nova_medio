@@ -6,10 +6,10 @@
   <p><%= flash[:notice] %></p>
 <% end %>
 	<table class="table">
-	<%@artists.each do |artist|%>
+	<%@artists.each_with_index do |artist,i|%>
 <tbody>
 	<tr>
-	<td><%= artist.id %></td>
+	<td>No.<%=i+1%></td>
 	<td><%= artist.name %></td>
 	<td><div class="btn btn-default"><%= link_to "削除", admin_artist_path(artist.id),method: :delete %></div>
 　<div class="btn btn-default"><%= link_to "編集", edit_admin_artist_path(artist.id) %></div></td>

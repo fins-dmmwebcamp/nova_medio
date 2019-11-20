@@ -16,7 +16,6 @@ class Admin::LabelsController < ApplicationController
 
   def new
     @label=Label.new
-    end
   end
 
   def edit
@@ -34,7 +33,12 @@ class Admin::LabelsController < ApplicationController
   end
 
   def destroy
+      label = Label.find(params[:id])
+    label.destroy
+    flash[:notice]="Label has successfully deleted!"
+    redirect_to admin_labels_path
   end
+
   private
     def label_params
       params.require(:label).permit(:name)

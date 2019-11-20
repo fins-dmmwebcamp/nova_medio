@@ -33,7 +33,12 @@ def index
   end
 
   def destroy
+     artist = Artist.find(params[:id])
+    artist.destroy
+    flash[:notice]="Artist has successfully deleted!"
+    redirect_to admin_artists_path
   end
+
   private
     def artist_params
       params.require(:artist).permit(:name)
