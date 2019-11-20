@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
       end
       @totals[i] = sum
     end
+
   end
 # 難しい！後でやる
   def new

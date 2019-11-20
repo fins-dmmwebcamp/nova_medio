@@ -1,12 +1,15 @@
 
 <div class="container">
 	<h1>購入後レビュー</h1>
+
 	<div><%= @review.errors.full_messages %></div>
 		<%= form_for @review, url: {action: "create"} do |f|  %>
 
 
 			<div class="form-group row" id="star">
 				<p>5段階評価</p>
+				    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+				    <%= f.hidden_field :ranks, id: :review_star %>
 				<%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
 				<%= f.hidden_field :rank, id: :review_star %>
    			<!-- 評価javascript -->
