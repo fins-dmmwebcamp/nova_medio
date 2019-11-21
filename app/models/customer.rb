@@ -18,4 +18,17 @@ class Customer < ApplicationRecord
   has_many :favorites
   has_many :destinations
   has_many :cart_items, dependent: :destroy
+
+
+# フルネームを定義
+
+
+# def name_full
+#   [name_first,name_last].join('')
+# end
+
+def name_full
+  "#{self.name_first} #{self.name_last}"
+end
+
 end
