@@ -8,11 +8,8 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    # @disc = @products.build_discs
-    disc = @product.discs.build
-    disc.songs.build
-    # @product = @product.discs.build
-    # @product.songs.build
+    @disc = @product.discs.build
+    @song = @disc.songs.build
   end
 
   def create

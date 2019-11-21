@@ -1,0 +1,16 @@
+<%= form_for @song do |song| %>
+  <div class="field">
+    <%= song.label :name, "name" %>
+    <%= song.text_field :name %>
+  </div>
+  <h3>Tasks</h3>
+  <div id="tasks">
+    <%= song.fields_for :tasks do |task| %>
+      <%= render 'task_fields', song: task %>
+    <% end %>
+    <div id="links">
+      <%= link_to_add_association 'add task', song, :tasks %>
+    </div>
+    <%= song.submit %>
+  </div>
+<% end %>

@@ -23,7 +23,7 @@
   <%= product.label :genre_id %>
   <%= product.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
 
-  
+
 
 
   <h4>曲名</h4>
@@ -44,6 +44,14 @@
       <%= disc.add_nested_fields_link :songs, 'Add song', class: 'btn btn-primary', role: 'button' %>
     <% end %>
   <%= product.add_nested_fields_link :discs, 'Add disc', class: 'btn btn-primary', role: 'button' %>
+
+
+
+
+  <h4>曲名</h4>
+    <%= form_for @disc do |disc| %>
+      
+    <% end %>
 
 
 
