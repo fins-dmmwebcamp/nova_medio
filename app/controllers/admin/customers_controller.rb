@@ -1,15 +1,16 @@
 class Admin::CustomersController < ApplicationController
 
 
-
-
-
   def index
-    @customers = Customer.all
+
+        @customers = Customer.page(params[:page]).per(15).search(params[:search])
+     
+
   end
 
   def show
-    @cutomer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
+    @destination = Destination.find(params[:id])
   end
 
   def edit
@@ -24,4 +25,13 @@ class Admin::CustomersController < ApplicationController
     customer.is_deleted = true
     customer.is_deleted.save
   end
+
+
+
+def customer_prams
+  params.require(:customer).permit(:name_full,:phone_number,:email,:posta_code,destionations:[:postal_code])
+end
+
+
+
 end

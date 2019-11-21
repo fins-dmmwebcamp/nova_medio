@@ -3,14 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.input-group{
-	margin:50px auto;
-	width:700px
-}
-
 .table_outer{
-	margin:0 auto;
+	margin:50px auto;
 	float:none;
 	width:600px;
 
 }
+
+
+
+.input-group{
+	 display:inline-block;
+	 margin:50px auto;
+	 width:700px;
+	}
+

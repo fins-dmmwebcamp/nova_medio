@@ -31,4 +31,12 @@ def name_full
   "#{self.name_first} #{self.name_last}"
 end
 
+def self.search(search)
+      if search
+        Customer.where(['email LIKE ?', "%#{search}%"])
+      else
+        Customer.all
+      end
+    end
+
 end
