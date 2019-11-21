@@ -20,7 +20,7 @@
         </p>
         <p><%= review.body %></p>
       </div>
-      <div class="panel-footer" style="display: grid;grid-template-columns: 100px 1fr;grid-template-rows: 1fr 1fr;grid-template-areas: 'image title' 'image artist';">
+      <div class="panel-footer" style="display:grid;grid-template-columns:100px 1fr;grid-template-rows:1fr 1fr;grid-template-areas:'image title' 'image artist';">
         <div style="grid-area: image;">
           <%= attachment_image_tag(review.product, :product_image, :fill, 80, 80,fallback: "noimage.png", size:'80x80') %>
         </div>
