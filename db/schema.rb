@@ -49,17 +49,17 @@ ActiveRecord::Schema.define(version: 2019_11_19_070411) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string "email", default: ""
-    t.string "encrypted_password", default: ""
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name_first"
-    t.string "name_last"
-    t.string "name_first_kana"
-    t.string "name_last_kana"
-    t.string "phone_number"
-    t.boolean "is_deleted", default: false
+    t.string "name_first", null: false
+    t.string "name_last", null: false
+    t.string "name_first_kana", null: false
+    t.string "name_last_kana", null: false
+    t.string "phone_number", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_070411) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "customer_id"
-    t.string "name"
+    t.string "name", null: false
     t.string "postal_code", null: false
     t.integer "address_prefecture", null: false
     t.string "address_city", null: false
