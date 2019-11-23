@@ -10,15 +10,18 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :arrivals, only: [ :index, :new, :create ], shallow: true
     resources :artists, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
-    resources :customers, only: [ :index, :show, :create, :edit, :destroy ], shallow: true
+    resources :customers, only: [ :index, :show, :create, :edit, :destroy,:update ] do
+      resources :reviews, only: [ :index, :edit, :update, :destroy ], shallow: true
+    end
     resources :labels, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
     resources :orders, only: [ :index, :show, :update ], shallow: true
     get 'admin/customers/:customer_id/orders', to: 'orders#user_index', as: 'admin_user_orders'
     resources :products, shallow: true
-    resources :reviews, only: [ :index, :edit, :update, :destroy ], shallow: true
   end
   resources :cart_items, only: [:index, :create, :update, :destroy], shallow: true
-  resources :customers, only: [:show, :edit, :update], shallow: true
+  resources :customers, only: [:show, :edit, :update] do
+    resources :reviews, only: [:index], shallow: true
+  end
   get 'customers/leave', to: 'customers#leave_page', as: 'customer_leave_page'
   patch 'customers/leave', to: 'customers#leave', as: 'customer_leave'
   resources :destinations, only: [ :new, :create, :edit, :update], shallow: true
@@ -29,7 +32,6 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
     resources :favorites, only: [:create, :destroy], shallow: true
   end
-  get 'reviews', to: 'reviews#index', as: 'reviews' 
   get 'favorites', to: 'favorites#index', as: 'favorites'
 
 

@@ -1,3 +1,37 @@
-<!-- レビュー一覧 -->
-<h1>Admin::Reviews#index</h1>
-<p>Find me in app/views/admin/reviews/index.html.erb</p>
+<div>
+  <h2><%= @customer.name_first %><%= @customer.name_last %>さん</h2>
+  <p>レビュー数：<%= @reviews.count %></p>
+  <h3>レビュー一覧</h3>
+  <% @reviews.each do |review| %>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="position:relative;">
+        <section>
+          タイトル：<%= review.title %>
+          <span style="position:absolute;right:20px;">
+          <%= review.created_at.year %>年<%= review.created_at.month %>月<%= review.created_at.day %>日
+          </span>
+        </section>
+      </div>
+      <div class="panel-body">
+        <div style='display:grid;grid-template-columns:1fr 60px;grid-template-rows: 1fr 1fr;grid-template-areas: "rank edit" "body delete";'>
+          <span style="grid-area: rank;color:yellow;">
+            <% review.rank.times do %>
+              ★
+            <% end %>
+          </span>
+          <span class="btn btn-info btn-sm" style="grid-area:edit;margin:5px auto;"><%= link_to "編集",edit_admin_review_path(review),style:"color:white;" %></span>
+          <span style="grid-area: body;"><%= review.body %></span>
+          <span class="btn btn-danger btn-sm" style="grid-area: delete;margin:5px auto;"><%= link_to "削除",admin_review_path(review),style:"color:white;",method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
+        </div>
+      </div>
+      <div class="panel-footer" style="display:grid;grid-template-columns:100px 1fr;grid-template-rows:1fr 1fr;grid-template-areas:'image title' 'image artist';">
+        <div style="grid-area: image;">
+          <%= attachment_image_tag(review.product, :product_image, :fill, 80, 80,fallback: "noimage.png", size:'80x80') %>
+        </div>
+        <div style="grid-area: title;"><h4><%= link_to review.product.name,product_path(review.product) %></h4></div>
+        <div style="grid-area: artist;"><%= review.product.artist.name %></div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
