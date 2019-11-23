@@ -10,4 +10,5 @@ class DestinationsController < ApplicationController
 
   def update
   end
+
 end

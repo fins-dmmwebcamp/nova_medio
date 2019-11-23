@@ -18,4 +18,30 @@ class Customer < ApplicationRecord
   has_many :favorites
   has_many :destinations
   has_many :cart_items, dependent: :destroy
+
+
+# フルネームを定義
+
+
+# def name_full
+#   [name_first,name_last].join('')
+# end
+
+def name_full
+  "#{self.name_first} #{self.name_last}"
+end
+
+def name_full_kana
+  "#{self.name_first_kana} #{self.name_last_kana}"
+end
+
+
+def self.search(search)
+      if search
+        Customer.where(['email LIKE ?', "%#{search}%"])
+      else
+        Customer.all
+      end
+    end
+
 end

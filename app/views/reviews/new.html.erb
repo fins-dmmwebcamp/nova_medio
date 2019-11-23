@@ -1,42 +1,44 @@
 
-<div class="container">
+<div>
 	<h1>購入後レビュー</h1>
-
-	<div><%= @review.errors.full_messages %></div>
-		<%= form_for @review, url: {action: "create"} do |f|  %>
-
-
-			<div class="form-group row" id="star">
-				<p>5段階評価</p>
-				    <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-				    <%= f.hidden_field :ranks, id: :review_star %>
-				<%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-				<%= f.hidden_field :rank, id: :review_star %>
-   			<!-- 評価javascript -->
-			  <script>
-			  $('#star').raty({
-			    size     : 36,
-			    starOff:  '<%= asset_path('star-off.png') %>',
-			    starOn : '<%= asset_path('star-on.png') %>',
-			    scoreName: 'review[rank]',
-			    half:false,
-			  });
-			  </script>
-
-
- 			 </div>
+	<div>
+		<% if @review.errors.any? %>
+			<% @review.errors.full_messages.each do |message| %>
+			<div class="alert alert-danger" role="alert">
+				<ul>
+					<li><%= message %></li>
+				</ul>
 			</div>
-			<div class="row">
-				<p>タイトル</p>
-					<%= f.text_field :title, :class => 'col-xs-12'%>
+			<% end%>
+		<% end %>
+	</div>
+	<%= form_for @review, url: product_reviews_path do |f|  %>
+	<div class="form-group" id="star">
+		<p>5段階評価</p>
+		<%= f.label :rank,'評価 ', class:'col-md-3 col-form-label' %>
+		<%= f.hidden_field :rank, id: :review_star %>
+		<!-- 評価javascript -->
+		<script>
+		$('#star').raty({
+			size     : 36,
+			starOff:  '<%= asset_path('star-off.png') %>',
+			starOn : '<%= asset_path('star-on.png') %>',
+			scoreName: 'review[rank]',
+			half:false,
+		});
+		</script>
 			</div>
-			<div class="row">
-				<p>レビュー内容</p>
-					<%= f.text_area :body, :class => 'col-xs-12'%>
-			</div>
-			<div class="row">
-				<%= f.submit "投稿", :class => "col-xs-3 btn btn-success" %>
-			</div>
-
+		</div>
+		<div class="">
+			<p>タイトル</p>
+			<%= f.text_field :title, :class => 'col-xs-12'%>
+		</div>
+		<div class="">
+			<p>レビュー内容</p>
+			<%= f.text_area :body, :class => 'col-xs-12'%>
+		</div>
+		<div class="">
+			<%= f.submit "投稿", :class => "col-xs-3 btn btn-success" %>
+		</div>
 		<% end %>
 </div>

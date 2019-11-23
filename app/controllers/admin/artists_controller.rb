@@ -11,11 +11,7 @@ class Admin::ArtistsController < ApplicationController
    end
 def index
     @artists=Artist.page(params[:page])
-    @posts = Artist.search(params[:search]).page(params[:page])
-# if !@posts.present?
-# flash[:notice] = "見つかりませんでした!!!!!"
-# redirect_to admin_artists_path
-# end
+    @posts = Artist.search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
   end
 
   def new
