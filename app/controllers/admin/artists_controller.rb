@@ -11,6 +11,11 @@ class Admin::ArtistsController < ApplicationController
    end
 def index
     @artists=Artist.page(params[:page])
+    @posts = Artist.search(params[:search]).page(params[:page])
+# if !@posts.present?
+# flash[:notice] = "見つかりませんでした!!!!!"
+# redirect_to admin_artists_path
+# end
   end
 
   def new
