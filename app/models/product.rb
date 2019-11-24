@@ -9,5 +9,5 @@ class Product < ApplicationRecord
   belongs_to :label
   belongs_to :genre
   attachment :product_image
-  accepts_nested_attributes_for :discs
+  accepts_nested_attributes_for :discs, allow_destroy: true
 end
