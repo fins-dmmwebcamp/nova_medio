@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :arrivals, only: [ :index, :new, :create ], shallow: true
     resources :artists, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
-    resources :customers, only: [ :index, :show, :create, :edit, :destroy ] do
+    resources :customers, only: [ :index, :show, :create, :edit, :destroy,:update ] do
       resources :reviews, only: [ :index, :edit, :update, :destroy ], shallow: true
     end
     resources :labels, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
