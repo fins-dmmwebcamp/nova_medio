@@ -12,6 +12,7 @@ class Admin::LabelsController < ApplicationController
 
   def index
   @labels=Label.page(params[:page])
+  @posts = Label.search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
   end
 
   def new
