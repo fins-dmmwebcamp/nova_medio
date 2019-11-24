@@ -8,14 +8,13 @@ class Admin::ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    # @disc = @products.build_discs
-    disc = @product.discs.build
-    disc.songs.build
-    # @product = @product.discs.build
-    # @product.songs.build
+    @disc = @product.discs.build
+    @song = @disc.songs.build
   end
 
   def create
+    @product = Product.new(product_params)
+    @product.save
   end
 
   def edit
@@ -25,5 +24,10 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def product_params
+    params.require(:product).permit(:name, :artist_id, :label_id, :genre_id, :price, :product_image, discs_attributes: [:id, :order, songs_attributes: [:id, :order, :name]])
   end
 end

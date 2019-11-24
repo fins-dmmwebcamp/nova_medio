@@ -23,28 +23,16 @@
   <%= product.label :genre_id %>
   <%= product.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
 
-  
-
-
+  <div class="disc">
   <h4>曲名</h4>
-    <%= product.nested_fields_for :discs, wrapper_tag: :tr do |disc| %>
-    <td>
-      <%= disc.text_field :order, class: 'form-control' %>
-    </td>
-      <table class="table table-striped table-bordered table-hober">
-          <%= disc.nested_fields_for :songs, wrapper_tag: :tr do |song| %>
-        <td>
-          <%= song.text_field :name, class: 'form-control' %>
-        </td>
-        <td>
-          <%= song.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-        </td>
-        <% end %>
-      </table>
-      <%= disc.add_nested_fields_link :songs, 'Add song', class: 'btn btn-primary', role: 'button' %>
-    <% end %>
-  <%= product.add_nested_fields_link :discs, 'Add disc', class: 'btn btn-primary', role: 'button' %>
 
+    <%= product.fields_for :discs do |discs| %>
+      <%= render 'admin/products/nestform/disc_fields', disc: discs %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "discを追加", product, :discs, partial: "admin/products/nestform/disc_fields" %>
+    </div>
+  </div>
 
 
   <%= product.submit '追加する' %>
