@@ -2,9 +2,11 @@
 <div>
   <h1>商品一覧</h1>
   <div>
-    <div>新着順</div>
-    <div>売れ筋順</div>
-    <div>いいね順</div>
+    <select name="sort_order">
+      <option value="new">新着順</option>
+      <option value="favorite">いいね順</option>
+      <option value="hot">売れ筋順</option>
+    </select>
   </div>
   <ul>
   <% @products.each do |product| %>
