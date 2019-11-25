@@ -65,12 +65,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # added by nakaniwa
 
-gem 'bootstrap-sass'
+gem 'bootstrap', '~> 4.1.1'
 gem 'cocoon'
 gem 'devise'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
-
-gem 'cocoon'
