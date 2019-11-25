@@ -19,13 +19,13 @@
 		<%= f.hidden_field :rank, id: :review_star %>
 		<!-- 評価javascript -->
 		<script>
-		$('#star').raty({
-			size     : 36,
-			starOff:  '<%= asset_path('star-off.png') %>',
-			starOn : '<%= asset_path('star-on.png') %>',
-			scoreName: 'review[rank]',
-			half:false,
-		});
+			$('#star').raty({
+				size     : 36,
+				starOff:  '<%= asset_path('star-off.png') %>',
+				starOn : '<%= asset_path('star-on.png') %>',
+				scoreName: 'review[rank]',
+				half:false,
+			});
 		</script>
 			</div>
 		</div>
