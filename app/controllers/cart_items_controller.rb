@@ -12,6 +12,9 @@ class CartItemsController < ApplicationController
   end
 
   def create
+    @item = current_customer.cart_items.new(cart_item_params)
+    @item.save
+    redirect_back(fallback_location: root_path)
   end
 
   def update
