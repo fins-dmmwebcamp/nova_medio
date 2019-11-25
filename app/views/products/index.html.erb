@@ -1,13 +1,13 @@
 
 <div>
+  <h1>商品一覧</h1>
   <ul>
   <% @products.each do |product| %>
   <li>
-    <%= product.name %>
-    <%= product.price %> 円
-    <%= product.label.name %>
+    <p><%= product.name %></p>
+    <p><%= product.price %> 円</p>
+    <p><%= product.label.name %></p>
   </li>
   <% end %>
   </ul>
 </div>
-

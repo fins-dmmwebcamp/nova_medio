@@ -37,11 +37,11 @@ class Admin::CustomersController < ApplicationController
     redirect_to  admin_customers_path
   end
 
+  private
 
-
-def customer_prams
-  params.require(:customer).permit(:name_full,:phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after])
-end
+    def customer_params
+      params.require(:customer).permit(:name_full,:phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after])
+    end
 
 
 
