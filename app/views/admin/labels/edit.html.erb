@@ -1,4 +1,4 @@
-
+<div class="container">
 	<h1>レーベル編集!!</h1>
 
 <%= form_for([:admin,@label]) do |f|%>
@@ -14,12 +14,13 @@
  </div>
  <%end%>
 <div class="field">
-<label class="col-sm-3">レーベル名</label><br>
-<div class="col-sm-9">
- <%= f.text_field :name ,:size => "27x15"%>
+<label class="col-sm-12 " style="font-size:20px;margin-top: 40px;">レーベル名</label><br>
+<div class="col-sm-12">
+ <%= f.text_field :name ,:size => "100x35"%>
   </div>
- <%= f.submit "編集完了", class: "btn btn-success width pull-right" %><br>
+ <%= f.submit "編集完了", class: "btn btn-success width btn-lg pull-right" %><br>
  </div>
 
 <%end%>
 
+</div>
