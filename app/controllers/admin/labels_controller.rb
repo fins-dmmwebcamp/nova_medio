@@ -5,7 +5,7 @@ class Admin::LabelsController < ApplicationController
       flash[:notice] = "You created label successfully !!!!!"
       redirect_to admin_labels_path
         else
-      flash[:notice] = "error !!!!!"
+      flash.now[:notice] = "error !!!!!"
       render :new
     end
   end
@@ -29,7 +29,7 @@ class Admin::LabelsController < ApplicationController
       flash[:notice]="Label has successfully edited!"
       redirect_to admin_labels_path
     else
-      flash[:notice] = "error error not successfully edited!"
+      flash.now[:notice] = "error error not successfully edited!"
       render :edit
     end
   end

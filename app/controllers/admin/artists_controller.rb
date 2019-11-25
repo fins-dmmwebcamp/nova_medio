@@ -5,7 +5,7 @@ class Admin::ArtistsController < ApplicationController
       flash[:notice] = "You created artist successfully !!!!!"
       redirect_to admin_artists_path
         else
-      flash[:notice] = "error !!!!!"
+      flash.now[:notice] = "error !!!!!"
       render :new
     end
    end
@@ -29,7 +29,7 @@ def index
           flash[:notice]="Artist has successfully edited"
       redirect_to admin_artists_path
     else
-      flash[:notice] = "error error not successfully edited!"
+      flash.now[:notice] = "error error not successfully edited!"
       render :edit
     end
   end
