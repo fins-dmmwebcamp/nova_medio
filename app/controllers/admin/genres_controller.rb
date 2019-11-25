@@ -5,7 +5,7 @@ class Admin::GenresController < ApplicationController
       flash[:notice] = "You created genre successfully !!!!!"
       redirect_to admin_genres_path
         else
-      flash[:notice] = "error !!!!!"
+      flash.now[:notice] = "error !!!!!"
       render :new
     end
     end
@@ -29,7 +29,7 @@ class Admin::GenresController < ApplicationController
           flash[:notice]="Genre has successfully edited"
       redirect_to admin_genres_path
     else
-      flash[:notice] = "error error not successfully edited!"
+      flash.now[:notice] = "error error not successfully edited!"
       render :edit
     end
   end
