@@ -1,0 +1,24 @@
+
+	<h1>ジャンル登録</h1>
+
+<%= form_for([:admin,@genre]) do |f|%>
+
+ <% if @genre.errors.any? %>
+ <div id="error_explanation">
+ <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+      <% end %>
+
+ </ul>
+ </div>
+ <%end%>
+<div class="field">
+<label class="col-sm-3">ジャンル名</label><br>
+<div class="col-sm-9">
+ <%= f.text_field :name ,:size => "50x15"%>
+  </div>
+ <%= f.submit "登録する", class: "btn btn-success width pull-right" %><br>
+ </div>
+
+<%end%>

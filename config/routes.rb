@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/new'
+    get 'genres/edit'
+    get 'genres/create'
+    get 'genres/update'
+    get 'genres/destroy'
+  end
   root to: 'products#index'
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
@@ -14,6 +22,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [ :index, :edit, :update, :destroy ], shallow: true
     end
     resources :labels, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
+    resources :genres, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
     resources :orders, only: [ :index, :show, :update ], shallow: true
     get 'admin/customers/:customer_id/orders', to: 'orders#user_index', as: 'admin_user_orders'
     resources :products, shallow: true
