@@ -1,4 +1,4 @@
-
+<div class="container">
 	<h1>アーティスト登録</h1>
 
 <%= form_for([:admin,@artist]) do |f|%>
@@ -14,13 +14,14 @@
  </div>
  <%end%>
 <div class="field">
-<label class="col-sm-3">アーティスト名</label><br>
-<div class="col-sm-9">
- <%= f.text_field :name ,:size => "50x15"%>
+<label class="col-sm-12 " style="font-size:20px;margin-top: 40px;">アーティスト名</label><br>
+<div class="col-sm-12">
+ <%= f.text_field :name ,:size => "100x35"%>
   </div>
- <%= f.submit "登録する", class: "btn btn-success width pull-right" %><br>
+ <%= f.submit "登録する", class: "btn btn-success btn-lg width pull-right" %><br>
  </div>
 
 <%end%>
 
 
+</div>
