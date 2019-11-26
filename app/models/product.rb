@@ -10,4 +10,6 @@ class Product < ApplicationRecord
   belongs_to :genre, optional: true
   attachment :product_image
   accepts_nested_attributes_for :discs, allow_destroy: true
+
+  # default_scope -> { order(id: :desc) }
 end
