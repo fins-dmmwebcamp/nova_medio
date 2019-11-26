@@ -26,7 +26,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
         # /
         Destination.create(
           customer_id: current_customer.id,
-          name:"unko",
+          name:@customer.full_name,
           postal_code: params[:customer][:destination][:postal_code],
           address_prefecture: params[:customer][:destination][:address_prefecture],
           address_city: params[:customer][:destination][:address_city],
