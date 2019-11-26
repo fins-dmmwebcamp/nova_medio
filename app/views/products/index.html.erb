@@ -1,13 +1,20 @@
 
 <div>
+  <h1>商品一覧</h1>
+  <div>
+    <select name="sort_order">
+      <option value="products_new">新着順</option>
+      <option value="products_favorite">いいね順</option>
+      <option value="products_hot">売れ筋順</option>
+    </select>
+  </div>
   <ul>
   <% @products.each do |product| %>
   <li>
-    <%= product.name %>
-    <%= product.price %> 円
-    <%= product.label.name %>
+    <p><%= product.name %></p>
+    <p><%= product.price %> 円</p>
+    <p><%= product.label.name %></p>
   </li>
   <% end %>
   </ul>
 </div>
-
