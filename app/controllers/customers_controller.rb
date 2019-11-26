@@ -12,9 +12,22 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
   end
 
   def edit
+    @customer = Customer.find(params[:id])
+    @destination = Destination.where(is_main: true).find_by(customer_id: @customer.id)
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    @destination = Destination.where(is_main: true).find_by(customer_id: @customer.id)
+
+    # binding.pry
+    if @customer.update(customer_params) && @destination.update(customer_params)
+      redirect_to customer_path(@customer)
+    else
+      render :edit
+    end
+
+
   end
 
   def leave
@@ -25,7 +38,12 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
 
 end
 
+private
 
-def customer_prams
+def customer_params
   params.require(:customer).permit(:name_full,:phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after])
 end
+
+# def destination_params
+#   params.require(:destination)
+# end
