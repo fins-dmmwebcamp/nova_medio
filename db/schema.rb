@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_070411) do
   create_table "destinations", force: :cascade do |t|
     t.integer "customer_id"
     t.string "name"
-    t.string "postal_code"
+    t.string "postal_code", null: false
     t.integer "address_prefecture", null: false
     t.string "address_city", null: false
     t.string "address_after", null: false
