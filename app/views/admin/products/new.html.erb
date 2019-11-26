@@ -27,7 +27,7 @@
   <h4>曲名</h4>
 
     <%= product.fields_for :discs do |discs| %>
-      <%= render 'admin/products/nestform/disc_fields', disc: discs %>
+      <%= render 'admin/products/nestform/disc_fields', f: discs %>
     <% end %>
     <div class="links">
       <%= link_to_add_association "discを追加", product, :discs, partial: "admin/products/nestform/disc_fields" %>

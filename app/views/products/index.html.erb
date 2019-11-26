@@ -7,6 +7,8 @@
       <option value="products_favorite">いいね順</option>
       <option value="products_hot">売れ筋順</option>
     </select>
+    <%= link_to(url_for(:action => 'index'), :remote => true) do %>
+
   </div>
   <ul>
   <% @products.each do |product| %>
