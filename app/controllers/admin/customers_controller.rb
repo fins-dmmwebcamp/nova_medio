@@ -9,18 +9,18 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @destination = Destination.find_by(customer_id: params[:id])
+    @destination = Destination.find_by(customer_id: @customer.id)
 
   end
 
   def edit
     @customer = Customer.find(params[:id])
-    @destination = Destination.find_by(customer_id: params[:id])
+    @destination = Destination.find_by(customer_id: @customer.id)
   end
 
   def update
     @customer = Customer.find(params[:id])
-    @destination = Destination.find_by(customer_id: params[:id])
+    @destination = Destination.find_by(customer_id: @customer.id)
 
     if @customer.update(customer_params) && @destination.update(customer_params)
     redirect_to admin_customer_path(params[:id])
