@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   end
   get 'favorites', to: 'favorites#index', as: 'favorites'
 
+  post 'sort_products', to: 'products#index', as: 'sort_products'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
