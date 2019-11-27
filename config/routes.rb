@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   resources :customers, only: [:show, :edit, :update] do
     resources :reviews, only: [:index], shallow: true
   end
-  get 'customers/leave', to: 'customers#leave_page', as: 'customer_leave_page'
-  patch 'customers/leave', to: 'customers#leave', as: 'customer_leave'
+  get 'customers/:id/leave_page', to: 'customers#leave_page', as: 'customer_leave_page'
+  patch 'customers/:id/leave_page', to: 'customers#leave', as: 'customer_leave'
   resources :destinations, only: [ :new, :create, :edit, :update], shallow: true
   resources :orders, only: [:index, :new, :create, :show], shallow: true
   post 'orders/new', to: 'orders#confirm_payment', as: 'confirm_payment'
