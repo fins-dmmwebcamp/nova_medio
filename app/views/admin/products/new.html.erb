@@ -1,6 +1,6 @@
 <h1>商品登録</h1>
 <div>
-  <%= form_for @product do |product| %>
+  <%= form_for(@product, url: '/admin/products') do |product| %>
 
   <h4>商品名</h4>
   <%= product.text_field :name %>
@@ -8,6 +8,9 @@
   <h4>アーティスト名</h4>
   <%= product.label :artist_id %>
   <%= product.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択して下さい" %>
+
+  <h4>発売日</h4>
+  <%= product.date_select :released_at %>
 
   <h4>商品画像</h4>
   <%= product.attachment_field :product_image %>
@@ -27,7 +30,7 @@
   <h4>曲名</h4>
 
     <%= product.fields_for :discs do |discs| %>
-      <%= render 'admin/products/nestform/disc_fields', disc: discs %>
+      <%= render 'admin/products/nestform/disc_fields', f: discs %>
     <% end %>
     <div class="links">
       <%= link_to_add_association "discを追加", product, :discs, partial: "admin/products/nestform/disc_fields" %>

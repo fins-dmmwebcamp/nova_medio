@@ -14,6 +14,12 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.discs.each_with_index do |disc,index|
+      disc.order = index + 1
+      disc.songs.each_with_index do |song,index|
+        song.order = index + 1
+      end
+    end
     @product.save
   end
 
@@ -28,6 +34,6 @@ class Admin::ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :artist_id, :label_id, :genre_id, :price, :product_image, discs_attributes: [:id, :order, songs_attributes: [:id, :order, :name]])
+    params.require(:product).permit(:name, :artist_id, :label_id, :genre_id, :price, :released_at, :product_image, discs_attributes: [:id, :order, songs_attributes: [:id, :order, :name]])
   end
 end
