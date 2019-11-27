@@ -5,6 +5,8 @@ class Destination < ApplicationRecord
   "#{self.address_prefecture} #{self.address_city} #{self.address_after} }"
   end
 
+  validates :adressprefecture presence:true
+
    enum address_prefecture:{
 	北海道: 0,
     青森県: 1,

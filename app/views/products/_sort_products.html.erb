@@ -1,0 +1,9 @@
+<ul>
+<% products.each do |product| %>
+<li>
+  <p><%= product.name %></p>
+  <p><%= product.price %> 円</p>
+  <p><%= product.label.name %></p>
+</li>
+<% end %>
+</ul>
