@@ -45,7 +45,7 @@ end
 
 
 
-def customer_prams
+def customer_params
   params.require(:customer).permit(:name_full,:phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
 end
 
