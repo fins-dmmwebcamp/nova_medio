@@ -1,0 +1,101 @@
+
+	<h1><%=names%>一覧!!</h1>
+	<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+
+
+<p>検索</p>
+<%if names=="アーティスト"%>
+<%= form_tag(admin_artists_path,:method => 'get') do %>
+<div class="col-sm-11">
+  <%= text_field_tag :search , '', class: 'col-sm-12'%>
+</div>
+  <%= submit_tag 'Go!!', :name => nil %>
+<% end %>
+<%elsif names=="レーベル"%>
+<%= form_tag(admin_labels_path,:method => 'get') do %>
+<div class="col-sm-11">
+  <%= text_field_tag :search , '', class: 'col-sm-12'%>
+</div>
+  <%= submit_tag 'Go!!', :name => nil %>
+<% end %>
+<%elsif names=="ジャンル"%>
+<%= form_tag(admin_genres_path,:method => 'get') do %>
+<div class="col-sm-11">
+  <%= text_field_tag :search , '', class: 'col-sm-12'%>
+</div>
+  <%= submit_tag 'Go!!', :name => nil %>
+<% end %>
+<%end%>
+
+
+
+
+
+ 	<table class="table">
+<%posts.each_with_index do |alg,i|%>
+	<tbody>
+	<tr>
+	<td>No.<%=i+1%></td>
+	<td><%= alg.name %></td>
+	<td><div class="btn btn-default ">
+		<%if names=="アーティスト"%>
+		<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
+		<%elsif names=="レーベル"%>
+		<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
+		<%elsif names=="ジャンル"%>
+		<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
+		<%end%>
+		</div>
+　<div class="btn btn-default ">
+	<%if names=="アーティスト"%>
+	<%= link_to "編集", edit_admin_artist_path(alg.id) %>
+	<%elsif names=="レーベル"%>
+    <%= link_to "編集", edit_admin_label_path(alg.id) %>
+	<%elsif names=="ジャンル"%>
+	<%= link_to "編集", edit_admin_genre_path(alg.id) %>
+	<%end%>
+	</div>
+</td>
+　</tr>
+	</tbody>
+<%end%>
+ 	</table>
+<%= paginate posts, class: "paginate" %>
+
+<%unless posts %>
+
+	<table class="table">
+	<%algs.each_with_index do |alg,i|%>
+	<tbody>
+	<tr>
+	<td>No.<%=i+1%></td>
+	<td><%= alg.name %></td>
+	<td><div class="btn btn-default ">
+		<%if names=="アーティスト"%>
+		<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
+		<%elsif names=="レーベル"%>
+		<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
+		<%elsif names=="ジャンル"%>
+		<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
+		<%end%>
+		</div>
+　<div class="btn btn-default ">
+	<%if names=="アーティスト"%>
+	<%= link_to "編集", edit_admin_artist_path(alg.id) %>
+	<%elsif names=="レーベル"%>
+    <%= link_to "編集", edit_admin_label_path(alg.id) %>
+	<%elsif names=="ジャンル"%>
+	<%= link_to "編集", edit_admin_genre_path(alg.id) %>
+	<%end%>
+  </div>
+  </td>
+　</tr>
+	</tbody>
+<%end%>
+ </table>
+ <%= paginate algs, class: "paginate" %>
+
+<%end%>
