@@ -26,22 +26,31 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
       render :edit
     end
 
-
-  end
-
-  def leave
   end
 
   def leave_page
+      @customer = Customer.find(params[:id])
   end
 
+    def leave
+      @customer = Customer.find(params[:id])
+      @customer.is_deleted = true
+      if @customer.update(customer_params)
+      redirect_to favorites_path
+      end
+
+    end
+
+    private
+
+      def customer_params
+        params.require(:customer).permit(:name_full,:phone_number,:email,destinations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
+      end
+
+
 end
 
-private
 
-def customer_params
-  params.require(:customer).permit(:name_full,:phone_number,:email,destinations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
-end
 
 # def destination_params
 #   params.require(:destination)

@@ -84,6 +84,10 @@
                             <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field"  %></br>
                             <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"  %>
 
+                            <!-- idが必要らしい -->
+
+                            <%= destination_form.hidden_field :id, value:@destination.id %>
+
 
                 <% end %>
               </div>
