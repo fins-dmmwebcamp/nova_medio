@@ -75,3 +75,4 @@ gem 'refile-mini_magick'
 
 
 gem 'cocoon'
+gem 'pry-byebug'
