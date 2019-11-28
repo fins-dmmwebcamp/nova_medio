@@ -8,6 +8,6 @@
     <p><%= link_to "売れ筋順", sort_products_path(:key => "hot"), method: :post, remote: true %></p>
   </div>
 
-  <div class="sort_products_box">>
+  <div id="sort_products_box">>
     <%= render partial: 'sort_products', locals: { products: @products } %>
   </div>
