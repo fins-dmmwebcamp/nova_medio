@@ -16,5 +16,12 @@ class  ProductsController < ApplicationController
   end
 
   def show
+    @item = current_customer.cart_items.build
+    @product = Product.find(params[:id])
+    if @product.on_sale == true
+      @on_sale = "販売中"
+    else
+      @on_sale = "販売停止中"
+    end
   end
 end
