@@ -34,7 +34,7 @@
 
                         <div class="field">
                             <h4>住所</h4>
-                            <%= destination_form.select :adress_prefecture, Destination.address_prefecture.keys.to_a, include_blank:'都道府県' %>
+                            <%= destination_form.select :address_prefecture, Destination.address_prefecture.keys.to_a, include_blank:'都道府県' %>
                             <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field"  %></br>
                             <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"  %>
 

@@ -1,11 +1,11 @@
 class Destination < ApplicationRecord
-  belongs_to :customer
+  belongs_to :customer, inverse_of: :destinations
 
   def address_full
   "#{self.address_prefecture} #{self.address_city} #{self.address_after} }"
   end
 
-  validates :adressprefecture presence:true
+  validates :address_prefecture, presence:true
 
    enum address_prefecture:{
 	北海道: 0,
@@ -57,4 +57,5 @@ class Destination < ApplicationRecord
     沖縄県: 46
    }
 
+   
 end
