@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_122603) do
     t.integer "sales", default: 0, null: false
     t.date "released_at", null: false
     t.boolean "on_sale", default: true, null: false
-    t.boolean "is_deleted", default: true, null: false
+    t.boolean "is_deleted", default: false, null: false
     t.string "product_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

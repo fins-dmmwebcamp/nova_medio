@@ -1,10 +1,12 @@
 <ul>
 <% products.each do |product| %>
-<li>
-  <p><%= product.name %></p>
-  <p><%= link_to product.name, product_path(product.id) %></p>
-  <p><%= product.price %> 円</p>
-  <p><%= product.label.name %></p>
-</li>
+  <% if product.is_deleted == true %>
+  <li>
+    <p><%= product.name %></p>
+    <p><%= link_to product.name, product_path(product.id) %></p>
+    <p><%= product.price %> 円</p>
+    <p><%= product.label.name %></p>
+  </li>
+  <% end %>
 <% end %>
 </ul>
