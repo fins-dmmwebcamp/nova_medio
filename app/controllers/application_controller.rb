@@ -6,4 +6,13 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name_first, :name_last, :name_first_kana, :name_last_kana, destinations_attributes:[:postal_code, :address_prefecture,:address_city,:address_after,:phone_number,:email,:customer_id, :created_at, :updated_at]])
     end
 
+
+    def after_sign_in_path_for(resource)
+    	products_path
+    end
+
+    def after_sign_out_path_for(resource)
+    	products_path
+
+
 end
