@@ -34,7 +34,7 @@ class DestinationsController < ApplicationController
   private
 
   def destination_params
-  	params.require(:destination).permit(:name,:postal_code,:address_prefecture,:address_city,:address_after,:customer_id)
+  	params.require(:destination).permit(:name_first,:name_last,:name_first_kana,:name_last_kana,:postal_code,:address_prefecture,:address_city,:address_after,:customer_id)
   end
 
 end

@@ -37,29 +37,32 @@
                   </tr>
               </table>
 
-      <div class="otodoke_saki">
-        <h3>お届け先一覧</h3>
-          <table class="table" >
-            <tbody>
-            <tr>
-              <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
-              <td><%= @destination.name %></td>
-              <td><%= @destination.address_full %></td>
-            </tr>
+              <div class="otodoke_saki">
+                <h3>お届け先一覧</h3>
+                  <table class="table" >
+                    <tbody>
+                    <tr>
+                      <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
+                      <td><%= @destination.name %></td>
+                      <td><%= @destination.address_full %></td>
+                    </tr>
 
 
-            <% @destinations.each do |destination| %>
-            <% if destination.is_main = false %>
-            <tr>
-              <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
-              <td><%= destination.name %></td>
-              <td><%= destination.address_full %></td>
-            </tr>
-            <% end %>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="btn col-xs-3 col-md-offset-9", style="margin:20px auto">
-          <%= link_to "退会する", customer_leave_page_path(@customer), class:"btn btn-warning",style:"width:150px" %>
-        </div>
-      </div>
+                    <% @destinations.each do |destination| %>
+                    <% if destination.is_main = false %>
+                    <tr>
+                      <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
+                      <td><%= destination.name %></td>
+                      <td><%= destination.address_full %></td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
+                
+                  <%= link_to "退会する", customer_leave_page_path(@customer), class:"btn btn-warning",style:"width:150px" %>
+            
+              </div>
+
+
+  
