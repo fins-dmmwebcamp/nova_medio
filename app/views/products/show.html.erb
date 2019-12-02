@@ -20,12 +20,8 @@
     <% end %>
   </div>
 
-  <div>
-    <% if current_customer.already_favorited?(@product) %>
-      <%= button_to 'いいね取り消し', favorite_path(@product), method: :delete %>
-    <% else %>
-      <%= button_to 'いいね', product_favorites_path(@product) %>
-    <% end %>
+  <div id="favorite_button_box">
+    <%= render partial: 'favorite_button', locals: { product: @product } %>
   </div>
 
   <h4>商品情報</h4>
