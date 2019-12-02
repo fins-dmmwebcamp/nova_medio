@@ -16,6 +16,7 @@ class  ProductsController < ApplicationController
   end
 
   def show
+    @favorite = Favorite.new
     @item = current_customer.cart_items.build
     @product = Product.find(params[:id])
     if @product.on_sale == true
