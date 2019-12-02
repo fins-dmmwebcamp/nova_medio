@@ -18,7 +18,6 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
 
   def update
     @customer = Customer.find(params[:id])
-    binding.pry
     if @customer.update(customer_params)
       redirect_to customer_path(@customer)
     else

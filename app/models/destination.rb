@@ -57,5 +57,5 @@ class Destination < ApplicationRecord
     沖縄県: 46
    }
 
-   
+
 end

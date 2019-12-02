@@ -1,4 +1,9 @@
 class DestinationsController < ApplicationController
+
+before_action :authenticate_customer!, only: [:new,:create,:edit :update,:show]
+before_action :current_customer, only: [:new,:create,:edit :update, :show]
+
+
   def new
   	@destination = Destination.new
   end
@@ -7,7 +12,7 @@ class DestinationsController < ApplicationController
 
   	@destination = Destination.new(destination_params)
   	@destination.customer_id = current_customer.id
-  	binding.pry
+    @destination.is_main = false
   	if @destination.save
   		redirect_to confirm_payment_path
   	else
