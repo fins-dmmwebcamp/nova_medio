@@ -47,9 +47,3 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
 
 
 end
-
-
-
-# def destination_params
-#   params.require(:destination)
-# end
