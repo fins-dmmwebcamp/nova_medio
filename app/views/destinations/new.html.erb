@@ -1,2 +1,16 @@
-<h1>Destinations#new</h1>
-<p>Find me in app/views/destinations/new.html.erb</p>
+<h1>お届け先住所登録</h1>
+
+	<%= form_for (@destination) do |f| %>
+		<h3>受け取り者氏名</h3>
+			<%= f.text_field :name %>
+		<h3>郵便番号</h3>
+			<%= f.text_field :postal_code %>
+		<h3>住所</h3>
+			<%= f.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県' %><br>
+			<%= f.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field",:style => "margin-bottom:10px" %></br>
+			<%= f.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"%><br>
+
+
+			<div class="btn"><%= f.submit "登録する", :class=> "btn btn-success" %></div>
+
+	<%end%>

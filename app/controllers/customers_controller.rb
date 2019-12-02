@@ -18,8 +18,6 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
 
   def update
     @customer = Customer.find(params[:id])
-
-    # binding.pry
     if @customer.update(customer_params)
       redirect_to customer_path(@customer)
     else
@@ -35,8 +33,8 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
     def leave
       @customer = Customer.find(params[:id])
       @customer.is_deleted = true
-      if @customer.update(customer_params)
-      redirect_to favorites_path
+      if @customer.save
+      redirect_to products_path
       end
 
     end
@@ -44,7 +42,7 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
     private
 
       def customer_params
-        params.require(:customer).permit(:name_full,:phone_number,:email,destinations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
+        params.require(:customer).permit(:name_full,:phone_number,:email,:is_deleted,destinations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
       end
 
 

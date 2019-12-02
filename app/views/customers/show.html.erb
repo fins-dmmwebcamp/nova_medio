@@ -41,12 +41,21 @@
         <h3>お届け先一覧</h3>
           <table class="table" >
             <tbody>
+            <tr>
+              <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
+              <td><%= @destination.name %></td>
+              <td><%= @destination.address_full %></td>
+            </tr>
+
+
             <% @destinations.each do |destination| %>
+            <% if destination.is_main = false %>
             <tr>
               <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
               <td><%= destination.name %></td>
               <td><%= destination.address_full %></td>
             </tr>
+            <% end %>
             <% end %>
           </tbody>
         </table>

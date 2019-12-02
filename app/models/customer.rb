@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
 
   has_many :destinations
 
-  accepts_nested_attributes_for :destinations
+  accepts_nested_attributes_for :destinations,allow_destroy: true
 
 
 
@@ -19,8 +19,6 @@ class Customer < ApplicationRecord
   has_many :destinations
   has_many :cart_items, dependent: :destroy
 
-  validates :adress_prefecture, presence: true
-  validates :password, presence: true
 
 
 # フルネームを定義
