@@ -30,6 +30,10 @@ class Customer < ApplicationRecord
 #   [name_first,name_last].join('')
 # end
 
+def already_liked?(product)
+  self.likes.exists?(product_id: product.id)
+end
+
 def name_full
   "#{self.name_first} #{self.name_last}"
 end
