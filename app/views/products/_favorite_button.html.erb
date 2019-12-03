@@ -1,0 +1,5 @@
+<% if current_customer.already_favorited?(product) %>
+  <%= link_to 'いいね取り消し', favorite_path(product), method: :delete, remote: true  %>
+<% else %>
+  <%= link_to 'いいね', product_favorites_path(product), method: :post, remote: true %>
+<% end %>

@@ -1,0 +1,10 @@
+<ul>
+<% products.each do |product| %>
+  <li>
+    <p><%= product.name %></p>
+    <p><%= link_to product.name, admin_product_path(product.id) %></p>
+    <p><%= product.price %> 円</p>
+    <p><%= product.label.name %></p>
+  </li>
+<% end %>
+</ul>
