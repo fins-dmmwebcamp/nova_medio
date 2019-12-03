@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
 before_action :authenticate_customer!, only: [:edit, :update,:leave, :show]
-before_action :current_customer, only: [:edit, :update,:leave, :show]
+before_action :correct_customer, only: [:edit, :update,:leave, :show]
 
 
   def show
@@ -44,6 +44,14 @@ before_action :current_customer, only: [:edit, :update,:leave, :show]
       def customer_params
         params.require(:customer).permit(:name_first,:name_last,:name_first_kana,:name_last_kana,:phone_number,:email,:is_deleted,destinations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
       end
+
+      def correct_customer
+        @customer = Customer.find(params[:id])
+        if @customer.id != current_customer.id
+          redirect_to products_path
+        end
+      end
+
 
 
 end
