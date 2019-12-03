@@ -1,7 +1,7 @@
 class DestinationsController < ApplicationController
 
-before_action :authenticate_customer!, only: [:new,:create,:edit :update,:show]
-before_action :current_customer, only: [:new,:create,:edit :update, :show]
+before_action :authenticate_customer!, only: [:new,:create,:edit, :update,:show]
+before_action :current_customer, only: [:new,:create,:edit, :update, :show]
 
 
   def new
@@ -28,6 +28,7 @@ before_action :current_customer, only: [:new,:create,:edit :update, :show]
   def update
     @destination = Destination.find(params[:id])
   	@customer = Customer.find_by(id: @destination.customer_id)
+    
   	if @destination.update(destination_params)
   		redirect_to customer_path(@customer)
   	else
