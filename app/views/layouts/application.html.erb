@@ -11,12 +11,14 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-2"></div>
+        <div class="col-8">
           <%= link_to "応急処置のSignOutです", destroy_customer_session_path, method: :delete  %>
           <%= yield %>
         </div>
+        <div class="col-2"></div>
       </div>
     </div>
   </body>
