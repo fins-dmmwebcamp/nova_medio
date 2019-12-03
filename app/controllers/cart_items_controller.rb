@@ -14,6 +14,7 @@ class CartItemsController < ApplicationController
   def create
     @item = current_customer.cart_items.new(cart_item_params)
     @item.save
+    flash[:success] = "カートに追加されました"
     redirect_back(fallback_location: root_path)
   end
 
