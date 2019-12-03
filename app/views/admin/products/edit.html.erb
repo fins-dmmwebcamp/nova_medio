@@ -1,3 +1,44 @@
-<!-- 商品編集 -->
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<h1>商品編集</h1>
+<div>
+  <%= form_for(@product, url: admin_product_path, method: :put) do |product| %>
+
+  <h4>商品名</h4>
+  <%= product.text_field :name %>
+
+  <h4>アーティスト名</h4>
+  <%= product.label :artist_id %>
+  <%= product.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択して下さい" %>
+
+  <h4>発売日</h4>
+  <%= product.date_select :released_at %>
+
+  <h4>商品画像</h4>
+
+  <%= product.attachment_field :product_image %>
+
+  <h4>価格</h4>
+  <%= product.text_field :price %>
+
+  <h4>レーベル名</h4>
+  <%= product.label :label_id %>
+  <%= product.collection_select :label_id, Label.all, :id, :name, :prompt => "選択して下さい" %>
+
+  <h4>ジャンル</h4>
+  <%= product.label :genre_id %>
+  <%= product.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
+
+  <div class="disc">
+  <h4>曲名</h4>
+
+    <%= product.fields_for :discs do |discs| %>
+      <%= render 'admin/products/nestform/edit_disc_fields', f: discs %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "discを追加", product, :discs, partial: "admin/products/nestform/edit_disc_fields" %>
+    </div>
+  </div>
+
+
+  <%= product.submit '更新する' %>
+  <% end %>
+</div>

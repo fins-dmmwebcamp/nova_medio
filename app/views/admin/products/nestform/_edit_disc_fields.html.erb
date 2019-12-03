@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <div class="">
+
+    <%= link_to_remove_association "remove disc", f %>
+  </div>
+  <div class="">
+    <%= f.fields_for :songs do |song| %>
+      <%= render 'admin/products/nestform/edit_song_fields', f: song %>
+    <% end %>
+    <div class="">
+      <%= link_to_add_association "曲を追加", f, :songs, partial: "admin/products/nestform/edit_song_fields" %>
+    </div>
+  </div>
+</div>
