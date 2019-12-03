@@ -7,14 +7,22 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    favorite = current_user.Favorites.new(product_id: params[:product_id])
+    favorite = current_customer.favorites.new(product_id: params[:product_id])
     favorite.save
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    favorite = Favorite.find(params[:id])
+    favorite = Favorite.find_by(product_id: params[:id], customer_id: current_customer.id)
     favorite.destroy
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
     redirect_back(fallback_location: root_path)
   end
 end
