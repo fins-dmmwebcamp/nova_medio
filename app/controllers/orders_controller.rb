@@ -11,11 +11,16 @@ class OrdersController < ApplicationController
         @totals[i] += detail.price * detail.amount
       end
     end
-
   end
-# 難しい！後でやる
+
   def new
     @order = current_customer.orders.new
+    @destinations = Destination.where(customer_id: current_customer.id)
+    @orders_details=[]
+    current_customer.cart_items.each do |item|
+      orders_detail = Order.new(product_id: item.product.id, price: item.price, amount: item.amount)
+      @orders_details.push(orders_detail)
+    end
   end
 
   def confirm_payment
