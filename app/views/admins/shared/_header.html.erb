@@ -53,7 +53,7 @@
   <option value="/admin/labels/new">レーベル登録</option>
   <option value="/admin/genres/new">ジャンル登録</option>
 </select>
-<button type="button" class="btn btn-outline-secondary active pull-right"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;"%></button>
+<button type="button" class="btn btn-outline-secondary active pull-right" style="margin-top:3px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;"%></button>
 <div style="margin-top:5px;position:relative;top:5px;float:left;">
 <%= form_with( url:search_path,local:true,method: :get) do |f| %>
    <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"],style:"height:100px;"%>
@@ -69,7 +69,7 @@ li{
 -webkit-transform: skewX(150deg);
 -moz-transform: skewX(150deg);
 transform: skewX(150deg);
-border-right: 1px solid #000;
+border-right: 1px solid silver;
 }
 li a{
 	width:120px;
