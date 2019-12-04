@@ -10,6 +10,8 @@ class SearchController < ApplicationController
 			redirect_to admin_labels_path(search: params[:search])
 		when "ジャンル" then
 			redirect_to admin_genres_path(search: params[:search])
+		when "ユーザー" then
+			redirect_to admin_customers_path(search: params[:search])
 	    end
 	end
 end
