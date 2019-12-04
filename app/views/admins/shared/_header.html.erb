@@ -1,0 +1,89 @@
+<header class="border border-secondary" style="width:100vw;position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;height:80px;">
+  <div class= ""style="height:99%;margin:6px;border:solid 1px black">
+	<nav class='nav navbar-nav navbar-left text-center 'style="font-size:20px;margin:10px;">
+      <span>Nova_medio</span><br>
+      <span>管理者用ページ</span>
+    </nav>
+        <ul class="nav navbar-nav navbar-left ">
+        <li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_customers_path, style: "color:black;paddning:0;" do %>
+        	<p style="margin:0;">ユーザー</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+          </li>
+          <li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_arrivals_path,  style: "color:black;" do %>
+        	<p style="margin:0;">受注</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+          </li>
+          <li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_products_path,  style: "color:black;" do %>
+        	<p style="margin:0;">商品</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+          </li>
+          <li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_artists_path, style: "color:black;" do %>
+        	<p style="margin:0;">アーティスト</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+          </li>
+          <li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_labels_path,  style: "color:black;" do %>
+        	<p style="margin:0;">レーベル</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+        	<li class="nav-item active text-center" style="line-height:1;">
+        	<%= link_to admin_genres_path,  style: "color:black;" do %>
+        	<p style="margin:0;">ジャンル</p>
+        	<p style="margin:0;">一覧</p>
+        	<%end%>
+          </li>
+      </ul>
+<select class="nav navbar-nav navbar-left align-middle" style="margin:13px;height:40px;" id="select">
+  <option value="">各種登録</option>
+  <option value="/admin/arrivals/new" id="select">入荷登録</option>
+  <option value="/admin/products/new">商品登録</option>
+  <option value="/admin/artists/new">アーティスト登録</option>
+  <option value="/admin/labels/new">レーベル登録</option>
+  <option value="/admin/genres/new">ジャンル登録</option>
+</select>
+<button type="button" class="btn btn-outline-secondary active pull-right"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;"%></button>
+<div style="margin-top:5px;position:relative;top:5px;float:left;">
+<%= form_with( url:search_path,local:true,method: :get) do |f| %>
+   <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル"],style:"height:100px;"%>
+   <%= f.text_field :search,style:"width:200px;" %>
+   <%= f.submit "検索", class: "btn-dark " ,style:"width:60px;"%>
+<% end %>
+</div>
+</div>
+</header>
+<style type="text/css" media="screen">
+ul{display:flex;}
+li{
+-webkit-transform: skewX(150deg);
+-moz-transform: skewX(150deg);
+transform: skewX(150deg);
+border-right: 1px solid #000;
+}
+li a{
+	width:120px;
+display:block;
+transform: skewX(-150deg);
+padding:0 10px;
+}
+li:last-child{border-right:none;}
+</style>
+
+<script>
+	$('#select').change(function() {
+  if ($(this).val() != '') {
+    window.location.href = $(this).val();
+  }
+});
+</script>

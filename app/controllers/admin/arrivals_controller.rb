@@ -1,4 +1,5 @@
 class Admin::ArrivalsController < ApplicationController
+
   def index
     @arrivals = Arrivals.all
   end
