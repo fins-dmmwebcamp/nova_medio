@@ -3,12 +3,12 @@
     <h1>商品編集</h1>
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-8 content-box">
     <%= form_for(@product, url: admin_product_path, method: :put) do |product| %>
 
     <div>
-      <h5>商品名</h5>
-      <%= product.text_field :name %>
+      <h5 class="content">商品名</h5>
+      <%= product.text_field :name, class: "content" %>
     </div>
 
 
