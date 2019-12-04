@@ -1,27 +1,41 @@
-  <div class="container">
-    <h2>ログイン</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <h2>サインイン</h2>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <h4>メールアドレス</h4>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email",:class => "field" %>
-      </div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <table class="session_table">
+              <tr>
+                <td class="session_td"><h4>メールアドレス</h4></td>
+                <td><%= f.email_field :email, autofocus: true, autocomplete: "email",:class => "field" %></td>
+              <tr>
+            <table>
+          </div>
 
-      <div class="field">
-        <h4>パスワード</h4>
-        <%= f.password_field :password, autocomplete: "current-password",:class => "field" %>
-      </div>
+          <div class="field">
+            <table class="session_table">
+              <tr>
+                <td><h4>パスワード　　</h4></td>
+                <td><%= f.password_field :password, autocomplete: "current-password",:class => "field" %></td>
+              </tr>
+           </table>
+          </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :パスワードを保存する %>
-        </div>
-      <% end %>
+          <% if devise_mapping.rememberable? %>
+            <div class="field session_table">
+              <%= f.check_box :remember_me %>
+              <%= f.label :パスワードを保存する %>
+            </div>
+          <% end %>
 
-      <div class="actions">
-        <%= f.submit "Log in",:class => "btn btn-primary ",:style => "width:100px" %>
-      </div>
-    <% end %>
+          <div class="action session_table  session_btn">
+            <%= f.submit "Sign in",:class => "btn btn-primary",:style => "width:150px" %>
+          </div>
+        <% end %>
 
+    </div>
+    <div class="col-md-3"></div>
   </div>
+</div>
