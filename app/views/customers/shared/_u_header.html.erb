@@ -1,0 +1,21 @@
+<header class="border border-secondary" style="width:100vw;position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;height:80px;">
+  <div class= ""style="height:99%;margin:6px;border:solid 1px black">
+ <% if current_customer %>
+ <ul class="nav navbar-nav navbar-left ">
+ <li><%= link_to #{current_customer.name}+"マイページ",  new_customer_registration_path %></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+ <% else %>
+ <ul>
+ <li> <%= link_to "サインアップ",  new_customer_registration_path %></li>
+ <li><%= link_to "サインイン", new_customer_session_path %></li>
+ </ul>
+ <% end %>
+  </div>
+</header>
