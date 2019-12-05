@@ -1,15 +1,21 @@
-<header class="border border-secondary" style="width:100vw;position: relative;
+<header  style="width:100vw;position: relative;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;height:80px;">
   <div class= ""style="height:99%;margin:6px;border:solid 1px black">
  <% if current_customer %>
- <ul class="nav navbar-nav navbar-left ">
- <li><%= link_to #{current_customer.name}+"マイページ",  new_customer_registration_path %></li>
-<li></li>
-<li></li>
-<li></li>
+ <ul class="nav navbar-nav w-50 h-75"style="margin-top:18px;float: left;">
+ <li>
+ 	<%= link_to customer_path(current_customer.id), style: "color:black;paddning:0;" do %>
+        	<p style="margin:0;"><%=current_customer.name_full%></p>
+        	<p style="margin:0;">の</p>
+        	<p style="margin:0;">マイページ</p>
+        	<%end%>
+        </li>
+<li ><%= link_to "商品一覧",  products_path , style: "color:black;paddning:0;"%></li>
+<li><%= link_to "カート",  cart_items_path , style: "color:black;paddning:0;"%></li>
+<li><%= link_to "ログアウト",  destroy_customer_session_path , method: :delete, style: "color:black;paddning:0;"%></li>
 </ul>
  <% else %>
  <ul>
@@ -18,4 +24,22 @@
  </ul>
  <% end %>
   </div>
+
 </header>
+<style type="text/css" media="screen">
+ul{display:flex;}
+li{
+-webkit-transform: skewX(150deg);
+-moz-transform: skewX(150deg);
+transform: skewX(150deg);
+border-right: 1px solid silver;
+}
+li a{
+	width:120px;
+display:block;
+transform: skewX(-150deg);
+padding:0 10px;
+}
+li:last-child{border-right:none;}
+</style>
+
