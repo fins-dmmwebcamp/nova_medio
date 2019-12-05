@@ -1,79 +1,65 @@
-<div class="row">
-  <div class="col-md-4">
+<div class="row edit-box">
+  <div class="col-md-3">
     <h1>商品編集</h1>
   </div>
 
-  <div class="col-md-8 content-box">
+  <div class="col-md-9 contents-box">
     <%= form_for(@product, url: admin_product_path, method: :put) do |product| %>
 
-    <div>
-      <h5 class="content">商品名</h5>
-      <%= product.text_field :name, class: "content" %>
+    <div class="content-box">
+      <h5 class="content">商品名: </h5>
+      <%= product.text_field :name, class: "content", style: "margin-left: 102px;" %>
     </div>
 
+    <div class="content-box">
+      <h5 class="content">アーティスト名: </h5>
+      <div class="content box1">
+        <%= product.label :artist_id %>
+        <%= product.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択して下さい" %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>アーティスト名</h5>
-        </td>
-        <td>
-          <%= product.label :artist_id %>
-          <%= product.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択して下さい" %>
-        </td>
-      </tr>
+    <div class="content-box">
+      <h5 class="content">発売日: </h5>
+      <div class="content box2">
+        <%= product.date_select :released_at %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>発売日</h5>
-        </td>
-        <td>
-          <%= product.date_select :released_at %>
-        </td>
-      </tr>
+    <div class="content-box clearfix">
+      <h5 class="content">商品画像: </h5>
+      <div class="content box3">
+        <%= attachment_image_tag @product, :product_image, fallback: "noimage.jpg", size: "60x60" %>
+        <%= product.attachment_field :product_image %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>商品画像</h5>
-        </td>
-        <td>
-          <%= product.attachment_field :product_image %>
-        </td>
-      </tr>
+    <div class="content-box">
+      <h5 class="content">価格: </h5>
+      <div class="content box4">
+        <%= product.text_field :price %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>価格</h5>
-        </td>
-        <td>
-          <%= product.text_field :price %>
-        </td>
-      </tr>
+    <div class="content-box">
+      <h5 class="content">レーベル名: </h5>
+      <div class="content box5">
+        <%= product.label :label_id %>
+        <%= product.collection_select :label_id, Label.all, :id, :name, :prompt => "選択して下さい" %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>レーベル名</h5>
-        </td>
-        <td>
-          <%= product.label :label_id %>
-          <%= product.collection_select :label_id, Label.all, :id, :name, :prompt => "選択して下さい" %>
-        </td>
-      </tr>
+    <div class="content-box">
+      <h5 class="content">ジャンル: </h5>
+      <div class="content box6">
+        <%= product.label :genre_id %>
+        <%= product.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
+      </div>
+    </div>
 
-      <tr>
-        <td>
-          <h5>ジャンル</h5>
-        </td>
-        <td>
-          <%= product.label :genre_id %>
-          <%= product.collection_select :genre_id, Genre.all, :id, :name, :prompt => "選択して下さい" %>
-        </td>
-      </tr>
-    </table>
-
-
-    <div class="disc row">
+    <div class="disc row content-box">
       <div class="col-md-3">
-        <h4>曲名</h4>
+        <h5>曲名: </h5>
       </div>
       <div class="col-md-9">
         <%= product.fields_for :discs do |discs| %>
@@ -85,8 +71,8 @@
       </div>
     </div>
 
-    <div>
-      <%= product.submit '更新する' %>
+    <div class="box7">
+      <%= product.submit '更新する', class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

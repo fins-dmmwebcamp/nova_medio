@@ -3,10 +3,61 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.float-left {
+  float: left;
+}
+
+.contents-box {
+  margin-top: 100px;
+}
+
 .content-box {
   margin-top: 100px;
 }
 
 .content {
   display: inline-block;
+}
+
+.contents-box {
+  margin-top: 20px;
+}
+
+.box1 {
+  margin-left: 30px;
+}
+
+.box2 {
+  margin-left: 102px;
+}
+
+.box3 {
+  margin-left: 169px;
+}
+
+.box4 {
+  margin-left: 123px;
+}
+
+.box5 {
+  margin-left: 69px;
+}
+
+.box6 {
+  margin-left: 86px;
+}
+
+.box7 {
+  margin-top: 100px;
+  margin-left: 350px;
+}
+
+.edit-box {
+  margin-left: 100px;
 }
