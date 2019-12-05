@@ -3,12 +3,12 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;height:80px;">
-  <div class= ""style="height:99%;margin:6px;border:solid 1px black">
-	<nav class='nav navbar-nav navbar-left text-center 'style="font-size:20px;margin:10px;">
-      <span>Nova_medio</span><br>
-      <span>管理者用ページ</span>
-    </nav>
-        <ul class="nav navbar-nav navbar-left ">
+  <div class= ""style="height:99%;border:solid 1px black;">
+  	<div style="display: inline-block;float: left;margin-top:5px;">
+      <span style="font-size:20px;">Nova_medio</span><br>
+      <span style="font-size:20px;">管理者用ページ</span>
+      </div>
+        <ul class="nav navbar-nav w-50 h-75"style="margin-top:18px;float: left;">
         <li class="nav-item active text-center" style="line-height:1;">
         	<%= link_to admin_customers_path, style: "color:black;paddning:0;" do %>
         	<p style="margin:0;">ユーザー</p>
@@ -35,6 +35,7 @@
           </li>
           <li class="nav-item active text-center" style="line-height:1;">
         	<%= link_to admin_labels_path,  style: "color:black;" do %>
+
         	<p style="margin:0;">レーベル</p>
         	<p style="margin:0;">一覧</p>
         	<%end%>
@@ -45,7 +46,7 @@
         	<%end%>
           </li>
       </ul>
-<select class="nav navbar-nav navbar-left align-middle" style="margin:13px;height:40px;" id="select">
+<select class="nav navbar-nav navbar-left align-middle text-centerr" style="margin:13px;height:40px;display: inline-block;" id="select">
   <option value="">各種登録</option>
   <option value="/admin/arrivals/new" id="select">入荷登録</option>
   <option value="/admin/products/new">商品登録</option>
@@ -53,9 +54,9 @@
   <option value="/admin/labels/new">レーベル登録</option>
   <option value="/admin/genres/new">ジャンル登録</option>
 </select>
-<button type="button" class="btn btn-outline-secondary active pull-right" style="margin-top:3px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;"%></button>
-<div style="margin-top:5px;position:relative;top:5px;float:left;">
-<%= form_with( url:search_path,local:true,method: :get) do |f| %>
+<button type="button" class="btn btn-outline-secondary active float-right" style="margin-top:3px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;"%></button>
+<div style="margin-top:5px;position:relative;bottom:27px;right:5px;float:right;display: inline-block;">
+<%= form_with( url:search_path,local:true,method: :post) do |f| %>
    <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"],style:"height:100px;"%>
    <%= f.text_field :search,style:"width:200px;" %>
    <%= f.submit "検索", class: "btn-dark " ,style:"width:60px;"%>
