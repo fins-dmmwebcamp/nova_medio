@@ -1,22 +1,17 @@
+
 <!-- 商品一覧 -->
 <%= render 'admins/shared/header'%>
+
 <div>
   <h1>商品一覧</h1>
+
   <div>
-    <% @products.each do |product| %>
-      <div>
-        <% if product.on_sale %>
-          <div class="on_sale"></div>
-        <% else %>
-          <div class="not_on_sale"></div>
-        <% end %>
-        <%= attachment_image_tag product, :product_image, size: "60x60" , fallback: "no_image.jpg" %>
-        <%= product.name %>
-        <%= product.artist.name %>
-        <%= product.label.name %>
-        <%= product.stock %>
-      </div>
-    <% end %>
-    <%= paginate @products %>
+    <p><%= link_to "新着順", admin_sort_products_path(:key => "new"), method: :post, remote: true %></p>
+    <p><%= link_to "いいね順", admin_sort_products_path(:key => "favorite"), method: :post, remote: true %></p>
+    <p><%= link_to "売れ筋順", admin_sort_products_path(:key => "hot"), method: :post, remote: true %></p>
+  </div>
+
+  <div id="sort_products_box">>
+    <%= render partial: 'admin/products/nestform/sort_products', locals: { products: @products } %>
   </div>
 </div>

@@ -1,0 +1,78 @@
+
+<h2>ユーザー情報編集</h2>
+
+      <!-- エラーメッセージ-->
+
+      <div id="error_explanation">
+        <% if @customer.errors.any?  %>
+            <ul>
+              <% @customer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+              <% end %>
+            </ul>
+        <% end %>
+      </div>
+
+
+        <%= form_for (@customer) do |f| %>
+
+          <div class ="field">
+              <h4>名前</h4>
+              <%= f.label :姓 %>
+              <%= f.text_field :name_first, autofocus: true ,:class => "field" %>
+              <%= f.label :名 %>
+              <%= f.text_field :name_last, autofocus: true,:class => "field" %></br>
+
+              <%=f.label :セイ%>
+              <%= f.text_field :name_first_kana, autofocus: true ,:class => "field" %>
+              <%=f.label :メイ%>
+              <%= f.text_field :name_last_kana, autofocus: true ,:class => "field" %>
+          </div>
+
+      <!-- destinationのform -->
+
+            <div>
+              <%= f.fields_for :destinations, @destination do |destination_form| %>
+                      <div class="field">
+                         <h4>郵便番号</h4>
+                          <%= destination_form.text_field :postal_code,:class => "field"  %>
+                      </div>
+
+                      <div class="field">
+                          <h4>住所</h4>
+                          <%= destination_form.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県' %><br>
+
+                          <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field"  %></br>
+                          <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"  %>
+                      </div>
+
+                      <!-- idが必要らしい -->
+                      <%= destination_form.hidden_field :id, value: @destination.id %>
+              <% end %>
+            </div>
+
+
+            <div class="field">
+                <h4>電話番号</h4>
+                <%= f.text_field :phone_number, autofocus: true ,placeholder: "123456789",:class => "field" %>
+            　</div>
+
+            <div class="field">
+                <h4>メールアドレス</h4>
+                <%= f.text_field :email ,placeholder: "example@example.com",:class => "field"  %>
+            </div>
+
+
+            <div class="field">
+              <h4>パスワード</h4>
+              <%= f.password_field :password ,placeholder: "パスワード入力",:class => "field"  %></br>
+              <%= f.password_field :password_confirmation, placeholder: "パスワード確認",:class => "field"  %>
+            </div>
+
+
+            <div style="margin-top:10px">
+              <%= f.submit "更新する",:class => "btn btn-success ",:style => "width:100px" %>
+            </div>
+
+         <% end %>
+

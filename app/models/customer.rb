@@ -4,20 +4,19 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
-
-  has_many :destinations
-
-  accepts_nested_attributes_for :destinations
-
-
-
-
   has_many :orders
   has_many :reviews
   has_many :favorites
   has_many :destinations
   has_many :cart_items, dependent: :destroy
+
+  accepts_nested_attributes_for :destinations,allow_destroy: true
+
+
+
+
+
+
 
 
 # フルネームを定義
@@ -26,6 +25,10 @@ class Customer < ApplicationRecord
 # def name_full
 #   [name_first,name_last].join('')
 # end
+
+def already_favorited?(product)
+  self.favorites.exists?(product_id: product.id)
+end
 
 def name_full
   "#{self.name_first} #{self.name_last}"

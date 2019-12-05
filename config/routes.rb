@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :arrivals, only: [ :index, :new, :create ], shallow: true
     resources :artists, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
-    resources :customers, only: [ :index, :show, :create, :edit, :destroy ] do
+    resources :customers, only: [ :index, :show, :create, :edit, :destroy,:update ] do
       resources :reviews, only: [ :index, :edit, :update, :destroy ], shallow: true
     end
     resources :labels, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   resources :customers, only: [:show, :edit, :update] do
     resources :reviews, only: [:index], shallow: true
   end
-  get 'customers/leave', to: 'customers#leave_page', as: 'customer_leave_page'
-  patch 'customers/leave', to: 'customers#leave', as: 'customer_leave'
+  get 'customers/:id/leave_page', to: 'customers#leave_page', as: 'customer_leave_page'
+  patch 'customers/:id/leave_page', to: 'customers#leave', as: 'customer_leave'
   resources :destinations, only: [ :new, :create, :edit, :update], shallow: true
   resources :orders, only: [:index, :new, :create, :show], shallow: true
   post 'orders/new', to: 'orders#confirm_payment', as: 'confirm_payment'
@@ -42,6 +42,10 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create, :destroy], shallow: true
   end
   get 'favorites', to: 'favorites#index', as: 'favorites'
- get 'search',to: 'search#search'
+
+ post 'search',to: 'search#search'
+  post 'sort_products', to: 'products#index', as: 'sort_products'
+  post 'admin/sort_products', to: 'admin/products#index', as: 'admin_sort_products'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

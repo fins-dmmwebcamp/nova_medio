@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :order_details
+  has_many :orders_details
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :cart_items, dependent: :destroy
@@ -9,5 +9,7 @@ class Product < ApplicationRecord
   belongs_to :label, optional: true
   belongs_to :genre, optional: true
   attachment :product_image
-  accepts_nested_attributes_for :discs
+  accepts_nested_attributes_for :discs, allow_destroy: true
+
+  # default_scope -> { order(id: :desc) }
 end

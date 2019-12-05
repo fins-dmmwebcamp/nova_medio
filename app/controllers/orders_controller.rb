@@ -3,20 +3,24 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.where(customer_id: current_customer.id)
-    @totals=[]
-    @orders.each_with_index do |order, i|
-      sum = 0
+    @totals = []
+    @orders.each_with_index do |order,i|
       details = order.orders_details
+      @totals[i] = 0
       details.each do |detail|
-        sum =detail.price * detail.amount
+        @totals[i] += detail.price * detail.amount
       end
-      @totals[i] = sum
     end
-
   end
-# 難しい！後でやる
+
   def new
-    @order = current_user.Orders.new
+    @order = current_customer.orders.new
+    @destinations = Destination.where(customer_id: current_customer.id)
+    @orders_details=[]
+    current_customer.cart_items.each do |item|
+      orders_detail = Order.new(product_id: item.product.id, price: item.price, amount: item.amount)
+      @orders_details.push(orders_detail)
+    end
   end
 
   def confirm_payment

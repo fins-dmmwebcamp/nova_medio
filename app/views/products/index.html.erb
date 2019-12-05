@@ -1,13 +1,13 @@
 
 <div>
-  <ul>
-  <% @products.each do |product| %>
-  <li>
-    <%= product.name %>
-    <%= product.price %> 円
-    <%= product.label.name %>
-  </li>
-  <% end %>
-  </ul>
-</div>
+  <h1>商品一覧</h1>
 
+  <div>
+    <p><%= link_to "新着順", sort_products_path(:key => "new"), method: :post, remote: true %></p>
+    <p><%= link_to "いいね順", sort_products_path(:key => "favorite"), method: :post, remote: true %></p>
+    <p><%= link_to "売れ筋順", sort_products_path(:key => "hot"), method: :post, remote: true %></p>
+  </div>
+
+  <div id="sort_products_box">>
+    <%= render partial: 'sort_products', locals: { products: @products } %>
+  </div>

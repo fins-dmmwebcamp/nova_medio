@@ -1,4 +1,52 @@
+
 <!-- 商品詳細 -->
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+
 <%= render 'admins/shared/header'%>
+
+<h1>商品詳細</h1>
+<div>
+  <div>
+    <%= attachment_image_tag @product, :product_image, size:'100x100', fallback: "no_image.jpg" %>
+  </div>
+
+  <div>
+    <div>
+      <%= link_to "編集", edit_admin_product_path %>
+    </div>
+    <div>
+      <%= link_to "削除", admin_product_path, method: :delete %>
+    </div>
+    <h3><%= @product.name %></h3>
+    <p><%= @product.artist.name %></p>
+    <p>状態:<%= @on_sale %></p>
+    <p>レーベル:<%= @product.label.name %></p>
+    <p>ジャンル:<%= @product.genre.name %></p>
+    <p>在庫数:<%= @product.stock %></p>
+    <p>価格:<%= @product.price %></p>
+  </div>
+
+
+  <h4>曲リスト</h4>
+
+
+  <% @product.discs.each do |discs| %>
+    <p>Disc<%= discs.order %></p>
+    <% discs.songs.each do |songs| %>
+      <p><%= songs.order %>: <%= songs.name %></p>
+    <% end %>
+  <% end %>
+
+
+  <h4>レビュー一覧</h4>
+  <div>
+    <% @product.reviews.each do |review| %>
+    <%= link_to "編集", edit_admin_review_path(review) %>
+    <%= link_to "削除", admin_review_path(review), method: :delete %></br>
+    <%= review.rank %></br>
+    <%= review.customer.name_first %></br>
+    <%= review.title %></br>
+    <%= review.body %></br>
+    <% end %>
+  </div>
+</div>
+

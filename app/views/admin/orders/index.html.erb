@@ -1,4 +1,28 @@
+
 <!-- 受注一覧 -->
 <%= render 'admins/shared/header'%>
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+
+<div>
+  <h1>受注一覧</h1>
+
+  <% @orders.each do |order| %>
+  <div>
+    <%= link_to "詳細", order_path(order) %>
+    <%= order.customer.name_full %>
+
+    <%= form_for order do |f| %>
+      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+    <% end %>
+
+    <% order.orders_details.each do |order| %>
+      <%= order.product.name %>
+      <%= order.amount %>
+    <% end %>
+  </div>
+  <% end %>
+
+
+
+
+</div>
+
