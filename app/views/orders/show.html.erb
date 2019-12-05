@@ -1,0 +1,25 @@
+<h2>購入完了</h2>
+<div class="card">
+  <div class="card-header">ご購入ありがとうございました</div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      お届先住所<br>
+      <%= @order.address %>
+    </li>
+    <li class="list-group-item">
+      お届け先氏名<br>
+      <%= @order.reciever %>
+    </li>
+    <li class="list-group-item">
+      お支払い方法<br>
+      <%= @order.payment %>
+    </li>
+    <li class="list-group-item">
+      購入明細<br>
+      配送料: <%= @order.shipping_fee %>円
+    </li>
+  </ul>
+</div>
+<div class="d-flex justify-content-center">
+  <%= link_to "注文一覧", orders_path,class:"btn btn-primary btn-lg mt-2 "%>
+</div>
