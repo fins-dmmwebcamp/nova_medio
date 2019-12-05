@@ -46,7 +46,8 @@
         	<%end%>
           </li>
       </ul>
-<select class="nav navbar-nav navbar-left align-middle text-centerr" style="margin:13px;height:40px;display: inline-block;" id="select">
+<select class="nav navbar-nav navbar-left align-middle text-centerr" style="margin:13px;height:40px;display: inline-block;text-indent: center;font-size: 20px;
+}" id="select">
   <option value="">各種登録</option>
   <option value="/admin/arrivals/new" id="select">入荷登録</option>
   <option value="/admin/products/new">商品登録</option>
@@ -54,12 +55,13 @@
   <option value="/admin/labels/new">レーベル登録</option>
   <option value="/admin/genres/new">ジャンル登録</option>
 </select>
-<button type="button" class="btn btn-outline-secondary active float-right" style="margin-top:3px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;"%></button>
+<button type="button" class="btn-outline-secondary float-right" style="margin-top:3px;margin-right:5px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;text-align:center;"%></button>
+
 <div style="margin-top:5px;position:relative;bottom:27px;right:5px;float:right;display: inline-block;">
 <%= form_with( url:search_path,local:true,method: :post) do |f| %>
-   <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"],style:"height:100px;"%>
+   <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"], {}, {style: 'width:95px;height:30px;'}%>
    <%= f.text_field :search,style:"width:200px;" %>
-   <%= f.submit "検索", class: "btn-dark " ,style:"width:60px;"%>
+   <%= f.submit "検索", class: "btn-outline-secondary " ,style:"width:60px;"%>
 <% end %>
 </div>
 </div>
