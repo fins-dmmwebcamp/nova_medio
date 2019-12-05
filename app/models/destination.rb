@@ -2,7 +2,7 @@ class Destination < ApplicationRecord
   belongs_to :customer, inverse_of: :destinations
 
   def address_full
-  "#{self.address_prefecture} #{self.address_city} #{self.address_after} }"
+  "#{self.address_prefecture} #{self.address_city} #{self.address_after}"
   end
 
   validates :address_prefecture, presence:true
