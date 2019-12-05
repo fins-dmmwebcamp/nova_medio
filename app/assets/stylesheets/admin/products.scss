@@ -61,3 +61,40 @@
 .edit-box {
   margin-left: 100px;
 }
+
+.partition1 {
+  width: 20px;
+  text-align: center;
+  color: #CCCCCC;
+}
+
+.sort-text:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.product-box {
+  width: 200px;
+  height: 300px;
+  border: solid 1px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.image-border {
+  border-bottom: solid 1px;
+}
+
+li > p {
+  margin-bottom: 0px;
+}
+
+.label {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+}
