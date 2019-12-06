@@ -1,27 +1,69 @@
-<div>
-  <h2>購入履歴</h2>
-  <% @orders.each_with_index do |order, i| %>
-  <div>
-    <% order.orders_details.each do |order| %>
-      <%= link_to order.product.name, product_path(order.product) %>
-      <p><%= order.product.artist.name %></p>
-      <p>商品単価：<%= order.price %></p>
-      <p>商品個数：<%= order.amount %></p>
-      <p>小計：<%= order.price * order.amount %></p>
-      <span class="btn btn-outline-primary">レビューを書く</span>
-    <% end %>
+<h2>購入履歴</h2>
+<% @orders.each_with_index do |order, i| %>
+  <div class="card mb-3">
+  <div class="card-header">
+    購入日：<%= order.created_at.year %>年<%= order.created_at.month %>月<%= order.created_at.day %>日
   </div>
-  <div>
-    <p>購入日：<%= order.created_at.year %>年<%= order.created_at.month %>月<%= order.created_at.day %>日</p>
-    <p><%= order.shipping_status %></p>
-    <p>送付先：<%= order.address %></p>
-    <p>宛名：<%= order.reciever %></p>
-    <p>〒<%= order.postal_code %></p>
-    <p>小計：<%= @totals[i] %></p>
-    <p>送料：<%= order.shipping_fee %></p>
-    <p>内税：〇〇</p>
-    <p>合計：<%= @totals[i] + order.shipping_fee %></p>
-  </div>
-  <% end %>
-</div>
+    <div class="row">
+      <div class="col-md-7 border-right">
+        <ul class="list-group list-group-flush">
+          <% order.orders_details.each do |order| %>
+          <li class="list-group-item">
+            <div class="d-flex">
+              <div>
+                <%= link_to product_path(order.product) do %>
+                  <%= attachment_image_tag(order.product, :product_image, :fill, 160, 160,fallback: "noimage.png", size:'160x160') %>
+                <% end %>
+              </div>
+              <ul class="list-unstyled">
+                <li>
+                  <h5><%= link_to order.product.name, product_path(order.product) %></h5>
+                </li>
+                <li>
+                  <%= order.product.artist.name %>
+                </li>
+                <li>
+                  商品単価：<%= order.price %>円
+                </li>
+                <li>
+                  商品個数：<%= order.amount %>個
+                </li>
+                <li>
+                  小計：<%= order.price * order.amount %>
+                </li>
+                <li>
+                  <%= link_to "レビューを書く", new_product_review_path(order.product), class:"btn btn-outline-primary" %>
+                </li> 
+              </ul>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+      </div>
 
+
+      <div class="col-md-5">
+        <ul class="list-unstyled">
+          <li><%= order.shipping_status %></li>
+          <li>宛名：<%= order.reciever %></li>
+          <li>送付先:
+            <ul class="list-unstyled ml-3">
+              <li>〒<%= order.postal_code %></li>
+              <li>住所：<%= order.address %></li>
+            </ul>
+          </li>
+        </ul>
+        <section class="float-right mr-1">
+          <ul class="list-unstyled text-right">
+            <li>小計：<%= @totals[i] %>円</li>
+            <li>送料：<%= order.shipping_fee %>円</li>
+            <li>(内税：<%= (@totals[i] * 0.10 / 1.10).floor %>円)</li>
+            <li class="h5">合計：<%= @totals[i] + order.shipping_fee %>円</li>
+          </ul>
+        </section>
+
+
+      </div>
+    </div>
+  </div>
+<% end %>
