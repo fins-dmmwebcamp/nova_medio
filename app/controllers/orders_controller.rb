@@ -48,9 +48,9 @@ class OrdersController < ApplicationController
       product.update(stock: stock, sales: sales)
       # ここまで
       item.order_id = order.id
-      p item
       item.save
     end
+    current_customer.cart_items.destroy_all
     redirect_to order_path(order)
   end
 
