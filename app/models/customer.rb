@@ -13,6 +13,10 @@ class Customer < ApplicationRecord
   accepts_nested_attributes_for :destinations,allow_destroy: true
 
 
+
+validates :phone_number, :numericality => true
+
+
 # フルネームを定義
 
 

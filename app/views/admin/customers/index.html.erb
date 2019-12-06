@@ -4,9 +4,9 @@
 
 
 			<div class="row">
-				<div class="input-group">
+				<div class="input-group" style="text-align:center">
 					<%= form_tag(admin_customers_path,:method => 'get') do %>
-	  					<%= text_field_tag :search,"", class:"col-xs-10" %>
+	  					<%= text_field_tag :search,"", class:"col-xs-10", placeholder: "メールアドレスで検索" %>
 	  						<%= submit_tag 'Search', :mail => nil , class:"button is-info col-xs-2"%>
 					<% end %>
 				</div>

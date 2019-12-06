@@ -1,10 +1,8 @@
-<div class="conatiner">
-  <div class="row">
-    <div class="col-xs-12" style="margin:0 auto">
+
 
         <h2 style>ユーザー情報詳細</h2>
 
-            <div class="btn col-xs-12 col-md-offset-0" style="margin-top:30px">
+            <div class="show_customer_btn">
               <%= link_to "いいねした商品", favorites_path, style:"margin-right:10px", class:"fas fa-heart btn btn-primary" %>
               <%= link_to "レビュー一覧", customer_reviews_path(@customer), style:"margin-right:10px", class:"btn btn-primary" %>
               <%= link_to "情報を編集する", edit_customer_path(@customer), style:"margin-right:10px", class:"btn btn-primary" %>
@@ -67,10 +65,3 @@
             <div style="margin-top:50px">
               <%= link_to "退会する", customer_leave_page_path(@customer), class:"btn btn-warning",style:"width:100%" %>
             </div>
-
-    </div>
-  </div>
-</div>
-
-
-  
