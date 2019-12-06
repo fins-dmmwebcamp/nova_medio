@@ -1,8 +1,10 @@
+
 <h2>購入履歴</h2>
 <% @orders.each_with_index do |order, i| %>
   <div class="card mb-3">
   <div class="card-header">
     購入日：<%= order.created_at.year %>年<%= order.created_at.month %>月<%= order.created_at.day %>日
+
   </div>
     <div class="row">
       <div class="col-md-7 border-right">

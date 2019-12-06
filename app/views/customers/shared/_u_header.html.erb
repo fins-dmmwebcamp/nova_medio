@@ -5,25 +5,33 @@
   margin-right: -50vw;height:80px;">
   <div class= ""style="height:99%;margin:6px;border:solid 1px black">
  <% if current_customer %>
- <ul class="nav navbar-nav w-50 h-75 ul"style="margin-top:18px;float: left;">
- <li class="li">
- 	<%= link_to customer_path(current_customer.id), style: "color:black;paddning:0;" do %>
+ <ul class="nav navbar-nav w-50 h-75 ul"style="float: left;padding-top: 5px;">
+ <li class=" text-center">
+ 	<%= link_to customer_path(current_customer.id), style: "color:black;padding:0;font-size:15px;" do %>
         	<p style="margin:0;"><%=current_customer.name_full%></p>
-        	<p style="margin:0;">の</p>
+        	<p style="margin:0;">さん</p>
         	<p style="margin:0;">マイページ</p>
         	<%end%>
         </li>
-<li class="li"><%= link_to "商品一覧",  products_path , style: "color:black;paddning:0;"%></li>
-<li class="li"><%= link_to "カート",  cart_items_path , style: "color:black;paddning:0;"%></li>
-<li class="li"><%= link_to "ログアウト",  destroy_customer_session_path , method: :delete, style: "color:black;paddning:0;"%></li>
-</ul>
+ <li class="li text-center"style="height:30px;margin-top: 25px;"></li>
+<li class=" text-center li " style="height:30px;margin-top: 25px"><%= link_to "商品一覧",  products_path , style: "color:black;padding:0;"%></li>
+<li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "カート　　",  cart_items_path , style: "color:black;padding:0;"%></li>
+<li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "ログアウト",  destroy_customer_session_path , method: :delete, style: "color:black;padding:0;"%></li>
  <% else %>
- <ul>
- <li> <%= link_to "サインアップ",  new_customer_registration_path %></li>
- <li><%= link_to "サインイン", new_customer_session_path %></li>
+
+ <li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "サインアップ",  new_customer_registration_path %></li>
+ <li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "サインイン", new_customer_session_path %></li>
  </ul>
  <% end %>
   </div>
+
+<div style="margin-top:0px;position:relative;bottom:90px;right:10px;float:right;display: inline-block;">
+<%= form_with( url:search_path,local:true,method: :post) do |f| %>
+   <%= f.select :modelday, ["Product", "Artist", "genre","label"], {},  {class: 'cp_ipselect cp_sl01'}%>
+   <%= f.text_field :search,style:"width:200px;" %>
+   <%= f.submit "Go!", class: "btn-outline-secondary " ,style:"width:60px;border-radius: 0px 10px 10px 0px"%>
+<% end %>
+</div>
 
 </header>
 <style type="text/css" media="screen">
@@ -32,7 +40,7 @@
 -webkit-transform: skewX(150deg);
 -moz-transform: skewX(150deg);
 transform: skewX(150deg);
-border-right: 1px solid silver;
+border-right: 1px solid black;
 }
 .li a{
 	width:120px;
@@ -41,5 +49,52 @@ transform: skewX(-150deg);
 padding:0 10px;
 }
 .li:last-child{border-right:none;}
+.cp_ipselect {
+	overflow: hidden;
+	width: 100px;
+	height:30px;
+	margin: 2em auto;
+	text-align: center;
+}
+.cp_ipselect select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+    display: none;
+}
+.cp_ipselect.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.cp_ipselect.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.cp_ipselect.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
 </style>
 
