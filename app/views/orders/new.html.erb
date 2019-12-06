@@ -14,8 +14,14 @@
         </td>
       </tr>
       <% end %>
+      <tr>
+      <td></td>
+        <td>
+        <%= link_to "お届け先を追加する", new_destination_path, class:"btn btn-warning" %>
+        </td>
+      </tr>
     </table>
-    <div>
+    <div class="mt-2">
       <%= link_to "カートに戻る", cart_items_path, class:"btn btn-outline-dark" %>
       <%= f.submit "次に進む", class:"btn btn-success"%>
     </div>

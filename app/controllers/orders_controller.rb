@@ -7,10 +7,7 @@ class OrdersController < ApplicationController
     @totals = []
     @orders.each_with_index do |order,i|
       details = order.orders_details
-      @totals[i] = 0
-      details.each do |detail|
-        @totals[i] += detail.price * detail.amount
-      end
+      @totals[i] = total(details)
     end
   end
 
@@ -33,11 +30,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @shipping_fee = 500
     @orders_details = store_cart_items_to_a
-    # 合計求める処理
-    @total = 0
-    @orders_details.each do |detail|
-      @total += detail.price * detail.amount
-    end
+    @total = total(@orders_details)
     @total += @shipping_fee
   end
 
@@ -63,6 +56,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @total = total(@order.orders_details)
   end
 
   private
@@ -80,5 +74,13 @@ class OrdersController < ApplicationController
       details.push(detail)
     end
     details
+  end
+  # orders_itemsの購入合計金額を求める
+  def total(items)
+    total = 0
+    items.each do |item|
+      total += item.price * item.amount
+    end
+    total
   end
 end

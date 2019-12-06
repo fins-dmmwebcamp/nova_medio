@@ -1,22 +1,24 @@
 <h2>購入完了</h2>
 <div class="card">
-  <div class="card-header">ご購入ありがとうございました</div>
+  <div class="card-header"><h4>ご購入ありがとうございました</h4></div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      お届先住所<br>
-      <%= @order.address %>
+      <h5>お届先住所</h5>
+      <span class="ml-3"><%= @order.address %></span>
     </li>
     <li class="list-group-item">
-      お届け先氏名<br>
-      <%= @order.reciever %>
+      <h5>お届け先氏名</h5>
+      <span class="ml-3"><%= @order.reciever %></span>
     </li>
     <li class="list-group-item">
-      お支払い方法<br>
-      <%= @order.payment %>
+      <h5>お支払い方法</h5>
+      <span class="ml-3"><%= @order.payment %></span>
     </li>
     <li class="list-group-item">
-      購入明細<br>
-      配送料: <%= @order.shipping_fee %>円
+      <h5>購入明細</h5>
+      <section class="ml-3">小計: <%= @total %>円<br>
+      配送料: <%= @order.shipping_fee %>円<br>
+      合計: <%= @total + @order.shipping_fee %>円</section>
     </li>
   </ul>
 </div>
