@@ -12,8 +12,14 @@
 
   <body>
     <div class="container-fluid">
-    <%# ここで、一般ユーザーOR管理者で表示するヘッダーを切り替える %>
-      <%= link_to "応急処置のSignOutです", destroy_customer_session_path, method: :delete  %>
+      <div class="row">
+      <%# ここで、一般ユーザーOR管理者で表示するヘッダーを切り替える %>
+        <% if admin_signed_in? %>
+          <%= render 'admins/shared/header'%>
+        <% else %>
+          <%= render 'customers/shared/u_header'%>
+        <% end %>
+      </div>
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8">

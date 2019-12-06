@@ -1,8 +1,29 @@
 <div>
   <h2>お届け先確認</h2>
-  <%= form_with model: @order do |f| %>
-    <% @destinations.each do |destination| %>
-    <% end %>
-    <%= f.submit "決定"%>
+  <%= form_with model: @order, url: confirm_payment_path, local: true do |f| %>
+    <table class="table table-bordered ">
+      <% @destinations.each_with_index do |d,i| %>
+      <tr>
+        <td class="">
+          <%= f.radio_button :destination_id, d.id, id:"destination#{i}", required: true %>
+        </td>
+        <td class="col">
+          <label for=<%= "destination#{i}" %>>
+          受取人: <%= d.name%><br>
+          住所: <%= d.address_full %></label>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+      <td></td>
+        <td>
+        <%= link_to "お届け先を追加する", new_destination_path, class:"btn btn-warning" %>
+        </td>
+      </tr>
+    </table>
+    <div class="mt-2">
+      <%= link_to "カートに戻る", cart_items_path, class:"btn btn-outline-dark" %>
+      <%= f.submit "次に進む", class:"btn btn-success"%>
+    </div>
   <% end %>
 </div>
