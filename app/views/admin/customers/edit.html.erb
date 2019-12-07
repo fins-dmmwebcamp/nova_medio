@@ -1,5 +1,5 @@
 
-<%= render 'admins/shared/header'%>
+
 
 <h1>ユーザー情報の編集</h1>
 
@@ -21,54 +21,21 @@
 
               </div>
 
-
-
-                <div>
-                  <%= f.fields_for :destination, @destination do |destination_form| %>
-                        <div class="field">
-                           <h4>郵便番号</h4>
-                            <%= destination_form.text_field :postal_code,:class => "field"  %>
-                        </div>
-
-
-
-
-                        <div class="field">
-                            <h4>住所</h4>
-                            <%= destination_form.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県' %>
-
-                            <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field"  %></br>
-                            <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"  %>
-
-                            <!-- idが必要らしい -->
-
-                            <%= destination_form.hidden_field :id, value:@destination.customer_id %>
-
-
-                <% end %>
+            <h4 class="regisration_h4">パスワード</h4>
+              <div class="field registation_fields">
+                <%= f.password_field :password ,placeholder: "パスワード入力",:class => "field regisration_field",:style => "width:250px"  %></br>
+                <%= f.password_field :password_confirmation, placeholder: "パスワード確認",:class => "field",:style => "width:250px"   %>
               </div>
 
-              <div class="field">
-                  <h4>電話番号</h4>
-                  <%= f.text_field :phone_number, autofocus: true , placeholder: "123456789",:class => "field" %>
-              　</div>
-
-              <div class="field">
-                  <h4>メールアドレス</h4>
-                  <%= f.text_field :email ,placeholder: "example@example.com",:class => "field"  %>
-              </div>
-
-
-                <div class="field">
-                  <h4>パスワード</h4>
-                  <%= f.password_field :password ,placeholder: "パスワード入力",:class => "field"  %></br>
-                  <%= f.password_field :password_confirmation, placeholder: "パスワード確認",:class => "field"  %>
-                </div>
+              <div class="regisration_btn">
+              <%= f.submit "更新する",:class => "btn btn-success",:style => "width:130px" %>
+            </div>
+         <% end %>
 
 
 
-                <%= f.submit "更新",:class => "btn btn-success",:style => "width:100px" %>
 
     <% end %>
 </div>
+
 
