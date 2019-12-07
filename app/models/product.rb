@@ -24,8 +24,8 @@ class Product < ApplicationRecord
     if search
       @artist = Artist.where(['name LIKE ?', "%#{search}%"])
       @artist.each do |artist|
-        artist.products
-        # Product.where(artist_id, artist.id)
+        # return artist.products
+        return Product.where(artist_id: artist.id)
       end
     end
   end
@@ -34,8 +34,8 @@ class Product < ApplicationRecord
     if search
       @genre = Genre.where(['name LIKE ?', "%#{search}%"])
       @genre.each do |genre|
-        genre.products
-        # Product.where(genre_id, genre.id)
+        return genre.products
+        # return Product.where(genre_id: genre.id)
       end
     end
   end
@@ -44,8 +44,8 @@ class Product < ApplicationRecord
     if search
       @label = Label.where(['name LIKE ?', "%#{search}%"])
       @label.each do |label|
-        label.products
-        # Product.where(label_id, label.id)
+        return label.products
+        # return Product.where(label_id: label.id)
       end
     end
   end
