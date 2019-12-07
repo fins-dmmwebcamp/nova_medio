@@ -1,8 +1,10 @@
 <h1>退会の確認</h1>
 
-<h3>本当に退会しますか？</h3>
+<h3 style="margin:50px auto">本当に退会しますか？</h3>
 
+<div style="margin-right:30px">
 <%= check_box_tag :test1 %>
 <%= label_tag :test1, "はい" %>
+</div>
 
-<%= link_to "送信する",  customer_leave_path(@customer),method: :patch, class:"btn btn-warning",style:"width:150px" %>
+<div style="margin:50px auto"><%= link_to "送信する",  customer_leave_path(@customer),method: :patch, class:"btn btn-warning",style:"width:150px" %>
