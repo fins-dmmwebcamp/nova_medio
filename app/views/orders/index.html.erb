@@ -7,7 +7,7 @@
 
   </div>
     <div class="row">
-      <div class="col-md-7 border-right">
+      <div class="col-md-7">
         <ul class="list-group list-group-flush">
           <% order.orders_details.each do |order| %>
           <li class="list-group-item">
@@ -44,7 +44,7 @@
       </div>
 
 
-      <div class="col-md-5">
+      <div class="col-md-5" >
         <ul class="list-unstyled">
           <li><%= order.shipping_status %></li>
           <li>宛名：<%= order.reciever %></li>
@@ -63,8 +63,6 @@
             <li class="h5">合計：<%= @totals[i] + order.shipping_fee %>円</li>
           </ul>
         </section>
-
-
       </div>
     </div>
   </div>
