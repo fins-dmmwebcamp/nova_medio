@@ -38,20 +38,24 @@ class OrdersController < ApplicationController
     order = current_customer.orders.new(order_params)
     order.shipping_status = "準備中"
     order.shipping_fee = 500
-    order.save
-    cart_items = store_cart_items_to_a
-    cart_items.each do |item|
-      # 在庫・売上更新処理
-      product = Product.find(item.product_id)
-      stock = product.stock - item.amount
-      sales = product.sales + item.amount * item.price
-      product.update(stock: stock, sales: sales)
-      # ここまで
-      item.order_id = order.id
-      item.save
+    if order.save
+      cart_items = store_cart_items_to_a
+      cart_items.each do |item|
+        # 在庫・売上更新処理
+        product = Product.find(item.product_id)
+        stock = product.stock - item.amount
+        sales = product.sales + item.amount * item.price
+        product.update(stock: stock, sales: sales)
+        # ここまで
+        item.order_id = order.id
+        item.save
+      end
+      current_customer.cart_items.destroy_all
+      redirect_to order_path(order)
+    else
+      flash[:notice] = "購入に失敗しました"
+      redirect_to cart_items_path
     end
-    current_customer.cart_items.destroy_all
-    redirect_to order_path(order)
   end
 
   def show
