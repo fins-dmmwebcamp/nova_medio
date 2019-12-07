@@ -3,7 +3,6 @@ class DestinationsController < ApplicationController
 before_action :authenticate_customer!, only: [:new,:create,:edit, :update,:show]
 before_action :current_customer, only: [:new,:create,:edit, :update, :show]
 
-
   def new
   	@destination = Destination.new
   end
