@@ -20,6 +20,8 @@ class Product < ApplicationRecord
     end
   end
 
+  # 下の3つ、記述が少し違うのは、どっちでもできるよって意味です。
+
   def self.artist_search(search)
     if search
       @artist = Artist.where(['name LIKE ?', "%#{search}%"])
