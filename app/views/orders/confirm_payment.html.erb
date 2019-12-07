@@ -1,5 +1,6 @@
 <div>
   <h2>お支払い方法確認</h2>
+  <h5>お支払い方法を選択して下さい</h5>
   <%= form_with model: @order, url: confirm_order_path, local: true do |f| %>
     <%= f.hidden_field  :postal_code, value: @order.postal_code %>
     <%= f.hidden_field  :address, value: @order.address %>

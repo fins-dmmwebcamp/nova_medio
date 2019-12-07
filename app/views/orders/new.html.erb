@@ -1,8 +1,9 @@
 
 <div>
   <h2>お届け先確認</h2>
+  <h5>配送先を選択してください</h5>
   <%= form_with model: @order, url: confirm_payment_path, local: true do |f| %>
-    <table class="table table-bordered ">
+    <table class="table table-bordered" style="width:100%;" >
       <% @destinations.each_with_index do |d,i| %>
       <tr>
         <td class="">

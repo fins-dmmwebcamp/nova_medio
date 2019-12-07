@@ -7,7 +7,6 @@ class ReviewsController < ApplicationController
 	end
 
 	def new
-		@product = Product.find(params[:product_id])
 		@review = current_customer.reviews.new
 	end
 

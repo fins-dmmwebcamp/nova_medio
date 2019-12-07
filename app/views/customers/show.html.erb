@@ -1,67 +1,73 @@
+<h2 style>ユーザー情報詳細</h2>
+<div class="">
+  <div class="show_customer_btn d-md-flex justify-content-between">
+    <%= link_to "いいねした商品", favorites_path, class:"fas fa-heart btn btn-primary mb-1" %>
+    <%= link_to "レビュー一覧", customer_reviews_path(@customer), class:"btn btn-primary mb-1" %>
+    <%= link_to "購入履歴一覧", orders_path, class:"btn btn-primary mb-1" %>
+    <%= link_to "編集する", edit_customer_path(@customer), class:"btn btn-success mb-1" %>
+  </div>
 
+  <table class="table table-striped w-100">
+    <tbody>
+      <tr>
+        <td>名前:</td>
+        <td><%= @customer.name_full %></td>
+      </tr>
 
-        <h2 style>ユーザー情報詳細</h2>
+      <tr>
+        <td>フリガナ:</td>
+        <td><%= @customer.name_full_kana %></td>
+      </tr>
 
-            <div class="show_customer_btn">
-              <%= link_to "いいねした商品", favorites_path, style:"margin-right:10px", class:"fas fa-heart btn btn-primary" %>
-              <%= link_to "レビュー一覧", customer_reviews_path(@customer), style:"margin-right:10px", class:"btn btn-primary" %>
-              <%= link_to "情報を編集する", edit_customer_path(@customer), style:"margin-right:10px", class:"btn btn-primary" %>
-            </div>
+      <tr>
+        <td>郵便番号：</td>
+        <td><%= @destination.postal_code %></td>
+      </tr>
+      <tr>
+        <td>住所：</td>
+        <td><%= @destination.address_full %></td>
+      </tr>
 
-            <table style="margin:50px auto "class="table-striped">
-                <tr>
-                  <td>名前:</td>
-                  <td><%= @customer.name_full %></td>
-                </tr>
+      <tr>
+        <td>電話番号：</td>
+        <td><%= @customer.phone_number %></td>
+      </tr>
+      <tr>
+        <td>メールアドレス：</td>
+        <td><%= @customer.email %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="otodoke_saki ">
+  <h3>お届け先一覧</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <td></td>
+        <td><h6>宛先氏名</h6></td>
+        <td><h6>宛先住所</h6></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
+        <td><%= @destination.name %></td>
+        <td><%= @destination.address_full %></td>
+      </tr>
+      <% @destinations.each do |destination| %>
+        <% if !destination.is_main %>
+        <tr>
+          <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
+          <td><%= destination.name %></td>
+          <td><%= destination.address_full %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-                <tr>
-                  <td>フリガナ:</td>
-                  <td><%= @customer.name_full_kana %></td>
-                </tr>
-
-                <tr>
-                  <td>郵便番号：</td>
-                  <td><%= @destination.postal_code %></td>
-                </tr>
-                <tr>
-                  <td>住所：</td>
-                  <td><%= @destination.address_full %></td>
-                </tr>
-
-                <tr>
-                  <td>電話番号：</td>
-                  <td><%= @customer.phone_number %></td>
-                </tr>
-                <tr>
-                  <td>メールアドレス：</td>
-                  <td><%= @customer.email %></td>
-                </tr>
-            </table>
-
-            <div class="otodoke_saki">
-              <h3>お届け先一覧</h3>
-                <table class="table" >
-                  <tbody>
-                  <tr>
-                    <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
-                    <td><%= @destination.name %></td>
-                    <td><%= @destination.address_full %></td>
-                  </tr>
-
-
-                  <% @destinations.each do |destination| %>
-                  <% if destination.is_main = false %>
-                  <tr>
-                    <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
-                    <td><%= destination.name %></td>
-                    <td><%= destination.address_full %></td>
-                  </tr>
-                  <% end %>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-
-            <div style="margin-top:50px">
-              <%= link_to "退会する", customer_leave_page_path(@customer), class:"btn btn-warning",style:"width:100%" %>
-            </div>
+<div style="margin-top:30px;">
+  <%= link_to "退会する", customer_leave_page_path(@customer), class:"btn btn-outline-warning w-50 d-block mx-auto" %>
+</div>

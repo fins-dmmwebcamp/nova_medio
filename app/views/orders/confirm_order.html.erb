@@ -2,26 +2,30 @@
 <p>ご注文の内容を確認してください</p>
 <h4>購入する商品</h4>
 <table class="table">
-  <tr class="thead-light">
-    <th>商品名</th>
-    <th>単価</th>
-    <th>数量</th>
-    <th>小計</th>
-  </tr>
+  <thead>
+    <tr>
+      <th scope="col" style="width:50%;">商品名</th>
+      <th scope="col">単価</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @orders_details.each do |item| %>
     <tr>
       <td><%= item.product.name %></td>
       <td><%= item.price %>円</td>
-      <td><%= item.amount %></td>
+      <td><%= item.amount %>個</td>
       <td><%= item.price * item.amount %>円</td>
     </tr>
   <% end %>
-  <tr>
-    <td>配送料</td>
-    <td></td>
-    <td></td>
-    <td><%= @shipping_fee %>円</td>
-  </tr>
+    <tr>
+      <td>配送料</td>
+      <td></td>
+      <td></td>
+      <td><%= @shipping_fee %>円</td>
+    </tr>
+  </tbody>
   <tr>
     <td>合計</td>
     <td></td>
