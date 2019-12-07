@@ -19,10 +19,13 @@
 <li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "ログアウト",  destroy_customer_session_path , method: :delete, style: "color:black;padding:0;"%></li>
  <% else %>
 
- <li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "サインアップ",  new_customer_registration_path %></li>
- <li class="text-center li" style="height:30px;margin-top: 25px"><%= link_to "サインイン", new_customer_session_path %></li>
+ <li class="text-center li" style="height:30px;margin-top: 25px;margin-right: 20px;"><%= link_to "サインアップ",  new_customer_registration_path %></li>
+ <li class="text-center li" style="height:30px;margin-top: 25px:margin-left:20px"><%= link_to "サインイン", new_customer_session_path %></li>
  </ul>
  <% end %>
+
+<%= image_tag 'IMG_20191206_110656.png' ,:style => 'position:relative;left:100px;bottom:3px;'
+ %>
   </div>
 
 <div style="margin-top:0px;position:relative;bottom:90px;right:10px;float:right;display: inline-block;">
@@ -48,7 +51,8 @@ display:block;
 transform: skewX(-150deg);
 padding:0 10px;
 }
-.li:last-child{border-right:none;}
+.li:last-of-type{border-right:none;}
+
 .cp_ipselect {
 	overflow: hidden;
 	width: 100px;

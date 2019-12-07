@@ -1,10 +1,18 @@
 <ul>
 <% products.each do |product| %>
-  <li>
-    <p><%= product.name %></p>
-    <p><%= link_to product.name, admin_product_path(product.id) %></p>
-    <p><%= product.price %> 円</p>
-    <p><%= product.label.name %></p>
-  </li>
+  <div class="product-box float-left">
+    <li>
+      <%= attachment_image_tag product, :product_image, size:'198x200', fallback: "no_image.jpg", class: "image-border" %>
+      <% if product.on_sale == true %>
+        <p class="label">販売中</p>
+      <% else %>
+        <p>販売停止中</p>
+      <% end %>
+      <p><%= link_to product.name, admin_product_path(product.id) %></p>
+      <p><%= product.label.name %></p>
+      <p><%= product.price %> 円</p>
+      <p>在庫数 <%= product.stock %></p>
+    </li>
+  </div>
 <% end %>
 </ul>

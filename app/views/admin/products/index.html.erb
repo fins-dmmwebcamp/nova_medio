@@ -3,15 +3,15 @@
 
 
 <div>
-  <h1>商品一覧</h1>
-
-  <div>
-    <p><%= link_to "新着順", admin_sort_products_path(:key => "new"), method: :post, remote: true %></p>
-    <p><%= link_to "いいね順", admin_sort_products_path(:key => "favorite"), method: :post, remote: true %></p>
-    <p><%= link_to "売れ筋順", admin_sort_products_path(:key => "hot"), method: :post, remote: true %></p>
+  <div class="clearfix">
+    <p><%= link_to "新着順", admin_sort_products_path(:key => "new"), method: :post, remote: true, class: "float-left sort-text" %></p>
+    <p class="float-left partition1"> / </p>
+    <p><%= link_to "いいね順", admin_sort_products_path(:key => "favorite"), method: :post, remote: true, class: "float-left sort-text" %></p>
+    <p class="float-left partition1"> / </p>
+    <p><%= link_to "売れ筋順", admin_sort_products_path(:key => "hot"), method: :post, remote: true, class: "float-left sort-text" %></p>
   </div>
 
-  <div id="sort_products_box">>
+  <div id="sort_products_box">
     <%= render partial: 'admin/products/nestform/sort_products', locals: { products: @products } %>
   </div>
 </div>
