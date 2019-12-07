@@ -43,7 +43,8 @@ Rails.application.routes.draw do
   end
   get 'favorites', to: 'favorites#index', as: 'favorites'
 
- post 'search',to: 'search#search'
+  post 'search',to: 'search#search'
+  post 'e_search', to: 'search#e_search'
   post 'sort_products', to: 'products#index', as: 'sort_products'
   post 'admin/sort_products', to: 'admin/products#index', as: 'admin_sort_products'
 

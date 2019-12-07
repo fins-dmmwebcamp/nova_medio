@@ -57,4 +57,7 @@ class Destination < ApplicationRecord
     沖縄県: 46
    }
 
+
+
+validates :postal_code, :numericality => true
 end

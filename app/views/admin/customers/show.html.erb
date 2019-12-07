@@ -2,7 +2,7 @@
       <h2 style="margin-bottom:50px">ユーザー情報詳細</h2>
 
 
-        <div class="show_btn col-xs-7 col-md-offset-5">
+        <div class="admin_customer_link">
           <%=link_to "編集", edit_admin_customer_path(@customer.id), class:"btn btn-success" %>
           <%=link_to "削除", admin_customer_path(@customer.id),method: :delete, class:"btn btn-danger" %>
         </div>

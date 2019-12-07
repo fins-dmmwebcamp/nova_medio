@@ -14,9 +14,40 @@ class Product < ApplicationRecord
   # default_scope -> { order(id: :desc) }
   def self.search(search)
     if search
-      Product.where(['name LIKE ?', "%#{search}%"])if name.present?
+      Product.where(['name LIKE ?', "%#{search}%"])
     else
       Product.all
     end
   end
+
+  def self.artist_search(search)
+    if search
+      @artist = Artist.where(['name LIKE ?', "%#{search}%"])
+      @artist.each do |artist|
+        artist.products
+        # Product.where(artist_id, artist.id)
+      end
+    end
+  end
+
+  def self.genre_search(search)
+    if search
+      @genre = Genre.where(['name LIKE ?', "%#{search}%"])
+      @genre.each do |genre|
+        genre.products
+        # Product.where(genre_id, genre.id)
+      end
+    end
+  end
+
+  def self.label_search(search)
+    if search
+      @label = Label.where(['name LIKE ?', "%#{search}%"])
+      @label.each do |label|
+        label.products
+        # Product.where(label_id, label.id)
+      end
+    end
+  end
+
 end

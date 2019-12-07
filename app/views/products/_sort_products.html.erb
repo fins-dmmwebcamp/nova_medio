@@ -1,12 +1,20 @@
 <ul>
 <% products.each do |product| %>
   <% if product.is_deleted == false %>
-  <li>
-    <p><%= product.name %></p>
-    <p><%= link_to product.name, product_path(product.id) %></p>
-    <p><%= product.price %> 円</p>
-    <p><%= product.label.name %></p>
-  </li>
+  <div class="product-box float-left">
+    <li>
+      <%= attachment_image_tag product, :product_image, size:'198x200', fallback: "no_image.jpg", class: "image-border" %>
+      <% if product.stock == 0 %>
+        <p class="label">在庫なし</p>
+      <% end %>
+      <p><%= link_to product.name, product_path(product.id) %></p>
+      <p><%= product.artist.name %></p>
+      <p><%= product.price %> 円</p>
+      <div>
+        <p>いいね<%= product.favorites.count %></p>
+      </div>
+    </li>
+  </div>
   <% end %>
 <% end %>
 </ul>
