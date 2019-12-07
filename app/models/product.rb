@@ -12,4 +12,11 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :discs, allow_destroy: true
 
   # default_scope -> { order(id: :desc) }
+  def self.search(search)
+    if search
+      Product.where(['name LIKE ?', "%#{search}%"])if name.present?
+    else
+      Product.all
+    end
+  end
 end

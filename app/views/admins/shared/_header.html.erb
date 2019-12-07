@@ -60,10 +60,10 @@
     <button type="button" class="btn-outline-secondary float-right" style="margin-top:3px;margin-right:5px;"><%= link_to "ログアウト", destroy_admin_session_path , method: :delete, style: "color:black;margin-top:10px;text-align:center;"%></button>
 
     <div style="margin-top:5px;position:relative;bottom:27px;right:5px;float:right;display: inline-block;">
-    <%= form_with( url:search_path,local:true,method: :post) do |f| %>
+    <%= form_with( url:search_path, method: :post) do |f| %>
        <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"], {}, {style: 'width:95px;height:30px;'}%>
        <%= f.text_field :search,style:"width:200px;" %>
-       <%= f.submit "検索", class: "btn-outline-secondary " ,style:"width:60px;"%>
+       <%= f.submit "検索", class: "btn-outline-secondary " , style:"width:60px;"%>
     <% end %>
     </div>
   </div>
