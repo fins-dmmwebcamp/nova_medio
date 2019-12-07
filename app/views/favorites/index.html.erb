@@ -1,23 +1,26 @@
-
-<div>
 	<h1>いいね一覧</h1>
-	<% @products.each do |product| %>
-		<div class="card" style="width: 100%;">
-			<div class="row no-gutters">
-				<div class="col-md-2">
+	<div class="table-responsive">
+	<table class="table text-nowrap w-100">
+		<tbody>
+			<% @products.each do |product| %>
+			<tr>
+				<td style="width:80px">
 					<%= link_to( product_path(product)) do %>
-						<%= attachment_image_tag product, :product_image, :fill, 80, 80, format: 'jpeg', fallback:"no_image.jpg", size: "80x80"  %>
+						<%= attachment_image_tag product, :product_image, :fill, 80, 80, fallback:"no_image.jpg", size: "80x80" %>
 					<% end %>
-				</div>
-				<div class="col-md-8">
+				</td>
+				<td class="w-50 text-nowrap">
 				<%= link_to product.name, product_path(product) %><br>
 				<%= product.artist.name %>
-				</div>
-				<div class="col-md-2">
+				</td>
+				<td>
 					<p><%= product.price %>円</p>
+				</td>
+				<td style="width:104px">
 					<%= link_to "カートに入れる", cart_items_path(cart_item:{amount: 1, product_id: product.id}), method: :post, class:"btn btn-sm btn-primary" %>
-				</div>
-			</div>
-		</div>
-	<% end %>
-</div>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	</div>

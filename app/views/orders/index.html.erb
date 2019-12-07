@@ -9,32 +9,36 @@
     <div class="row">
       <div class="col-md-7">
         <ul class="list-group list-group-flush">
-          <% order.orders_details.each do |order| %>
+          <% order.orders_details.each do |item| %>
           <li class="list-group-item">
             <div class="d-flex">
               <div>
-                <%= link_to product_path(order.product) do %>
-                  <%= attachment_image_tag(order.product, :product_image, :fill, 160, 160,fallback: "noimage.png", size:'160x160') %>
+                <%= link_to product_path(item.product) do %>
+                  <%= attachment_image_tag(item.product, :product_image, :fill, 160, 160,fallback: "noimage.png", size:'160x160') %>
                 <% end %>
               </div>
               <ul class="list-unstyled">
                 <li>
-                  <h5><%= link_to order.product.name, product_path(order.product) %></h5>
+                  <h5><%= link_to item.product.name, product_path(item.product) %></h5>
                 </li>
                 <li>
-                  <%= order.product.artist.name %>
+                  <%= item.product.artist.name %>
                 </li>
                 <li>
-                  商品単価：<%= order.price %>円
+                  商品単価：<%= item.price %>円
                 </li>
                 <li>
-                  商品個数：<%= order.amount %>個
+                  商品個数：<%= item.amount %>個
                 </li>
                 <li>
-                  小計：<%= order.price * order.amount %>
+                  小計：<%= item.price * item.amount %>
                 </li>
                 <li>
-                  <%= link_to "レビューを書く", new_product_review_path(order.product), class:"btn btn-outline-primary" %>
+                <% if current_customer.reviews.find_by(product_id: item.product_id).nil? %>
+                  <%= link_to "レビューを書く", new_product_review_path(item.product), class:"btn btn-outline-primary" %>
+                <% else %>
+                <p class="disabled btn btn-outline-primary">レビュー済み</p>
+                <% end %>
                 </li> 
               </ul>
             </div>
