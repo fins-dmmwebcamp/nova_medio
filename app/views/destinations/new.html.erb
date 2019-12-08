@@ -2,16 +2,32 @@
 <h1>お届け先住所登録</h1>
 
 	<%= form_for (@destination) do |f| %>
-		<h3>受け取り者氏名</h3>
-			<%= f.text_field :name %>
-		<h3>郵便番号</h3>
-			<%= f.text_field :postal_code %>
-		<h3>住所</h3>
-			<%= f.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県' %><br>
-			<%= f.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field",:style => "margin-bottom:10px" %></br>
-			<%= f.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field"%><br>
-
-
-			<div class="btn"><%= f.submit "登録する", :class=> "btn btn-success" %></div>
-
+	<div class="form-group">
+		<%= f.label :name, "受け取り者氏名", class:"h4" %>
+		<div class="row">
+			<div class="col-sm-4">
+				<%= f.text_field :name, class:"form-control" %>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :postal_code, "郵便番号", class:"h4" %>
+		<div class="row">
+			<div class="col-sm-4">
+				<%= f.text_field :postal_code, class:"form-control" %>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<h4>住所</h4>
+		<div class="row">
+			<div class="col-sm-4">
+				<%= f.select :address_prefecture, Destination.address_prefectures.keys.to_a,
+					{},{include_blank:'都道府県', class:"form-control"} %>
+			</div>
+		</div>
+		<%= f.text_field :address_city, autofocus: true , placeholder: "市区町村", class:"form-control mt-4" %></br>
+		<%= f.text_field :address_after, autofocus: true , placeholder: "以降の住所", class:"form-control"%><br>
+		<%= f.submit "登録する", class: "btn btn-success float-right" %>
+	</div>
 	<%end%>
