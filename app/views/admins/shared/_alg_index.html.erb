@@ -53,7 +53,7 @@
 		<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
 		<%end%>
 		</div>
-　<div class="btn btn-default float-right">
+		<div class="btn btn-default float-right">
 	<%if names=="アーティスト"%>
 	<%= link_to "編集", edit_admin_artist_path(alg.id) %>
 	<%elsif names=="レーベル"%>
@@ -63,7 +63,7 @@
 	<%end%>
 	</div>
 </td>
-　</tr>
+	</tr>
 	</tbody>
 <%end%>
  	</table>
@@ -74,29 +74,29 @@
 	<table class="table">
 	<%algs.each_with_index do |alg,i|%>
 	<tbody>
-	<tr>
-	<td>No.<%=i+1%></td>
-	<td><%= alg.name %></td>
-	<td><div class="btn btn-default ">
-		<%if names=="アーティスト"%>
-		<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
-		<%elsif names=="レーベル"%>
-		<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
-		<%elsif names=="ジャンル"%>
-		<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
-		<%end%>
-		</div>
-　<div class="btn btn-default ">
-	<%if names=="アーティスト"%>
-	<%= link_to "編集", edit_admin_artist_path(alg.id) %>
-	<%elsif names=="レーベル"%>
-    <%= link_to "編集", edit_admin_label_path(alg.id) %>
-	<%elsif names=="ジャンル"%>
-	<%= link_to "編集", edit_admin_genre_path(alg.id) %>
-	<%end%>
-  </div>
-  </td>
-　</tr>
+		<tr>
+			<td>No.<%=i+1%></td>
+			<td><%= alg.name %></td>
+			<td><div class="btn btn-default ">
+				<%if names=="アーティスト"%>
+				<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
+				<%elsif names=="レーベル"%>
+				<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
+				<%elsif names=="ジャンル"%>
+				<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
+				<%end%>
+				</div>
+				<div class="btn btn-default ">
+					<%if names=="アーティスト"%>
+					<%= link_to "編集", edit_admin_artist_path(alg.id) %>
+					<%elsif names=="レーベル"%>
+				    <%= link_to "編集", edit_admin_label_path(alg.id) %>
+					<%elsif names=="ジャンル"%>
+					<%= link_to "編集", edit_admin_genre_path(alg.id) %>
+					<%end%>
+		  	</div>
+		  </td>
+		</tr>
 	</tbody>
 <%end%>
  </table>

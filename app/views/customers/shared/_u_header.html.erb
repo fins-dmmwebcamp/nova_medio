@@ -29,8 +29,8 @@
   </div>
 
 <div style="margin-top:0px;position:relative;bottom:90px;right:10px;float:right;display: inline-block;">
-<%= form_with( url:search_path,local:true,method: :post) do |f| %>
-   <%= f.select :modelday, ["Product", "Artist", "genre","label"], {},  {class: 'cp_ipselect cp_sl01'}%>
+<%= form_with( url:e_search_path, method: :post) do |f| %>
+   <%= f.select :modelday, ["Product", "Artist", "Genre","Label"], {},  {class: 'cp_ipselect cp_sl01'}%>
    <%= f.text_field :search,style:"width:200px;" %>
    <%= f.submit "Go!", class: "btn-outline-secondary " ,style:"width:60px;border-radius: 0px 10px 10px 0px"%>
 <% end %>
@@ -101,4 +101,3 @@ padding:0 10px;
 	color: #666666;
 }
 </style>
-

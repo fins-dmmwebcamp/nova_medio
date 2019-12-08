@@ -1,15 +1,27 @@
 class  ProductsController < ApplicationController
 	before_action :authenticate_customer!
   def index
-    if params[:key] == nil
-      @products = Product.all
-    elsif params[:key] == "new"
-      @products = Product.all.order(id: "DESC")
-    elsif params[:key] == "favorite"
-      @products = Product.all.joins(:favorites).group(:product_id).order('count(customer_id) desc')
-    elsif params[:key] == "hot"
-      @products = Prodct.all.order(sales: "DESC")
-    end
+		if params[:search]
+			if params[:s_key] == "Product"
+				@products = Product.search(params[:search])
+			elsif params[:s_key] == "Artist"
+				@products = Product.artist_search(params[:search])
+			elsif params[:s_key] == "Genre"
+				@products = Product.genre_search(params[:search])
+			elsif params[:s_key] == "Label"
+				@products = Product.label_search(params[:search])
+			end
+		elsif
+	    if params[:key] == nil
+	      @products = Product.all
+	    elsif params[:key] == "new"
+	      @products = Product.all.order(id: "DESC")
+	    elsif params[:key] == "favorite"
+	      @products = Product.all.joins(:favorites).group(:product_id).order('count(customer_id) desc')
+	    elsif params[:key] == "hot"
+	      @products = Product.all.order(sales: "DESC")
+	    end
+		end
     respond_to do |format|
       format.html
       format.js
