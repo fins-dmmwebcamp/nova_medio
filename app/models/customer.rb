@@ -24,6 +24,11 @@ validates :phone_number, :numericality => true
 #   [name_first,name_last].join('')
 # end
 
+
+def active_for_authentication?
+  super && self.is_deleted == false
+end
+
 def already_favorited?(product)
   self.favorites.exists?(product_id: product.id)
 end
