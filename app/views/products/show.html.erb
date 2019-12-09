@@ -48,7 +48,11 @@
   <div>
     <% @product.reviews.each do |review| %>
     <%= review.rank %></br>
+    <% if review.customer.is_deleted == false %>
     <%= review.customer.name_first %></br>
+    <% else %>
+    <p>退会済みのユーザー</p>
+    <% end %>
     <%= review.title %></br>
     <%= review.body %></br>
     <% end %>

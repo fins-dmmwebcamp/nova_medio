@@ -1,6 +1,10 @@
 
 <div>
+  <% if @customer.is_deleted == false %>
   <h2><%= @customer.name_first %><%= @customer.name_last %>さん</h2>
+  <% else %>
+  <h2>退会済みのユーザー</h2>
+  <% end %>
   <p>レビュー数：<%= @reviews.count %></p>
   <h3>レビュー一覧</h3>
   <% @reviews.each do |review| %>
