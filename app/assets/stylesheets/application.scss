@@ -17,6 +17,13 @@
 
 
 @import "bootstrap";
+// 左右の余白を消す
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 /*regisrationのcssです*/
 
@@ -35,9 +42,6 @@
 	margin-bottom:20px;
 }
 
-.registation_fields{
-	text-align:center;
-}
 
 .regisration_address_city{
 	margin:20px 0;

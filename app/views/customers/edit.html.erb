@@ -1,64 +1,79 @@
-
-        <h2 style="margin-bottom:60px">ユーザー情報編集</h2>
-
-
-        <%= form_for (@customer) do |f| %>
-
-                      <h4 class="regisration_h4">名前</h4>
-                        <div class ="field">
-                          <%= f.label :　姓 %>
-                          <%= f.text_field :name_first, autofocus: true , placeholder: "山田",:class => "field regisration_field",:style => "width:200px" %>
-                          <%= f.label :　名 %>
-                          <%= f.text_field :name_last, autofocus: true, placeholder: "太郎",:class => "field",:style => "width:200px"  %></br>
-
-                          <%=f.label :セイ%>
-                          <%= f.text_field :name_first_kana, autofocus: true , placeholder: "ヤマダ",:class => "field",:style => "width:200px"  %>
-                          <%=f.label :メイ%>
-                          <%= f.text_field :name_last_kana, autofocus: true , placeholder: "タロウ",:class => "field",:style => "width:200px"  %>
-                        </div>
+<h2 style="margin-bottom:60px">ユーザー情報編集</h2>
 
 
-      <!-- destinationのform -->
+<%= form_for (@customer) do |f| %>
 
-            <div>
-              <%= f.fields_for :destinations do |destination_form| %>
-                      <h4 class="regisration_h4">郵便番号</h4>
-                      <div class="field registation_fields">
-                        <%= destination_form.text_field :postal_code, placeholder: "0000000",:class => "field",:style => "width:250px"   %>
-                      </div>
+<h4 class="regisration_h4">名前</h4>
+<div class="row">
+  <div class="col">
+  <%= f.label :　姓 %>
+  <%= f.text_field :name_first, autofocus: true,
+    class: "field regisration_field",style: "width:200px" %>
+  </div>
+  <div class="col">
+  <%= f.label :　名 %>
+  <%= f.text_field :name_last, autofocus: true,
+    class: "field",style: "width:200px"  %>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+  <%=f.label :セイ%>
+  <%= f.text_field :name_first_kana, autofocus: true,
+    class: "field",style: "width:200px"  %>
+  </div>
+  <div class="col">
+  <%=f.label :メイ%>
+  <%= f.text_field :name_last_kana, autofocus: true,
+    class: "field",style: "width:200px"  %>
+  </div>
+</div>
+
+<!-- destinationのform -->
+<%= f.fields_for :destinations do |destination_form| %>
+<div class="form-group">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4 class="regisration_h4">郵便番号</h4>
+      <div class="field registation_fields">
+        <%= destination_form.text_field :postal_code,class: "field form-control"   %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h4 class="regisration_h4">住所</h4>
+      <div class="field registation_fields">
+        <%= destination_form.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県',style: "width:250px" %>
+        <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",class: "field form-control" %>
+        <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",class: "field form-control" %>
+      </div>
+    </div>
+  </div>
 
 
-
-                    <h4 class="regisration_h4">住所</h4>
-                      <div class="field registation_fields">
-                          <%= destination_form.select :address_prefecture, Destination.address_prefectures.keys.to_a, include_blank:'都道府県',:style => "width:250px"   %><br>
-                          <%= destination_form.text_field :address_city, autofocus: true , placeholder: "市区町村",:class => "field regisration_address_city",:style => "width:250px"   %></br>
-                          <%= destination_form.text_field :address_after, autofocus: true , placeholder: "以降の住所",:class => "field",:style => "width:250px" %>
-                      </div>
-                      <!-- idが必要らしい -->
-                      <%= destination_form.hidden_field :customer_id, value: @customer.id %>
-              <% end %>
-            </div>
+  <!-- idが必要らしい -->
+  <%= destination_form.hidden_field :customer_id, value: @customer.id %>
+  <% end %>
+</div>
 
 
-                    <h4 class="regisration_h4">電話番号</h4>
-                       <div class="field registation_fields">
-                        <%= f.text_field :phone_number, autofocus: true , placeholder: "123456789",:class => "field",:style => "width:250px"  %>
-                    　</div>
-                    <h4 class="regisration_h4">メールアドレス</h4>
-                      <div class="field registation_fields">
-                        <%= f.text_field :email ,placeholder: "example@example.com",:class => "field" ,:style => "width:250px"  %>
-                      </div>
+<h4 class="regisration_h4">電話番号</h4>
+<div class="field registation_fields">
+  <%= f.text_field :phone_number, autofocus: true,class: "field",style: "width:250px"  %>
+  　</div>
+<h4 class="regisration_h4">メールアドレス</h4>
+<div class="field registation_fields">
+  <%= f.text_field :email,class: "field" ,style: "width:250px"  %>
+</div>
 
-                    <h4 class="regisration_h4">パスワード</h4>
-                      <div class="field registation_fields">
-                        <%= f.password_field :password ,placeholder: "パスワード入力",:class => "field regisration_field",:style => "width:250px"  %></br>
-                        <%= f.password_field :password_confirmation, placeholder: "パスワード確認",:class => "field",:style => "width:250px"   %>
-                      </div>
+<h4 class="regisration_h4">パスワード</h4>
+<div class="field registation_fields">
+  <%= f.password_field :password ,placeholder: "パスワード入力",class: "field regisration_field",style: "width:250px"  %></br>
+  <%= f.password_field :password_confirmation, placeholder: "パスワード確認",class: "field",style: "width:250px"   %>
+</div>
 
-                      <div class="regisration_btn">
-                      <%= f.submit "更新する",:class => "btn btn-success",:style => "width:130px" %>
-                    </div>
-         <% end %>
-
-
+<div class="regisration_btn">
+  <%= f.submit "更新する",class: "btn btn-success",style: "width:130px" %>
+</div>
+<% end %>

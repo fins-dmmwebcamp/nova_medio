@@ -25,17 +25,16 @@ before_action :correct_customer, only: [:edit, :update,:leave, :show]
   end
 
   def leave_page
-      @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
-    def leave
-      @customer = Customer.find(params[:id])
-      @customer.is_deleted = true
-      if @customer.save
+  def leave
+    @customer = Customer.find(params[:id])
+    @customer.is_deleted = true
+    if @customer.save
       redirect_to products_path
-      end
-
     end
+  end
 
     private
 
