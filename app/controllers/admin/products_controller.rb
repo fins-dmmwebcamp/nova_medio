@@ -57,7 +57,8 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.destroy
+    @product.is_deleted = true
+    @product.save
     redirect_to admin_products_path
   end
 
@@ -65,4 +66,9 @@ class Admin::ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :artist_id, :label_id, :genre_id, :price, :released_at, :product_image, discs_attributes: [:id, :order, songs_attributes: [:id, :order, :name]])
   end
+
+  def delete_product
+    params.require(:product).permit(:is_deleted)
+  end
+
 end

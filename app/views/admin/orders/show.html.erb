@@ -6,14 +6,75 @@
 
   <div>
     <h4>ユーザー情報</h4>
-    <p>名前           : <%= @order.customer.name %><p>
+    <p>名前           : <%= @order.customer.name_full %><p>
     <p>メールアドレス : <%= @order.customer.email %><p>
   </div>
 
   <div>
     <h4>配送ステータス</h4>
-    <
+    <%= form_for @order do |f| %>
+      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>購入した商品</h4>
+    <table>
+      <tr>
+        <th>
+          <p>商品名</p>
+        </th>
+        <th>
+          <p>単価</p>
+        </th>
+        <th>
+          <p>数量<p>
+        </th>
+        <th>
+          <p>小計</p>
+        </th>
+      </tr>
+      <% @order.orders_details.each do |order| %>
+      <tr>
+        <td>
+          <p><%= order.product.name %></p>
+        </td>
+        <td>
+          <p><%= order.product.price %>円</p>
+        </td>
+        <td>
+          <p><%= order.amount %>個</p>
+        </td>
+        <td>
+          <p><%= order.product.price.to_i * order.amount.to_i %>円</p>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+        <td>
+          <p>配送料</p>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <p>500円</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>合計</p>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+          <p>円</p>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </div>
-

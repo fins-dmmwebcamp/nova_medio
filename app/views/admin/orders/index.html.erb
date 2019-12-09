@@ -7,22 +7,18 @@
 
   <% @orders.each do |order| %>
   <div>
-    <%= link_to "詳細", order_path(order) %>
+    <%= link_to "詳細", admin_order_path(order) %>
     <%= order.customer.name_full %>
 
     <%= form_for order do |f| %>
       <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
     <% end %>
 
-    <% order.orders_details.each do |order| %>
-      <%= order.product.name %>
-      <%= order.amount %>
+    <% order.orders_details.each do |order_detail| %>
+      <%= order_detail.product.name %>
+      <%= order_detail.price %>
     <% end %>
   </div>
   <% end %>
 
-
-
-
 </div>
-
