@@ -1,1 +1,23 @@
 <!-- ユーザー別受注一覧 -->
+
+<div>
+  <h1>受注一覧</h1>
+
+  <% @customer.orders.each do |order| %>
+  <div>
+    <%= link_to "詳細", admin_order_path(order) %>
+    <%= order.customer.name_full %>
+
+    <%= form_for(order, url:admin_order_path(order), method: :put) do |f| %>
+      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+      <%= f.submit "変更する" %>
+    <% end %>
+
+    <% order.orders_details.each do |order_detail| %>
+      <%= order_detail.product.name %>
+      <%= order_detail.price %>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>

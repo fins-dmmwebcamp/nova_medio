@@ -10,13 +10,15 @@
     <%= link_to "詳細", admin_order_path(order) %>
     <%= order.customer.name_full %>
 
-    <%= form_for order do |f| %>
+    <%= form_for(order, url:admin_order_path(order), method: :put) do |f| %>
       <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+      <%= f.submit "変更する" %>
     <% end %>
 
     <% order.orders_details.each do |order_detail| %>
-      <%= order_detail.product.name %>
-      <%= order_detail.price %>
+    <ul>
+      <%= order_detail.product.name %> <%= order_detail.price %>
+    </ul>
     <% end %>
   </div>
   <% end %>

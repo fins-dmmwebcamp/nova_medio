@@ -12,8 +12,9 @@
 
   <div>
     <h4>配送ステータス</h4>
-    <%= form_for @order do |f| %>
-      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+    <%= form_for(@order, url:admin_order_path(@order), method: :put) do |f| %>
+      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a, {} %>
+      <%= f.submit "変更する" %>
     <% end %>
   </div>
 
@@ -46,7 +47,7 @@
           <p><%= order.amount %>個</p>
         </td>
         <td>
-          <p><%= order.product.price.to_i * order.amount.to_i %>円</p>
+          <p><%= order.price.to_i * order.amount.to_i %>円</p>
         </td>
       </tr>
       <% end %>
@@ -59,7 +60,7 @@
         <td>
         </td>
         <td>
-          <p>500円</p>
+          <p><%= @order.shipping_fee %>円</p>
         </td>
       </tr>
       <tr>
@@ -71,10 +72,26 @@
         <td>
         </td>
         <td>
-          <p>円</p>
+          <p><%= @price + @order.shipping_fee.to_i %>円</p>
         </td>
       </tr>
     </table>
+  </div>
+
+  <div>
+    <h4>受け取り者氏名</h4>
+    <p><%= @order.reciever %></p>
+  </div>
+
+  <div>
+    <h4>配送先住所</h4>
+    <p><%= @order.postal_code %></p>
+    <p><%= @order.address %></p>
+  </div>
+
+  <div>
+    <h4>お支払い方法</h4>
+    <p><%= @order.payment %></p>
   </div>
 
 </div>
