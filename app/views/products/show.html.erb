@@ -47,9 +47,21 @@
   <h4>レビュー一覧</h4>
   <div>
     <% @product.reviews.each do |review| %>
-    <%= review.rank %></br>
+    <!--星評価-->
+         <div id="star-rate-<%= review.id %>"></div>
+          <script>
+          $('#star-rate-<%= review.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= review.rank %>,
+          });
+          </script>
+        <!--/星評価-->
     <% if review.customer.is_deleted == false %>
-    <%= review.customer.name_first %></br>
+    <%=link_to review.customer.name_first, customer_reviews_path(review.customer) %></br>
     <% else %>
     <p>退会済みのユーザー</p>
     <% end %>
