@@ -6,20 +6,34 @@
   <h1>受注一覧</h1>
 
   <% @orders.each do |order| %>
-  <div>
-    <%= link_to "詳細", admin_order_path(order) %>
-    <%= order.customer.name_full %>
+  <div class="row contents-box">
+    <div class="col-md-8 content">
+      <%= link_to order.customer.name_full, admin_order_path(order) %>
 
-    <%= form_for(order, url:admin_order_path(order), method: :put) do |f| %>
-      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
-      <%= f.submit "変更する" %>
-    <% end %>
+      <table>
+      <% order.orders_details.each do |order_detail| %>
+        <tr>
+          <td>
+            <p><%= order_detail.product.name %>:　</p>
+          </td>
+          <td>
+            <p><%= order_detail.amount %>個</p>
+          </td>
+        <tr>
+      <% end %>
+      </table>
+    </div>
 
-    <% order.orders_details.each do |order_detail| %>
-    <ul>
-      <%= order_detail.product.name %> <%= order_detail.price %>
-    </ul>
-    <% end %>
+    <div class="col-md-4">
+      <p>
+        受注日時: <%= order.created_at.to_date %>
+      </p>
+
+      <%= form_for(order, url:admin_order_path(order), method: :put) do |f| %>
+        <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+        <%= f.submit "変更する" %>
+      <% end %>
+    </div>
   </div>
   <% end %>
 

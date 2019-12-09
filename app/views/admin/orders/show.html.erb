@@ -4,23 +4,27 @@
 <div>
   <h1>受注詳細</h1>
 
-  <div>
+  <div class="content-box1">
     <h4>ユーザー情報</h4>
-    <p>名前           : <%= @order.customer.name_full %><p>
-    <p>メールアドレス : <%= @order.customer.email %><p>
+    <div class="content">
+      <p>名前           : <%= @order.customer.name_full %><p>
+      <p>メールアドレス : <%= @order.customer.email %><p>
+    </div>
   </div>
 
-  <div>
+  <div class="content-box1">
     <h4>配送ステータス</h4>
-    <%= form_for(@order, url:admin_order_path(@order), method: :put) do |f| %>
-      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a, {} %>
-      <%= f.submit "変更する" %>
-    <% end %>
+    <div class="content">
+      <%= form_for(@order, url:admin_order_path(@order), method: :put) do |f| %>
+        <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a, {} %>
+        <%= f.submit "変更する" %>
+      <% end %>
+    </div>
   </div>
 
   <div>
     <h4>購入した商品</h4>
-    <table>
+    <table class="table content-box1">
       <tr>
         <th>
           <p>商品名</p>
@@ -78,20 +82,26 @@
     </table>
   </div>
 
-  <div>
+  <div class="content-box1">
     <h4>受け取り者氏名</h4>
+    <div class="content">
     <p><%= @order.reciever %></p>
+    </div>
   </div>
 
-  <div>
+  <div class="content-box1">
     <h4>配送先住所</h4>
-    <p><%= @order.postal_code %></p>
-    <p><%= @order.address %></p>
+    <div class="content">
+      <p>〒　<%= @order.postal_code %></p>
+      <p><%= @order.address %></p>
+    </div>
   </div>
 
-  <div>
+  <div class="content-box1">
     <h4>お支払い方法</h4>
-    <p><%= @order.payment %></p>
+    <div class="content">
+      <p><%= @order.payment %></p>
+    </div>
   </div>
 
 </div>
