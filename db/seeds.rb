@@ -40,7 +40,7 @@ end
   )
 end
 
-10.times do |no|  
+10.times do |no|
   Product.create!(
     artist_id: no + 1,
     genre_id: no + 1,
@@ -54,7 +54,7 @@ end
 10.times do |no|
   Arrival.create!(
     product_id: no + 1,
-    amount: (no + 1) * 10 
+    amount: (no + 1) * 10
   )
 end
 10.times do |no|
@@ -77,7 +77,7 @@ end
 10.times do |no|
   Disc.create!(
     product_id: no / 3 + 1,
-    order: no / 3 + 1, 
+    order: no / 3 + 1,
   )
 end
 10.times do |no|
@@ -97,10 +97,10 @@ end
     reciever: "さとうあああ"
   )
 end
-10.times do |no|
+5.times do |no|
   OrdersDetail.create!(
     order_id: no + 1,
-    product_id: no + 1,
+    product_id: no + 3,
     amount: (no + 1) * 2,
     price: (no + 1) * 100,
   )
@@ -118,6 +118,6 @@ end
   Song.create!(
     disc_id: no / 3 + 1,
     order: no % 5 + 1,
-    name: "歌#{no}" 
+    name: "歌#{no}"
   )
 end
