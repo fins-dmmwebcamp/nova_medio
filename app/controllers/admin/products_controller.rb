@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     if params[:search]
 			@products = Product.search(params[:search])
