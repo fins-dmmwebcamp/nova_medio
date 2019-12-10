@@ -3,14 +3,24 @@
   <% if product.is_deleted == false %>
   <div class="product-box float-left">
     <li>
-      <%= attachment_image_tag product, :product_image,:fill, 198, 198, fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
+      <%= attachment_image_tag product, :product_image, size: "198x198", fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
       <% if product.on_sale == true %>
-        <p class="label">販売中</p>
+        <p class="label">
+          販売中</br>
+          商品id:<%= product.id %>
+        </p>
       <% else %>
-        <p>販売停止中</p>
+        <p class="label">
+          販売停止中</br>
+          商品id:<%= product.id %>
+        </p>
       <% end %>
       <p class="h5"><%= link_to product.name, admin_product_path(product.id) %></p>
-      <p class="small"><%= product.label.name %></p>
+      <% if product.label_id.nil? %>
+        <p class="small">削除されたレーベル</p>
+      <% else %>
+        <p class="small"><%= product.label.name %></p>
+      <% end %>
       <p><%= product.price %> 円</p>
       <p>在庫数: <%= product.stock %>個</p>
     </li>

@@ -1,4 +1,13 @@
 <h4>入荷登録</h4>
+<% if @arrival.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @arrival.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="row new-box">
   <div class="col-md-2">

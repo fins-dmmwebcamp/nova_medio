@@ -1,5 +1,9 @@
 <div class="row edit-box">
   <div class="col-md-3">
+    <h1>商品登録</h1>
+  </div>
+
+  <div class="col-md-9 contents-box">
     <% if @product.errors.any? %>
       <div class="alert alert-warning">
         <ul>
@@ -9,11 +13,6 @@
         </ul>
       </div>
     <% end %>
-
-    <h1>商品登録</h1>
-  </div>
-
-  <div class="col-md-9 contents-box">
     <%= form_for(@product, url: '/admin/products') do |product| %>
 
     <div class="content-box">
