@@ -1,4 +1,5 @@
 class Admin::ReviewsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @customer = Customer.find(params[:customer_id])
 		@reviews = Review.where(customer_id: @customer.id)

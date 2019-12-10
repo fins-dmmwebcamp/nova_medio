@@ -1,20 +1,21 @@
 class Admin::ArrivalsController < ApplicationController
-
+  before_action :authenticate_admin!
+  
   def index
-    @arrivals = Arrivals.all
+    @arrivals = Arrival.all
   end
 
   def new
-    @arrival = Arrivals.new
+    @arrival = Arrival.new
   end
 
   def create
-    @arrival = Arrivals.new(arrival_params)
+    @arrival = Arrival.new(arrival_params)
     if @arrival.save
-      product = Products.find(@arrival.product_id)
+      product = Product.find(@arrival.product_id)
       product.stock += @arrival.amount
       product.update
-      redirect_to arrivals_path
+      redirect_to Arrival_path
     else
       render action: :new
     end
