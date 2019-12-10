@@ -14,7 +14,12 @@ class Customer < ApplicationRecord
 
 
 
-validates :phone_number, :numericality => true
+validates :phone_number, :numericality => true, presence: true
+validates :name_first, presence: true
+validates :name_last, presence: true
+validates :name_first_kana, presence: true
+validates :name_last_kana, presence: true
+
 
 
 # フルネームを定義

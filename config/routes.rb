@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :labels, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
     resources :genres, only: [ :index, :new, :create, :edit, :update, :destroy ], shallow: true
     resources :orders, only: [ :index, :show, :update ], shallow: true
-    get 'customers/:customer_id/orders', to: 'orders#user_index', as: 'admin_user_orders'
+    get 'admin/customers/:customer_id/orders', to: 'orders#user_index', as: 'admin_user_orders'
     resources :products, shallow: true
   end
   resources :cart_items, only: [:index, :create, :update, :destroy], shallow: true

@@ -59,5 +59,9 @@ class Destination < ApplicationRecord
 
 
 
-validates :postal_code, :numericality => true
+validates :postal_code, :numericality => true, presence: true
+validates :name, presence: true
+validates :address_prefecture, presence: true
+validates :address_city, presence: true
+validates :address_after, presence: true
 end
