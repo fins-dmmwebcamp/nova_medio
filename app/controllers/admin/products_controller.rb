@@ -1,4 +1,5 @@
 class Admin::ProductsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     if params[:search]
 			@products = Product.search(params[:search])
@@ -43,16 +44,30 @@ class Admin::ProductsController < ApplicationController
       end
     end
     @product.save
+    redirect_to admin_products_path
   end
 
   def edit
     @product = Product.find(params[:id])
+    @disc = @product.discs
   end
+
+  # def update
+  #   @product = test1(product_params)
+  #   if @product.update
+  #     redirect_to admin_product_path(@product)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def update
     @product = Product.find(params[:id])
-    @product.update(product_params)
-    redirect_to admin_product_path(@product)
+    if @product.update(product_params) #この時点で変更点を受け取っている。そのため、上の処理がされないままupdateをしようとしているので、orderに値が入らない。
+      redirect_to admin_product_path(@product)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -69,6 +84,16 @@ class Admin::ProductsController < ApplicationController
 
   def delete_product
     params.require(:product).permit(:is_deleted)
+  end
+
+  def test1(product)
+    product[:discs_attributes].each_with_index do |disc,index|
+      disc.order = index + 1
+      disc[:songs_attributes].each_with_index do |song,index|
+        song.order = index + 1
+      end
+    end
+    product
   end
 
 end

@@ -1,72 +1,85 @@
-<h1>商品詳細</h1>
-<div>
+<div class="show-box">
   <div>
     <%= flash[:success] %>
   </div>
 
-  <div>
-    <%= attachment_image_tag @product, :product_image, size:'100x100', fallback: "no_image.jpg" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= attachment_image_tag @product, :product_image, size:'300x300', fallback: "no_image.jpg" %>
+    </div>
+
+    <div class="col-md-6">
+      <div>
+        <h3><%= @product.name %></h3>
+        <p>アーティスト名:　<%= @product.artist.name %></p>
+        <p><%= @on_sale %></p>
+        <p>レビュー数(<%= @product.reviews.count %>)</p>
+        <h3>¥ <%= @product.price %> (税込)</h3>
+      </div>
+
+      <div>
+        <%= form_for @item do |f| %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
+          <%= f.select :amount, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] %>
+          <%= f.submit "カートに追加" %>
+        <% end %>
+      </div>
+
+      <div id="favorite_button_box">
+        <%= render partial: 'favorite_button', locals: { product: @product } %>
+      </div>
+
+      <div class="box-10">
+        <h4>商品情報</h4>
+        <div>
+          <p>レーベル名:     <%= @product.label.name %></p>
+          <p>ジャンル:       <%= @product.genre.name %></p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <h3><%= @product.name %></h3>
-    <p><%= @product.artist.name %></p>
-    <p><%= @on_sale %></p>
-    <p>レビュー数(<%= @product.reviews.count %>)</p>
-    <h3>¥ <%= @product.price %> (税込)</h3>
-    <h3>,で区切りたい<%= @product.price.to_s.length %></h3>
-  </div>
-
-  <div>
-    <%= form_for @item do |f| %>
-      <%= f.hidden_field :product_id, :value => @product.id %>
-      <%= f.select :amount, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] %>
-      <%= f.submit "カートに追加" %>
+  <div class="song-box">
+    <div class="border-bottom">
+      <h4>曲リスト</h4>
+    </div>
+    <% @product.discs.each_with_index do |discs, index| %>
+      <p>Disc<%= index + 1 %></p>
+      <% discs.songs.each_with_index do |song, index| %>
+        <p><%= index + 1 %>: <%= song.name %></p>
+      <% end %>
     <% end %>
   </div>
 
-  <div id="favorite_button_box">
-    <%= render partial: 'favorite_button', locals: { product: @product } %>
-  </div>
 
-  <h4>商品情報</h4>
-  <div>
-    <p>レーベル名:     <%= @product.label.name %></p>
-    <p>ジャンル:       <%= @product.genre.name %></p>
-  </div>
+  <div class="review-box">
+    <h4>レビュー一覧</h4>
+    <div>
+      <% @product.reviews.each do |review| %>
+          <div class="border-top row">
+           <!--星評価-->
+           <div id="star-rate-<%= review.id %>"></div>
+            <script>
+            $('#star-rate-<%= review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= review.rank %>,
+            });
+            </script>
+          <!--/星評価-->
+          </div>
+      <% if review.customer.is_deleted == false %>
+      <%=link_to review.customer.name_first, customer_reviews_path(review.customer) %></br>
+      <% else %>
+      <p>退会済みのユーザー</p>
+      <% end %>
+      <%= review.title %></br>
+      <%= review.body %></br>
+      <% end %>
+    </div>
 
-  <h4>曲リスト</h4>
-  <% @product.discs.each_with_index do |discs, index| %>
-    <p>Disc<%= index + 1 %></p>
-    <% discs.songs.each_with_index do |song, index| %>
-      <p><%= index + 1 %>: <%= song.name %></p>
-    <% end %>
-  <% end %>
-
-
-  <h4>レビュー一覧</h4>
-  <div>
-    <% @product.reviews.each do |review| %>
-    <!--星評価-->
-         <div id="star-rate-<%= review.id %>"></div>
-          <script>
-          $('#star-rate-<%= review.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= review.rank %>,
-          });
-          </script>
-        <!--/星評価-->
-    <% if review.customer.is_deleted == false %>
-    <%=link_to review.customer.name_first, customer_reviews_path(review.customer) %></br>
-    <% else %>
-    <p>退会済みのユーザー</p>
-    <% end %>
-    <%= review.title %></br>
-    <%= review.body %></br>
-    <% end %>
   </div>
 </div>
