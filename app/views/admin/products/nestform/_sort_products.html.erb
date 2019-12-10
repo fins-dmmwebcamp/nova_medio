@@ -2,16 +2,16 @@
 <% products.each do |product| %>
   <div class="product-box float-left">
     <li>
-      <%= attachment_image_tag product, :product_image, size:'198x200', fallback: "no_image.jpg", class: "image-border" %>
+      <%= attachment_image_tag product, :product_image,:fill, 198, 198, fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
       <% if product.on_sale == true %>
         <p class="label">販売中</p>
       <% else %>
         <p>販売停止中</p>
       <% end %>
-      <p><%= link_to product.name, admin_product_path(product.id) %></p>
-      <p><%= product.label.name %></p>
+      <p class="h5"><%= link_to product.name, admin_product_path(product.id) %></p>
+      <p class="small"><%= product.label.name %></p>
       <p><%= product.price %> 円</p>
-      <p>在庫数 <%= product.stock %></p>
+      <p>在庫数: <%= product.stock %>個</p>
     </li>
   </div>
 <% end %>

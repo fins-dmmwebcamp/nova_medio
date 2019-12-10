@@ -12,8 +12,17 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @destinations = Destination.where(customer_id: current_customer.id)
+    items = store_cart_items_to_a
+    items.each do |item|
+      if item.product.stock >= item.amount
+        @order = Order.new
+        @destinations = Destination.where(customer_id: current_customer.id)
+        redirect_to :new and return
+      else
+        flash[:alert] = "#{item.product.name}の在庫数(#{item.product.stock}個)を超える注文をしています"
+        redirect_to cart_items_path and return
+      end
+    end
   end
 
   def confirm_payment
