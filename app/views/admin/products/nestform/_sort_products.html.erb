@@ -1,5 +1,6 @@
 <ul>
 <% products.each do |product| %>
+  <% if product.is_deleted == false %>
   <div class="product-box float-left">
     <li>
       <%= attachment_image_tag product, :product_image,:fill, 198, 198, fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
@@ -14,5 +15,6 @@
       <p>在庫数: <%= product.stock %>個</p>
     </li>
   </div>
+  <% end %>
 <% end %>
 </ul>
