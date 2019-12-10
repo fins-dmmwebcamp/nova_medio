@@ -7,7 +7,7 @@
   </div>
 
   <div class="col-md-2">
-    <%= form_for @product, url: admin_arrivals_path, method: :post do |f| %>
+    <%= form_for @arrival, url: admin_arrivals_path, method: :post do |f| %>
       <p><%= f.collection_select :product_id, Product.all, :id, :name %></p>
       <p><%= f.text_field :amount %></p>
       <p><%= f.submit "入荷する", class: "btn btn-primary"%></p>
