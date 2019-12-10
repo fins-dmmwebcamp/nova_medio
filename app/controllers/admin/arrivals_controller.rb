@@ -1,20 +1,19 @@
 class Admin::ArrivalsController < ApplicationController
-
   def index
-    @arrivals = Arrivals.all
+    @arrivals = Arrival.all
   end
 
   def new
-    @arrival = Arrivals.new
+    @product = Arrival.new
   end
 
   def create
-    @arrival = Arrivals.new(arrival_params)
+    @arrival = Arrival.new(arrival_params)
     if @arrival.save
-      product = Products.find(@arrival.product_id)
-      product.stock += @arrival.amount
-      product.update
-      redirect_to arrivals_path
+      @product = Product.find(@arrival.product_id)
+      @product.stock += @arrival.amount
+      @product.update(stock: @product.stock)
+      redirect_to admin_arrivals_path
     else
       render action: :new
     end
@@ -25,4 +24,5 @@ class Admin::ArrivalsController < ApplicationController
   def arrival_params
     params.require(:arrival).permit(:amount, :product_id)
   end
+
 end
