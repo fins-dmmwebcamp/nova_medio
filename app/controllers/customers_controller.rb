@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-before_action :authenticate_customer!, only: [:edit, :update,:leave, :show]
+before_action :authenticate_customer!
 before_action :correct_customer, only: [:edit, :update,:leave, :show]
 
   def show
