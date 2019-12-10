@@ -1,6 +1,15 @@
 
 <div class="row edit-box">
   <div class="col-md-3">
+    <% if @product.errors.any? %>
+      <div class="alert alert-warning">
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
     <h1>商品編集</h1>
   </div>
@@ -31,7 +40,7 @@
     <div class="content-box clearfix">
       <h5 class="content">商品画像: </h5>
       <div class="content box3">
-        <%= attachment_image_tag @product, :product_image, fallback: "noimage.jpg", size: "60x60" %>
+        <%= attachment_image_tag @product, :product_image, fallback: "no_image.jpg", size: "60x60" %>
         <%= product.attachment_field :product_image %>
       </div>
     </div>
