@@ -3,14 +3,16 @@
   <% if product.is_deleted == false %>
   <div class="product-box float-left">
     <li>
-      <%= attachment_image_tag product, :product_image, size: "198x198", fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
+      <%= link_to admin_product_path(product.id) do %>
+        <%= attachment_image_tag product, :product_image, size: "198x198", fallback: "no_image.jpg", size:'198x198', class: "image-border" %>
+      <% end %>
       <% if product.on_sale == true %>
-        <p class="label">
+        <p class="label label-available">
           販売中</br>
           商品id:<%= product.id %>
         </p>
       <% else %>
-        <p class="label">
+        <p class="label label-unavailable">
           販売停止中</br>
           商品id:<%= product.id %>
         </p>

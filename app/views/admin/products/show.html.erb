@@ -16,54 +16,60 @@
         <% if @product.artist_id.nil? %>
           <p>削除されたアーティスト</p>
         <% else %>
-          <p>アーティスト名:　<%= @product.artist.name %></p>
+          <p>アーティスト名: <%= @product.artist.name %></p>
         <% end %>
       </div>
-      <p>状態:<%= @on_sale %></p>
+      <p>状態: <%= @on_sale %></p>
       <% if @product.label_id.nil? %>
         <p>削除されたレーベル</p>
       <% else %>
-        <p>レーベル:<%= @product.label.name %></p>
+        <p>レーベル: <%= @product.label.name %></p>
       <% end %>
       <% if @product.genre_id.nil? %>
         <p>削除されたジャンル</p>
       <% else %>
-        <p>ジャンル:<%= @product.genre.name %></p>
+        <p>ジャンル: <%= @product.genre.name %></p>
       <% end %>
-      <p>在庫数:<%= @product.stock %></p>
-      <p>価格:<%= @product.price %></p>
+      <p>在庫数: <%= @product.stock %>個</p>
+      <p>価格: <%= @product.price %>円</p>
     </div>
   </div>
 
   <div class="song-box">
-    <div class="border-bottom">
-      <h4>曲リスト</h4>
-    </div>
+    <h4>曲リスト</h4><hr>
+    <ul>
     <% @product.discs.each do |discs| %>
+    <li>
       <p>Disc<%= discs.order %></p>
+      <ul>
       <% discs.songs.each do |songs| %>
-        <p><%= songs.order %>: <%= songs.name %></p>
+        <li><%= songs.order %>: <%= songs.name %></li>
       <% end %>
+      </ul>
+    </li>
     <% end %>
+    </ul>
   </div>
 
   <div class="review-box">
     <h4>レビュー一覧</h4>
-    <div>
+    <ul>
       <% @product.reviews.each do |review| %>
-      <div class="border-top row">
-        <div class="col-md-6 content3">
-          <p>評価:　<%= review.rank %></p>
+      <li>
+        <div class="border-top row">
+          <div class="col-md-6 content3">
+            <p>評価:　<%= review.rank %></p>
+          </div>
+          <div class="col-md-6 content3">
+            <%= link_to "編集", edit_admin_review_path(review), class: "btn btn-primary" %>
+            <%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger", style: "margin-left: 10px;" %>
+          </div>
         </div>
-        <div class="col-md-6 content3">
-          <%= link_to "編集", edit_admin_review_path(review), class: "btn btn-primary" %>
-          <%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger", style: "margin-left: 10px;" %>
-        </div>
-      </div>
-      <p>ユーザー名:　<%= review.customer.name_first %></p>
-      <p>タイトル:　<%= review.title %></p>
-      <p>本文:　<%= review.body %></p>
+        <p>ユーザー名:　<%= link_to review.customer.name_first, admin_customer_reviews_path(review.customer) %></p>
+        <p>タイトル:　<%= review.title %></p>
+        <p>本文:　<%= review.body %></p>      
+      </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>
