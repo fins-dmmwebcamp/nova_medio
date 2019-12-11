@@ -2,6 +2,11 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   def index
     @orders = Order.all
+    @totals = []
+    @orders.each_with_index do |order, i|
+      @totals.push(total(order.orders_details))
+      @totals[i] += 500
+    end
   end
 
   def show
@@ -17,6 +22,12 @@ class Admin::OrdersController < ApplicationController
 
   def user_index
     @customer = Customer.find_by(id: params[:customer_id])
+    @orders = @customer.orders.all
+    @totals = []
+    @orders.each_with_index do |order, i|
+      @totals.push(total(order.orders_details))
+      @totals[i] += 500
+    end
   end
 
   private
