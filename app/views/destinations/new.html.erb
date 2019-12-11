@@ -1,3 +1,13 @@
+	<% if @destination.errors.any? %>
+	  <div class="alert alert-warning">
+	    <ul>
+	      <% @destination.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	    </ul>
+	  </div>
+	<% end %>
+
 
 <h1>お届け先住所登録</h1>
 
