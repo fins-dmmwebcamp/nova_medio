@@ -11,6 +11,12 @@ class Product < ApplicationRecord
   attachment :product_image
   accepts_nested_attributes_for :discs, allow_destroy: true
   validates :stock, numericality: { greater_than_or_equal_to: 0 }
+  validates :artist_id, presence: true
+  validates :genre_id, presence: true
+  validates :label_id, presence: true
+  validates :name, presence: true, length: { in: 1..50 }
+  validates :price, presence: true, numericality: { only_integer: true }
+  validates :released_at, presence: true
 
   # default_scope -> { order(id: :desc) }
   def self.search(search)

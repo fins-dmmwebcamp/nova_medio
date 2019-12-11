@@ -1,2 +1,25 @@
-<h1>Admin::Arrivals#new</h1>
-<p>Find me in app/views/admin/arrivals/new.html.erb</p>
+<h4>入荷登録</h4>
+<% if @arrival.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @arrival.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="row new-box">
+  <div class="col-md-2">
+    <h5>商品名</h5>
+    <h5>数量</h5>
+  </div>
+
+  <div class="col-md-2">
+    <%= form_for @arrival, url: admin_arrivals_path, method: :post do |f| %>
+      <p><%= f.collection_select :product_id, Product.all, :id, :name %></p>
+      <p><%= f.text_field :amount %></p>
+      <p><%= f.submit "入荷する", class: "btn btn-primary"%></p>
+    <% end %>
+  </div>
+</div>

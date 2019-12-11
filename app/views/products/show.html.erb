@@ -11,7 +11,11 @@
     <div class="col-md-6">
       <div>
         <h3><%= @product.name %></h3>
-        <p>アーティスト名:　<%= @product.artist.name %></p>
+        <% if @product.artist_id.nil? %>
+          <p>削除されたアーティスト</p>
+        <% else %>
+          <p>アーティスト名:　<%= @product.artist.name %></p>
+        <% end %>
         <p><%= @on_sale %></p>
         <p>レビュー数(<%= @product.reviews.count %>)</p>
         <h3>¥ <%= @product.price %> (税込)</h3>
@@ -32,8 +36,16 @@
       <div class="box-10">
         <h4>商品情報</h4>
         <div>
-          <p>レーベル名:     <%= @product.label.name %></p>
-          <p>ジャンル:       <%= @product.genre.name %></p>
+          <% if @product.label_id.nil? %>
+            <p>削除されたレーベル</p>
+          <% else %>
+            <p>レーベル名:     <%= @product.label.name %></p>
+          <% end %>
+          <% if @product.genre_id.nil? %>
+            <p>削除されたジャンル</p>
+          <% else %>
+            <p>ジャンル:       <%= @product.genre.name %></p>
+          <% end %>
         </div>
       </div>
     </div>

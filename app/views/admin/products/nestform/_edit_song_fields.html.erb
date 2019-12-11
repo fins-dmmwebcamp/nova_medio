@@ -1,5 +1,7 @@
 <div class="nested-fields">
   <div class="">
+    <p>Song No.</p>
+    <%= f.number_field :order %>
     <%= f.text_field :name %>
     <%= link_to_remove_association "remove song", f %>
   </div>

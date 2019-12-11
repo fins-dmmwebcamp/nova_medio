@@ -43,8 +43,11 @@ class Admin::ProductsController < ApplicationController
         song.order = index + 1
       end
     end
-    @product.save
-    redirect_to admin_products_path
+    if @product.save
+      redirect_to admin_products_path
+    else
+      render :new
+    end
   end
 
   def edit
@@ -72,8 +75,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    @product.is_deleted = true
-    @product.save
+    @product.update(is_deleted: true)
     redirect_to admin_products_path
   end
 
