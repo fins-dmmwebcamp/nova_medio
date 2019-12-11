@@ -24,7 +24,25 @@
   margin-right: auto;
   margin-left: auto;
 }
-
+// adminのヘッダー
+@media (min-width: 990px){
+	#navbarNavDropdown>ul>li{
+		-webkit-transform: skewX(150deg);
+		-moz-transform: skewX(150deg);
+		transform: skewX(150deg);
+		border-right: 1px solid silver;
+		>a{
+			display:block;
+			transform: skewX(-150deg);
+			padding:0 10px;
+		}
+	}
+}
+@media (max-width: 990px){
+	#navbarNavDropdown>ul>li>a>p>br{
+		display: none;
+	}
+}
 /*regisrationのcssです*/
 
 .regisration_h4{

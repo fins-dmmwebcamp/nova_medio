@@ -14,7 +14,7 @@
       <div class="row">
       <%# ここで、一般ユーザーOR管理者で表示するヘッダーを切り替える %>
         <% if admin_signed_in? %>
-          <%= render 'admins/shared/header'%>
+          <%= render 'admins/shared/header_admin'%>
         <% else %>
           <%= render 'customers/shared/u_header'%>
         <% end %>

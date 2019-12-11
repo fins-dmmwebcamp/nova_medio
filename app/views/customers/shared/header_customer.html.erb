@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin:0;padding:0;">
+  <div class="row">
+    <div class="col-md-7 d-flex">
+      <%= link_to admin_products_path do %>
+        <span class="navbar-brand">Nova_medio<br>管理者用ページ</span>
+      <% end %>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav" style="height:80%">
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">ユーザー<br>一覧</p>
+            <span class="sr-only">(現位置)</span>
+            <% end %>
+          </li>
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">受注<br>一覧</p>
+            <% end %>
+          </li>
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">入荷<br>一覧</p>
+            <% end %>
+          </li>
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">商品<br>一覧</p>
+            <% end %>
+          </li>
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">アーティスト<br>一覧</p>
+            <% end %>
+          </li>
+          <li class="nav-item text-center">
+            <%= link_to admin_customers_path do %>
+            <p class="nav-link">レーベル<br>一覧</p>
+            <%  end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-5 d-flex align-items-center">
+      <div class="w-25">
+        <select class="custom-select" id="select">
+          <option value="">各種登録</option>
+          <option value="/admin/arrivals/new" id="select">入荷登録</option>
+          <option value="/admin/products/new">商品登録</option>
+          <option value="/admin/artists/new">アーティスト登録</option>
+          <option value="/admin/labels/new">レーベル登録</option>
+          <option value="/admin/genres/new">ジャンル登録</option>
+        </select>
+      </div>
+      <div>
+        <div class="float-right float-top">
+          <%= link_to "ログアウト", destroy_admin_session_path , method: :delete,
+            class:"btn btn-sm btn-outline-secondary"%>
+        </div>
+        <div class="float-right float-bottom">
+          <%= form_with( url: search_path, method: :post) do |f| %>
+            <%= f.select :modelday, ["商品", "アーティスト", "ジャンル","レーベル","ユーザー"]%>
+            <%= f.text_field :search %>
+            <%= f.submit "検索", class: "btn btn-outline-secondary"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
