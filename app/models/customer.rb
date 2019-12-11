@@ -12,7 +12,11 @@ class Customer < ApplicationRecord
 
   accepts_nested_attributes_for :destinations, allow_destroy: true
   validates :phone_number, :numericality => true
-
+  validates :phone_number, :numericality => true, presence: true
+  validates :name_first, presence: true
+  validates :name_last, presence: true
+  validates :name_first_kana, presence: true
+  validates :name_last_kana, presence: true
 
 
   def active_for_authentication?

@@ -4,6 +4,10 @@ class Destination < ApplicationRecord
   validates :address_city, presence: true
   validates :address_after, presence: true
   validates :postal_code, presence: true, numericality: { only_integer: true }
+  validates :name, presence: true
+  validates :address_prefecture, presence: true
+  validates :address_city, presence: true
+  validates :address_after, presence: true
 
    enum address_prefecture:{
 	北海道: 0,
@@ -58,4 +62,5 @@ class Destination < ApplicationRecord
   def address_full
     "#{self.address_prefecture} #{self.address_city} #{self.address_after}"
   end
+
 end

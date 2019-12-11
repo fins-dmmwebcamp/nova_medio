@@ -19,16 +19,16 @@
 			<%= f.label :rank,'評価 ', class:'col-md-3 col-form-label' %>
 			<%= f.hidden_field :rank, id: :review_star %>
 		</div>
-		<div class="">
+		<div class="form-group">
 			<p>タイトル</p>
-			<%= f.text_field :title, :class => 'col-xs-12'%>
+			<%= f.text_field :title, class: 'col-xs-12 form-control'%>
 		</div>
-		<div class="">
+		<div class="form-group">
 			<p>レビュー内容</p>
-			<%= f.text_area :body, :class => 'col-xs-12'%>
+			<%= f.text_area :body, class: 'col-xs-12 form-control', rows:"5" %>
 		</div>
-		<div class="">
-			<%= f.submit "更新", :class => "col-xs-3 btn btn-success" %>
+		<div class="float-right">
+			<%= f.submit "更新", class: "col-xs-3 btn btn-success" %>
 		</div>
 	<% end %>
 </div>

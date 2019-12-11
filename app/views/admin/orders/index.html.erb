@@ -1,35 +1,35 @@
-
 <div>
   <h1>受注一覧</h1>
 
-  <% @orders.each do |order| %>
+  <% @orders.each_with_index do |order, i| %>
   <div class="row contents-box">
     <div class="col-md-8 content">
-      <%= link_to order.customer.name_full, admin_order_path(order) %>
-
-      <table>
-      <% order.orders_details.each do |order_detail| %>
+      <p><%= link_to order.customer.name_full, admin_customer_path(order.customer)  %>さん</p>
+      <table class="table ">
+        <% order.orders_details.each do |order_detail| %>
         <tr>
           <td>
-            <p><%= order_detail.product.name %>:　</p>
+            <%= order_detail.product.name %>:　
           </td>
           <td>
-            <p><%= order_detail.amount %>個</p>
+            <%= order_detail.amount %>個
+          </td>
+          <td>
+            小計: <%= order_detail.amount * order_detail.price %>円
           </td>
         <tr>
-      <% end %>
+        <% end %>
       </table>
     </div>
 
     <div class="col-md-4">
-      <p>
-        受注日時: <%= order.created_at.to_date %>
-      </p>
-
+      <p>受注日時: <%= order.created_at.to_date %></p>
       <%= form_for(order, url:admin_order_path(order), method: :put) do |f| %>
-        <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
-        <%= f.submit "変更する" %>
+      <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
+      <%= f.submit "変更する" %>
       <% end %>
+      <p>合計: <%= @totals[i] %>円</p>
+      <p><%= link_to "受注詳細を見る", admin_order_path(order) %></p>
     </div>
   </div>
   <% end %>

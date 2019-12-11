@@ -6,6 +6,11 @@
   <div class="row">
     <div class="col-md-6">
       <%= attachment_image_tag @product, :product_image, size:'300x300', fallback: "no_image.jpg" %>
+      <% if @product.stock <= 0 %>
+        <p class="label label-none">在庫なし</p>
+      <% elsif @product.stock <= 5 %>
+        <p class="label label-few">在庫僅少</p>
+      <% end %>
     </div>
 
     <div class="col-md-6">
@@ -16,7 +21,8 @@
         <% else %>
           <p>アーティスト名:　<%= @product.artist.name %></p>
         <% end %>
-        <p><%= @on_sale %></p>
+        <hr>
+        <p class="small font-weight-bold"><%= @on_sale %></p>
         <p>レビュー数(<%= @product.reviews.count %>)</p>
         <h3>¥ <%= @product.price %> (税込)</h3>
       </div>
@@ -25,7 +31,7 @@
         <%= form_for @item do |f| %>
           <%= f.hidden_field :product_id, :value => @product.id %>
           <%= f.select :amount, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] %>
-          <%= f.submit "カートに追加" %>
+          <%= f.submit "カートに追加", class:"btn btn-secondary btn-sm" %>
         <% end %>
       </div>
 
@@ -34,7 +40,7 @@
       </div>
 
       <div class="box-10">
-        <h4>商品情報</h4>
+        <h4>商品情報</h4><hr>
         <div>
           <% if @product.label_id.nil? %>
             <p>削除されたレーベル</p>
@@ -55,19 +61,24 @@
     <div class="border-bottom">
       <h4>曲リスト</h4>
     </div>
-    <% @product.discs.each_with_index do |discs, index| %>
-      <p>Disc<%= index + 1 %></p>
-      <% discs.songs.each_with_index do |song, index| %>
-        <p><%= index + 1 %>: <%= song.name %></p>
+    <ul>
+      <% @product.discs.each_with_index do |discs, index| %>
+      <li>Disc<%= index + 1 %>
+        <ul>
+          <% discs.songs.each_with_index do |song, index| %>
+            <p><%= index + 1 %>: <%= song.name %></p>
+          <% end %>
+        </ul>
       <% end %>
-    <% end %>
+    </ul>
   </div>
 
 
   <div class="review-box">
     <h4>レビュー一覧</h4>
-    <div>
+    <ul>
       <% @product.reviews.each do |review| %>
+      <li>
           <div class="border-top row">
            <!--星評価-->
            <div id="star-rate-<%= review.id %>"></div>
@@ -90,8 +101,9 @@
       <% end %>
       <%= review.title %></br>
       <%= review.body %></br>
+      </li>
       <% end %>
-    </div>
+    </ul>
 
   </div>
 </div>

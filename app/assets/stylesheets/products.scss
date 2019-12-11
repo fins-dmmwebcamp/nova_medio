@@ -86,7 +86,7 @@ ul {
 }
 
 .image-border {
-  border-bottom: solid 1px;
+  border-bottom: solid 1px black;
 }
 
 li > p {
@@ -97,4 +97,13 @@ li > p {
   position: absolute;
   top: 0px;
   left: 5px;
+}
+.label-none{
+  background-color: red;
+  color: white;
+}
+.label-few{
+  background-color: orange;
+  color: white;
+
 }

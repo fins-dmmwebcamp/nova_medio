@@ -1,19 +1,21 @@
 <!-- ユーザー別受注一覧 -->
-
 <div>
-  <h4><%= @customer.name_full %></h4>
+  <h4><%= @customer.name_full %>さん</h4>
 
-  <% @customer.orders.each do |order| %>
+  <% @orders.each_with_index do |order, i| %>
   <div class="row contents-box">
     <div class="col-md-8 content">
-      <table>
+      <table class="table">
       <% order.orders_details.each do |order_detail| %>
         <tr>
           <td>
-            <p><%= order_detail.product.name %></p>
+            <%= order_detail.product.name %>
           </td>
           <td>
-            <p><%= order_detail.price %></p>
+            <%= order_detail.amount %>個
+          </td>
+          <td>
+            小計: <%= order_detail.amount * order_detail.price %>円
           </td>
         </tr>
       <% end %>
@@ -29,6 +31,8 @@
         <%= f.select :shipping_status, Order.shipping_statuses.keys.to_a %>
         <%= f.submit "変更する" %>
       <% end %>
+      <p>合計: <%= @totals[i] %>円</p>
+      <p><%= link_to "受注詳細を見る", admin_order_path(order) %></p>
     </div>
   </div>
   <% end %>

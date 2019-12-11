@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
       if item.product.stock >= item.amount
         @order = Order.new
         @destinations = Destination.where(customer_id: current_customer.id)
-        redirect_to :new and return
+        render :new and return
       else
         flash[:alert] = "#{item.product.name}の在庫数(#{item.product.stock}個)を超える注文をしています"
         redirect_to cart_items_path and return
