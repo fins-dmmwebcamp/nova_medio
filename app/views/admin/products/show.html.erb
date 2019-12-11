@@ -19,7 +19,10 @@
           <p>アーティスト名: <%= @product.artist.name %></p>
         <% end %>
       </div>
-      <p>状態: <%= @on_sale %></p>
+      <%= form_with(model: @product, url: admin_product_path(@product)) do |f|%>
+        <%= f.select :on_sale, [["販売中", true],["販売停止中", false]], selected: @product.on_sale %>
+        <%= f.submit "反映", class:"btn btn-success btn-sm"%>
+      <% end %>
       <% if @product.label_id.nil? %>
         <p>削除されたレーベル</p>
       <% else %>
