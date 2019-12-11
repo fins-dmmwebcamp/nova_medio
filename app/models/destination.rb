@@ -1,11 +1,9 @@
 class Destination < ApplicationRecord
   belongs_to :customer, inverse_of: :destinations
-
-  def address_full
-  "#{self.address_prefecture} #{self.address_city} #{self.address_after}"
-  end
-
-  validates :address_prefecture, presence:true
+  validates :address_prefecture, presence: true
+  validates :address_city, presence: true
+  validates :address_after, presence: true
+  validates :postal_code, presence: true, numericality: { only_integer: true }
 
    enum address_prefecture:{
 	北海道: 0,
@@ -21,7 +19,7 @@ class Destination < ApplicationRecord
     埼玉県: 10,
     千葉県: 11,
     東京都: 12,
-    神奈川県: 13 ,
+    神奈川県: 13,
     新潟県: 14,
     富山県: 15,
     石川県: 16,
@@ -57,7 +55,7 @@ class Destination < ApplicationRecord
     沖縄県: 46
    }
 
-
-
-validates :postal_code, :numericality => true
+  def address_full
+    "#{self.address_prefecture} #{self.address_city} #{self.address_after}"
+  end
 end

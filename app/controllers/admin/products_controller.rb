@@ -55,23 +55,30 @@ class Admin::ProductsController < ApplicationController
     @disc = @product.discs
   end
 
-  # def update
-  #   @product = test1(product_params)
-  #   if @product.update
-  #     redirect_to admin_product_path(@product)
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   def update
-    @product = Product.find(params[:id])
-    if @product.update(product_params) #この時点で変更点を受け取っている。そのため、上の処理がされないままupdateをしようとしているので、orderに値が入らない。
+    @product = Product.find(jparams[:id])
+    if @product.update(product_params)
       redirect_to admin_product_path(@product)
     else
       render :edit
     end
   end
+
+  # 試行錯誤
+  # def update
+  #   @product = Product.find(params[:id])
+  #   params[:name] + 1
+  #   update(
+  #     name: params[:name] + 1
+  #     akfjalk: alkjfla
+  #   )
+  #
+  #   if @product.update(product_params) #この時点で変更点を受け取っている。そのため、上の処理がされないままupdateをしようとしているので、orderに値が入らない。
+  #     redirect_to admin_product_path(@product)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def destroy
     @product = Product.find(params[:id])
