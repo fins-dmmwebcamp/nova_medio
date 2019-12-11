@@ -24,7 +24,10 @@
   margin-right: auto;
   margin-left: auto;
 }
-// adminのヘッダー
+// ヘッダー
+#customer_header_image{
+	background-image: url("app/assets/images/IMG_20191206_110656.png");
+}
 @media (min-width: 990px){
 	#navbarNavDropdown>ul>li{
 		-webkit-transform: skewX(150deg);
@@ -35,6 +38,9 @@
 			display:block;
 			transform: skewX(-150deg);
 			padding:0 10px;
+		}
+		&:last-child{
+			border-right:hidden;
 		}
 	}
 }
