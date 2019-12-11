@@ -14,14 +14,15 @@ class Admin::CustomersController < ApplicationController
 
   def edit
     @customer = Customer.find(params[:id])
-    @destination = Destination.where(is_main: true).find_by(customer_id: @customer.id)
+    # @destination = Destination.where(is_main: true).find_by(customer_id: @customer.id)
   end
 
 
   def update
+    binding.pry
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-    redirect_to edit_admin_customer_path(@customer)
+    redirect_to admin_customers_path
     else
       render :edit
     end
@@ -36,15 +37,11 @@ class Admin::CustomersController < ApplicationController
 
   end
 
-end
-
-
-
   private
 
+    def customer_params
+      params.require(:customer).permit(:name_first, :name_last, :name_first_kana,
+        :name_last_kana, :password, :phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
+    end
 
-
-def customer_params
-  params.require(:customer).permit(:name_full,:phone_number,:email,destionations_attributes:[:postal_code,:address_prefecture,:address_city,:address_after,:_destroy,:id])
 end
-
