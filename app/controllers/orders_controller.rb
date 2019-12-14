@@ -13,16 +13,18 @@ class OrdersController < ApplicationController
 
   def new
     items = store_cart_items_to_a
+    if items.blank?
+      flash[:alert] = "カートに商品が存在しません"
+      redirect_to cart_items_path
+    end
     items.each do |item|
-      if item.product.stock >= item.amount
-        @order = Order.new
-        @destinations = Destination.where(customer_id: current_customer.id)
-        render :new and return
-      else
+      if item.product.stock < item.amount
         flash[:alert] = "#{item.product.name}の在庫数(#{item.product.stock}個)を超える注文をしています"
-        redirect_to cart_items_path and return
+        redirect_to cart_items_path
       end
     end
+    @order = Order.new
+    @destinations = Destination.where(customer_id: current_customer.id)
   end
 
   def confirm_payment
