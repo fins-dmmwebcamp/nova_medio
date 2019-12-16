@@ -1,5 +1,5 @@
 class  ProductsController < ApplicationController
-	
+	before_action :authenticate_customer!, except: :index
   def index
 		if params[:search]
 			if params[:s_key] == "Product"
