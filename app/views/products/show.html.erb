@@ -28,16 +28,19 @@
       </div>
 
       <div>
+      <% if @item.present? %>
         <%= form_for @item do |f| %>
           <%= f.hidden_field :product_id, :value => @product.id %>
           <%= f.select :amount, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] %>
           <%= f.submit "カートに追加", class:"btn btn-secondary btn-sm" %>
         <% end %>
+      <% end %>
       </div>
-
+      <% if customer_signed_in? %>
       <div id="favorite_button_box">
         <%= render partial: 'favorite_button', locals: { product: @product } %>
       </div>
+      <% end %>
 
       <div class="box-10">
         <h4>商品情報</h4><hr>

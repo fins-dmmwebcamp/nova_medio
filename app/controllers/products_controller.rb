@@ -1,5 +1,5 @@
 class  ProductsController < ApplicationController
-	before_action :authenticate_customer!, except: :index
+	# before_action :authenticate_customer!, except: :index
   def index
 		if params[:search]
 			if params[:s_key] == "Product"
@@ -30,7 +30,7 @@ class  ProductsController < ApplicationController
 
   def show
     @favorite = Favorite.new
-    @item = current_customer.cart_items.build
+    @item = current_customer.cart_items.build if customer_signed_in?
     @product = Product.find(params[:id])
     if @product.on_sale == true
       @on_sale = "販売中"
