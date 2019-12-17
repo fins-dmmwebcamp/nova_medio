@@ -1,6 +1,7 @@
 <div class="show-box">
   <div>
     <%= flash[:success] %>
+    <%= flash[:alert] %>
   </div>
 
   <div class="row">
@@ -28,7 +29,7 @@
       </div>
 
       <div>
-      <% if @item.present? %>
+      <% if @product.on_sale && !@product.is_deleted && customer_signed_in? %>
         <%= form_for @item do |f| %>
           <%= f.hidden_field :product_id, :value => @product.id %>
           <%= f.select :amount, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] %>

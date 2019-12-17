@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
@@ -13,9 +14,20 @@ class CartItemsController < ApplicationController
 
   def create
     @item = current_customer.cart_items.new(cart_item_params)
-    @item.save
-    flash[:success] = "カートに追加されました"
-    redirect_back(fallback_location: root_path)
+    product = @item.product
+    if product.on_sale && !product.is_deleted
+      if product.stock >= @item.amount
+        @item.save
+        flash[:success] = "カートに追加されました"
+        redirect_back(fallback_location: root_path)
+      else
+        flash[:alert] = "購入数が在庫数を超えています"
+        redirect_to product_path(product)  
+      end
+    else
+      flash[:alert] = "この商品はカートに追加できません"
+      redirect_to product_path(product)
+    end
   end
 
   def update
