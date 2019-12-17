@@ -13,7 +13,7 @@
 <div class="col-sm-11">
   <%= text_field_tag :search , '', class: 'col-sm-11'%>
 
-  <%= submit_tag 'Go!!', :name => nil,style:"width:60px;float:right;margin-bottom:20px" %>
+  <%= submit_tag 'Go!!', :name => nil,style:"width:60px;float:right;margin-bottom:20px"%>
 </div>
 <% end %>
 <%elsif names=="レーベル"%>
@@ -46,11 +46,11 @@
 	<td><%= alg.name %></td>
 	<td><div class="btn btn-default float-right">
 		<%if names=="アーティスト"%>
-		<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
+		<%= link_to "削除", admin_artist_path(alg.id),method: :delete, data: {confirm: "削除しますか？"}  %>
 		<%elsif names=="レーベル"%>
-		<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
+		<%= link_to "削除", admin_label_path(alg.id),method: :delete, data: {confirm: "削除しますか？"}  %>
 		<%elsif names=="ジャンル"%>
-		<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
+		<%= link_to "削除", admin_genre_path(alg.id),method: :delete, data: {confirm: "削除しますか？"} %>
 		<%end%>
 		</div>
 		<div class="btn btn-default float-right">
@@ -79,11 +79,11 @@
 			<td><%= alg.name %></td>
 			<td><div class="btn btn-default ">
 				<%if names=="アーティスト"%>
-				<%= link_to "削除", admin_artist_path(alg.id),method: :delete %>
+				<%= link_to "削除", admin_artist_path(alg.id),method: :delete, data: {confirm: "削除しますか？"}  %>
 				<%elsif names=="レーベル"%>
-				<%= link_to "削除", admin_label_path(alg.id),method: :delete %>
+				<%= link_to "削除", admin_label_path(alg.id),method: :delete, data: {confirm: "削除しますか？"}  %>
 				<%elsif names=="ジャンル"%>
-				<%= link_to "削除", admin_genre_path(alg.id),method: :delete %>
+				<%= link_to "削除", admin_genre_path(alg.id),method: :delete, data: {confirm: "削除しますか？"}  %>
 				<%end%>
 				</div>
 				<div class="btn btn-default ">
