@@ -2,7 +2,7 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @customers = Customer.where(is_deleted: false).page(params[:page]).per(15).search(params[:search])
+    @customers = Customer.page(params[:page]).per(15).search(params[:search])
   end
 
 
