@@ -18,11 +18,7 @@
         </p>
       <% end %>
       <p class="h5"><%= link_to product.name, admin_product_path(product.id) %></p>
-      <% if product.label_id.nil? %>
-        <p class="small">削除されたレーベル</p>
-      <% else %>
         <p class="small"><%= product.label.name %></p>
-      <% end %>
       <p><%= product.price %> 円</p>
       <p>在庫数: <%= product.stock %>個</p>
     </li>
