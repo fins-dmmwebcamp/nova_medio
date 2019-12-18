@@ -11,8 +11,8 @@ class Admin::GenresController < ApplicationController
     end
     end
    def index
-    @genres=Genre.page(params[:page])
-    @posts = Genre.search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
+    @genres=Genre.where(is_deleted: false).page(params[:page])
+    @posts = Genre.where(is_deleted: false).search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
   end
 
   def new
@@ -36,8 +36,9 @@ class Admin::GenresController < ApplicationController
   end
 
   def destroy
-    genre = Genre.find(params[:id])
-    genre.destroy
+    @genre = Genre.find(params[:id])
+    @genre.is_deleted = true
+    @genre.save
     flash[:notice]="Genre has successfully deleted!"
     redirect_to admin_genres_path
   end

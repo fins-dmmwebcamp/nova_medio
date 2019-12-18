@@ -13,27 +13,17 @@
       </div>
       <div class="border-bottom">
         <h3><%= @product.name %></h3>
-        <% if @product.artist_id.nil? %>
-          <p>削除されたアーティスト</p>
-        <% else %>
           <p>アーティスト名: <%= @product.artist.name %></p>
-        <% end %>
       </div>
       <%= form_with(model: @product, url: admin_product_path(@product)) do |f|%>
         <%= f.select :on_sale, [["販売中", true],["販売停止中", false]], selected: @product.on_sale %>
         <%= f.submit "反映", class:"btn btn-success btn-sm"%>
       <% end %>
-      <% if @product.label_id.nil? %>
-        <p>削除されたレーベル</p>
-      <% else %>
+     
         <p>レーベル: <%= @product.label.name %></p>
-      <% end %>
-      <% if @product.genre_id.nil? %>
-        <p>削除されたジャンル</p>
-      <% else %>
+
         <p>ジャンル: <%= @product.genre.name %></p>
-      <% end %>
-      <p>在庫数: <%= @product.stock %>個</p>
+        <p>在庫数: <%= @product.stock %>個</p>
       <p>価格: <%= @product.price %>円</p>
     </div>
   </div>
