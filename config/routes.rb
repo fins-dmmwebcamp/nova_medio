@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
   get 'customers/:id/leave_page', to: 'customers#leave_page', as: 'customer_leave_page'
   patch 'customers/:id/leave_page', to: 'customers#leave', as: 'customer_leave'
-  resources :destinations, only: [ :new, :create, :edit, :update], shallow: true
+  resources :destinations, only: [ :new, :create, :edit, :update, :destroy], shallow: true
   resources :orders, only: [:index, :new, :create, :show], shallow: true
   post 'orders/new', to: 'orders#confirm_payment', as: 'confirm_payment'
   post 'orders/new/confirm', to: 'orders#confirm_order', as: 'confirm_order'
