@@ -1,3 +1,4 @@
+# encoding: utf-8
 class OrdersController < ApplicationController
   before_action :authenticate_customer!
 
@@ -13,16 +14,14 @@ class OrdersController < ApplicationController
 
   def new
     items = store_cart_items_to_a
-    if items.blank?
-      flash[:alert] = "カートに商品が存在しません"
-      redirect_to cart_items_path
-    end
+    # ここから　エラー処理
+    alert = []
+    alert.push("カートに商品が存在しません") if items.blank?
     items.each do |item|
-      if item.product.stock < item.amount
-        flash[:alert] = "#{item.product.name}の在庫数(#{item.product.stock}個)を超える注文をしています"
-        redirect_to cart_items_path
-      end
+      alert.push("#{item.product.name}が在庫数(#{item.product.stock}個)を超えています" ) if item.product.stock < item.amount
     end
+    redirect_to cart_items_path, alert: alert if alert.present?
+    # ここまで
     @order = Order.new
     @destinations = Destination.where(customer_id: current_customer.id)
   end

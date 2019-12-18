@@ -41,6 +41,9 @@
 </div>
 <div class="otodoke_saki ">
   <h3>お届け先一覧</h3>
+  <% if flash[:alert].present? %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
   <table class="table">
     <thead>
       <tr>
@@ -51,16 +54,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
+        <td style="width:120px"><%= link_to '編集', edit_destination_path(@destination), class:"btn btn-success" %></td>
         <td><%= @destination.name %></td>
         <td><%= @destination.address_full %></td>
+        <td style="width:120px"></td>
       </tr>
       <% @destinations.each do |destination| %>
         <% if !destination.is_main %>
         <tr>
-          <td><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
+          <td style="width:120px"><%= link_to '編集', edit_destination_path(destination), class:"btn btn-success" %></td>
           <td><%= destination.name %></td>
           <td><%= destination.address_full %></td>
+          <td style="width:120px">
+            <%= link_to "削除", destination_path(destination), method: :delete,
+              class:"btn btn-danger", data:{confirm: "本当に削除しますか？"}  %>
+          </td>
         </tr>
         <% end %>
       <% end %>
