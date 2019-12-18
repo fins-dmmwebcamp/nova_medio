@@ -11,8 +11,8 @@ class Admin::ArtistsController < ApplicationController
     end
    end
 def index
-    @artists=Artist.page(params[:page])
-    @posts = Artist.search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
+    @artists=Artist.where(is_deleted: false).page(params[:page])
+    @posts = Artist.where(is_deleted: false).search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
   end
 
   def new
@@ -36,8 +36,9 @@ def index
   end
 
   def destroy
-     artist = Artist.find(params[:id])
-    artist.destroy
+    @artist = Artist.find(params[:id])
+    @artist.is_deleted = true
+    @artist.save
     flash[:notice]="Artist has successfully deleted!"
     redirect_to admin_artists_path
   end

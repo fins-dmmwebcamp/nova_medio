@@ -12,8 +12,8 @@ class Admin::LabelsController < ApplicationController
   end
 
   def index
-  @labels=Label.page(params[:page])
-  @posts = Label.search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
+  @labels=Label.where(is_deleted: false).page(params[:page])
+  @posts = Label.where(is_deleted: false).search(params[:search]).page(params[:page])#@postは検索結果を入れる変数です。検索→リダイレクト時にこれを一覧表示します
   end
 
   def new
@@ -36,8 +36,9 @@ class Admin::LabelsController < ApplicationController
   end
 
   def destroy
-      label = Label.find(params[:id])
-    label.destroy
+    @label = Label.find(params[:id])
+    @label.is_deleted = true
+    @label.save
     flash[:notice]="Label has successfully deleted!"
     redirect_to admin_labels_path
   end
